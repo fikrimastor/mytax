@@ -1,0 +1,30 @@
+package main
+
+import (
+ "net/http"
+ "os"
+ "strconv"
+ "github.com/labstack/echo/v4"
+ "github.com/labstack/echo/v4/middleware"
+ "github.com/fikrimastor/mytax/services/api/internal/tax"
+)
+func main(){
+ e:=echo.New()
+ e.HideBanner=true
+ e.Use(middleware.Recover(),middleware.CORSWithConfig(middleware.CORSConfig{AllowOrigins:[]string{"http://localhost:3000"}}))
+ e.GET("/healthz",func(c echo.Context)error{return c.JSON(http.StatusOK,map[string]string{"status":"ok"})})
+ e.GET("/v1/policy/status",func(c echo.Context)error{
+  ya,err:=strconv.Atoi(c.QueryParam("ya"))
+  if err!=nil||ya<2000||ya>2100{return c.JSON(http.StatusBadRequest,map[string]string{"error":"valid ya required"})}
+  return c.JSON(http.StatusOK,map[string]any{"assessment_year":ya,"status":"NOT_APPROVED","tax_calculation_enabled":false,"reason":"Official tax-year rules have not been signed off"})
+ })
+ e.POST("/v1/claims/evaluate",func(c echo.Context)error{
+  var input tax.Claim
+  if err:=c.Bind(&input);err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":"invalid JSON"})}
+  a,err:=tax.EvaluatePreliminary(input)
+  if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
+  return c.JSON(http.StatusOK,a)
+ })
+ port:=os.Getenv("PORT");if port==""{port="8080"}
+ e.Logger.Fatal(e.Start(":"+port))
+}
