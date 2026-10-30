@@ -7,6 +7,7 @@ import (
  "github.com/labstack/echo/v4"
  "github.com/labstack/echo/v4/middleware"
  "github.com/fikrimastor/mytax/services/api/internal/tax"
+ "github.com/fikrimastor/mytax/services/api/internal/policy"
 )
 func main(){
  e:=echo.New()
@@ -17,6 +18,10 @@ func main(){
   ya,err:=strconv.Atoi(c.QueryParam("ya"))
   if err!=nil||ya<2000||ya>2100{return c.JSON(http.StatusBadRequest,map[string]string{"error":"valid ya required"})}
   return c.JSON(http.StatusOK,map[string]any{"assessment_year":ya,"status":"NOT_APPROVED","tax_calculation_enabled":false,"reason":"Official tax-year rules have not been signed off"})
+ })
+ e.GET("/v1/policy/catalog",func(c echo.Context)error{
+  if c.QueryParam("ya")!="2025" {return c.JSON(http.StatusNotFound,map[string]string{"error":"no catalog for assessment year"})}
+  return c.JSON(http.StatusOK,policy.YA2025Draft())
  })
  e.POST("/v1/claims/evaluate",func(c echo.Context)error{
   var input tax.Claim
