@@ -1,0 +1,1 @@
+{"name":"mytax-web","private":true,"scripts":{"dev":"nuxt dev","build":"nuxt build","generate":"nuxt generate"},"dependencies":{"nuxt":"^3.17.5","@nuxt/ui":"^2.22.1"},"devDependencies":{"typescript":"^5.8.3"}}
