@@ -23,6 +23,6 @@ func TestTenantIsolationIntegration(t *testing.T){
  if _,err:=db.CountEvidence(ctx,id,b);err==nil{t.Fatal("cross-tenant read allowed")}
  // Verify that no transaction-local subject remains after pool reuse.
  var leaked string
- if err:=pool.QueryRow(ctx,"select current_setting('app.subject',true)").Scan(&leaked);err!=nil{t.Fatal(err)}
+ if err:=pool.QueryRow(ctx,"select coalesce(current_setting('app.subject',true),'')").Scan(&leaked);err!=nil{t.Fatal(err)}
  if leaked!=""{t.Fatalf("subject leaked across transactions: %q",leaked)}
 }
