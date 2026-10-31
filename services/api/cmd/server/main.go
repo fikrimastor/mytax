@@ -9,6 +9,7 @@ import (
  "github.com/fikrimastor/mytax/services/api/internal/tax"
  "github.com/fikrimastor/mytax/services/api/internal/policy"
  "github.com/fikrimastor/mytax/services/api/internal/calculation"
+ "github.com/fikrimastor/mytax/services/api/internal/assessment"
 )
 func main(){
  e:=echo.New()
@@ -19,6 +20,13 @@ func main(){
   ya,err:=strconv.Atoi(c.QueryParam("ya"))
   if err!=nil||ya<2000||ya>2100{return c.JSON(http.StatusBadRequest,map[string]string{"error":"valid ya required"})}
   return c.JSON(http.StatusOK,map[string]any{"assessment_year":ya,"status":"NOT_APPROVED","tax_calculation_enabled":false,"reason":"Official tax-year rules have not been signed off"})
+ })
+ e.POST("/v1/assessment/preview",func(c echo.Context)error{
+  var input assessment.Request
+  if err:=c.Bind(&input);err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":"invalid JSON"})}
+  out,err:=assessment.Preview(input)
+  if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
+  return c.JSON(http.StatusOK,out)
  })
  e.GET("/v1/calculation/resident-gross",func(c echo.Context)error{
   ya,yearErr:=strconv.Atoi(c.QueryParam("ya"))
