@@ -14,6 +14,7 @@ import (
  "github.com/fikrimastor/mytax/services/api/internal/formbe"
  "github.com/fikrimastor/mytax/services/api/internal/income"
  "github.com/fikrimastor/mytax/services/api/internal/eligibility"
+ "github.com/fikrimastor/mytax/services/api/internal/evidence"
 )
 func main(){
  e:=echo.New()
@@ -24,6 +25,14 @@ func main(){
   ya,err:=strconv.Atoi(c.QueryParam("ya"))
   if err!=nil||ya<2000||ya>2100{return c.JSON(http.StatusBadRequest,map[string]string{"error":"valid ya required"})}
   return c.JSON(http.StatusOK,map[string]any{"assessment_year":ya,"status":"NOT_APPROVED","tax_calculation_enabled":false,"reason":"Official tax-year rules have not been signed off"})
+ })
+ e.POST("/v1/evidence/inspect",func(c echo.Context)error{
+  if os.Getenv("MYTAX_ENABLE_EVIDENCE_PREVIEW")!="true" {return c.JSON(http.StatusNotFound,map[string]string{"error":"prototype disabled"})}
+  var input struct{Items []evidence.Item `json:"items"`}
+  if err:=c.Bind(&input);err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":"invalid JSON"})}
+  output,err:=evidence.Inspect(input.Items)
+  if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
+  return c.JSON(http.StatusOK,output)
  })
  e.POST("/v1/eligibility/preview",func(c echo.Context)error{
   var input struct {AssessmentYear int `json:"assessment_year"`; Claims []eligibility.Claim `json:"claims"`}
