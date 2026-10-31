@@ -67,6 +67,10 @@ func main(){
   if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
   return c.JSON(http.StatusOK,result)
  })
+ e.GET("/v1/policy/registry",func(c echo.Context)error{
+  if c.QueryParam("ya")!="2025" {return c.JSON(http.StatusNotFound,map[string]string{"error":"registry not available for year"})}
+  return c.JSON(http.StatusOK,map[string]any{"assessment_year":2025,"status":"DRAFT_REVIEW_REQUIRED","entries":policy.ReliefRegistry2025(),"filing_ready":false})
+ })
  e.GET("/v1/policy/catalog",func(c echo.Context)error{
   if c.QueryParam("ya")!="2025" {return c.JSON(http.StatusNotFound,map[string]string{"error":"no catalog for assessment year"})}
   return c.JSON(http.StatusOK,policy.YA2025Draft())
