@@ -29,9 +29,11 @@ func main(){
   issuer:=os.Getenv("MYTAX_OIDC_ISSUER")
   audience:=os.Getenv("MYTAX_OIDC_AUDIENCE")
   databaseURL:=os.Getenv("DATABASE_URL")
-  if issuer==""||audience==""||databaseURL=="" {e.Logger.Fatal("auth preview requires issuer, audience, and DATABASE_URL")}
+  allowedClient:=os.Getenv("MYTAX_OIDC_ALLOWED_CLIENT")
+  requiredScope:=os.Getenv("MYTAX_OIDC_REQUIRED_SCOPE")
+  if issuer==""||audience==""||databaseURL==""||allowedClient==""||requiredScope=="" {e.Logger.Fatal("auth preview requires issuer, audience, and DATABASE_URL")}
   ctx,cancel:=context.WithTimeout(context.Background(),15*time.Second)
-  verifier,err:=security.NewAccessVerifier(ctx,issuer,audience)
+  verifier,err:=security.NewAccessVerifier(ctx,issuer,audience,allowedClient,requiredScope)
   cancel();if err!=nil {e.Logger.Fatal(err)}
   pool,err:=pgxpool.New(context.Background(),databaseURL)
   if err!=nil {e.Logger.Fatal(err)}
