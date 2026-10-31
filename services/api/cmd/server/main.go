@@ -11,6 +11,7 @@ import (
  "github.com/fikrimastor/mytax/services/api/internal/calculation"
  "github.com/fikrimastor/mytax/services/api/internal/assessment"
  "github.com/fikrimastor/mytax/services/api/internal/reconciliation"
+ "github.com/fikrimastor/mytax/services/api/internal/formbe"
 )
 func main(){
  e:=echo.New()
@@ -21,6 +22,20 @@ func main(){
   ya,err:=strconv.Atoi(c.QueryParam("ya"))
   if err!=nil||ya<2000||ya>2100{return c.JSON(http.StatusBadRequest,map[string]string{"error":"valid ya required"})}
   return c.JSON(http.StatusOK,map[string]any{"assessment_year":ya,"status":"NOT_APPROVED","tax_calculation_enabled":false,"reason":"Official tax-year rules have not been signed off"})
+ })
+ e.GET("/v1/formbe/fields",func(c echo.Context)error{
+  ya,err:=strconv.Atoi(c.QueryParam("ya"))
+  if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":"invalid year"})}
+  result,err:=formbe.Fields(ya)
+  if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
+  return c.JSON(http.StatusOK,map[string]any{"assessment_year":ya,"source_url":formbe.Source,"status":"PARTIAL_NOT_FOR_FILING","fields":result})
+ })
+ e.POST("/v1/formbe/preflight",func(c echo.Context)error{
+  var input formbe.PreflightRequest
+  if err:=c.Bind(&input);err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":"invalid JSON"})}
+  result,err:=formbe.Preflight(input)
+  if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
+  return c.JSON(http.StatusOK,result)
  })
  e.POST("/v1/reconciliation/preview",func(c echo.Context)error{
   var input reconciliation.Request
