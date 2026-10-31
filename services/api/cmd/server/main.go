@@ -40,15 +40,13 @@ func main(){
   defer pool.Close()
   tenantDB,err:=persistence.NewTenantDB(pool,issuer,audience)
   if err!=nil {e.Logger.Fatal(err)}
-  e.GET("/v1/secure/tenants/:tenant_id/evidence/count",func(c echo.Context)error{
-   raw,err:=security.Bearer(c.Request())
-   if err!=nil{return c.JSON(http.StatusUnauthorized,map[string]string{"error":"unauthorized"})}
-   id,err:=verifier.Verify(c.Request().Context(),raw)
-   if err!=nil{return c.JSON(http.StatusUnauthorized,map[string]string{"error":"unauthorized"})}
+  e.GET("/v1/secure/tenants/:tenant_id/evidence/count",security.RequireAccess(verifier,func(c echo.Context)error{
+   id,ok:=c.Get("verified_identity").(security.Identity)
+   if !ok{return c.JSON(http.StatusUnauthorized,map[string]string{"error":"unauthorized"})}
    count,err:=tenantDB.CountEvidence(c.Request().Context(),id,c.Param("tenant_id"))
    if err!=nil{return c.JSON(http.StatusForbidden,map[string]string{"error":"access denied"})}
    return c.JSON(http.StatusOK,map[string]any{"count":count,"status":"PROTOTYPE_METADATA_ONLY"})
-  })
+  }))
  }
  e.GET("/healthz",func(c echo.Context)error{return c.JSON(http.StatusOK,map[string]string{"status":"ok"})})
  e.GET("/v1/policy/status",func(c echo.Context)error{
