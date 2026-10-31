@@ -41,6 +41,7 @@ const check = async () => {
     <hr style="border:0;border-top:1px solid #e2e8f0;margin:30px 0" /><h3>Safety by design</h3><p class="subtle">OCR is evidence extraction, not legal validation. Approved rule packs, eligibility conditions and official examples must be installed before production calculations are enabled.</p>
   </section>
  </div>
+ <nav style="margin-top:24px"><NuxtLink to="/reconciliation">Form BE worksheet preview</NuxtLink> · <NuxtLink to="/assessment">Gross tax preview</NuxtLink></nav>
  <footer class="subtle" style="padding:36px 0;font-size:13px">Not affiliated with LHDN. Do not enter sensitive personal tax details in this prototype.</footer>
 </div>
 </template>
