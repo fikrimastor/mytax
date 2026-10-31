@@ -2,10 +2,13 @@ package main
 
 import (
  "net/http"
+ "context"
+ "time"
  "os"
  "strconv"
  "github.com/labstack/echo/v4"
  "github.com/labstack/echo/v4/middleware"
+ "github.com/jackc/pgx/v5/pgxpool"
  "github.com/fikrimastor/mytax/services/api/internal/tax"
  "github.com/fikrimastor/mytax/services/api/internal/policy"
  "github.com/fikrimastor/mytax/services/api/internal/calculation"
@@ -15,11 +18,36 @@ import (
  "github.com/fikrimastor/mytax/services/api/internal/income"
  "github.com/fikrimastor/mytax/services/api/internal/eligibility"
  "github.com/fikrimastor/mytax/services/api/internal/evidence"
+ "github.com/fikrimastor/mytax/services/api/internal/security"
+ "github.com/fikrimastor/mytax/services/api/internal/persistence"
 )
 func main(){
  e:=echo.New()
  e.HideBanner=true
  e.Use(middleware.Recover(),middleware.CORSWithConfig(middleware.CORSConfig{AllowOrigins:[]string{"http://localhost:3000"}}))
+ if os.Getenv("MYTAX_ENABLE_AUTH_PREVIEW")=="true" {
+  issuer:=os.Getenv("MYTAX_OIDC_ISSUER")
+  audience:=os.Getenv("MYTAX_OIDC_AUDIENCE")
+  databaseURL:=os.Getenv("DATABASE_URL")
+  if issuer==""||audience==""||databaseURL=="" {e.Logger.Fatal("auth preview requires issuer, audience, and DATABASE_URL")}
+  ctx,cancel:=context.WithTimeout(context.Background(),15*time.Second)
+  verifier,err:=security.NewAccessVerifier(ctx,issuer,audience)
+  cancel();if err!=nil {e.Logger.Fatal(err)}
+  pool,err:=pgxpool.New(context.Background(),databaseURL)
+  if err!=nil {e.Logger.Fatal(err)}
+  defer pool.Close()
+  tenantDB,err:=persistence.NewTenantDB(pool,issuer,audience)
+  if err!=nil {e.Logger.Fatal(err)}
+  e.GET("/v1/secure/tenants/:tenant_id/evidence/count",func(c echo.Context)error{
+   raw,err:=security.Bearer(c.Request())
+   if err!=nil{return c.JSON(http.StatusUnauthorized,map[string]string{"error":"unauthorized"})}
+   id,err:=verifier.Verify(c.Request().Context(),raw)
+   if err!=nil{return c.JSON(http.StatusUnauthorized,map[string]string{"error":"unauthorized"})}
+   count,err:=tenantDB.CountEvidence(c.Request().Context(),id,c.Param("tenant_id"))
+   if err!=nil{return c.JSON(http.StatusForbidden,map[string]string{"error":"access denied"})}
+   return c.JSON(http.StatusOK,map[string]any{"count":count,"status":"PROTOTYPE_METADATA_ONLY"})
+  })
+ }
  e.GET("/healthz",func(c echo.Context)error{return c.JSON(http.StatusOK,map[string]string{"status":"ok"})})
  e.GET("/v1/policy/status",func(c echo.Context)error{
   ya,err:=strconv.Atoi(c.QueryParam("ya"))
