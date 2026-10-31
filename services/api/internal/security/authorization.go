@@ -13,7 +13,7 @@ type AccessClaims struct {
 }
 func AuthorizeAccess(claims AccessClaims,requiredClient,requiredScope string)error{
  if requiredClient==""||requiredScope=="" {return errors.New("authorization policy is not configured")}
- if claims.Typ!="" && claims.Typ!="Bearer" && claims.Typ!="at+jwt" {return errors.New("unexpected token type")}
+ if claims.Typ!="Bearer" && claims.Typ!="at+jwt" {return errors.New("unexpected token type")}
  client:=claims.AuthorizedParty
  if client=="" {client=claims.ClientID}
  if client!=requiredClient {return errors.New("unauthorized client")}
