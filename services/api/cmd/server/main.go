@@ -13,6 +13,7 @@ import (
  "github.com/fikrimastor/mytax/services/api/internal/reconciliation"
  "github.com/fikrimastor/mytax/services/api/internal/formbe"
  "github.com/fikrimastor/mytax/services/api/internal/income"
+ "github.com/fikrimastor/mytax/services/api/internal/eligibility"
 )
 func main(){
  e:=echo.New()
@@ -23,6 +24,14 @@ func main(){
   ya,err:=strconv.Atoi(c.QueryParam("ya"))
   if err!=nil||ya<2000||ya>2100{return c.JSON(http.StatusBadRequest,map[string]string{"error":"valid ya required"})}
   return c.JSON(http.StatusOK,map[string]any{"assessment_year":ya,"status":"NOT_APPROVED","tax_calculation_enabled":false,"reason":"Official tax-year rules have not been signed off"})
+ })
+ e.POST("/v1/eligibility/preview",func(c echo.Context)error{
+  var input struct {AssessmentYear int `json:"assessment_year"`; Claims []eligibility.Claim `json:"claims"`}
+  if err:=c.Bind(&input);err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":"invalid JSON"})}
+  if input.AssessmentYear!=2025{return c.JSON(http.StatusBadRequest,map[string]string{"error":"only YA 2025 supported"})}
+  result,err:=eligibility.Evaluate(eligibility.Draft2025(),input.Claims)
+  if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
+  return c.JSON(http.StatusOK,result)
  })
  e.POST("/v1/income/classify",func(c echo.Context)error{
   var input struct {AssessmentYear int `json:"assessment_year"`; Entries []income.Entry `json:"entries"`}
