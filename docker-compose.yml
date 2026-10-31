@@ -1,0 +1,33 @@
+services:
+  api:
+    build:
+      context: ./services/api
+    restart: unless-stopped
+    environment:
+      - SERVICE_URL_API_8080
+      - PORT=8080
+      - MYTAX_CORS_ORIGINS=${SERVICE_URL_WEB}
+      # Previews stay OFF. Do not set MYTAX_ENABLE_AUTH_PREVIEW or MYTAX_ENABLE_EVIDENCE_PREVIEW.
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  web:
+    build:
+      context: ./apps/web
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      - SERVICE_URL_WEB_3000
+      - NUXT_PUBLIC_API_BASE=${SERVICE_URL_API}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
