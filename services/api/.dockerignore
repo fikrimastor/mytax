@@ -1,0 +1,4 @@
+testdata
+*.log
+.env
+.env.*

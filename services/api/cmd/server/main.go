@@ -24,7 +24,7 @@ import (
 func main(){
  e:=echo.New()
  e.HideBanner=true
- e.Use(middleware.Recover(),middleware.CORSWithConfig(middleware.CORSConfig{AllowOrigins:[]string{"http://localhost:3000"}}))
+ e.Use(middleware.Recover(),middleware.CORSWithConfig(middleware.CORSConfig{AllowOrigins:corsOrigins(os.Getenv("MYTAX_CORS_ORIGINS"))}))
  if os.Getenv("MYTAX_ENABLE_AUTH_PREVIEW")=="true" {
   issuer:=os.Getenv("MYTAX_OIDC_ISSUER")
   audience:=os.Getenv("MYTAX_OIDC_AUDIENCE")
