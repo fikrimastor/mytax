@@ -17,6 +17,9 @@ func TestCORSOrigins(t *testing.T) {
 		{"trims and splits", " https://a.example.com , https://b.example.com ", []string{"https://a.example.com", "https://b.example.com"}},
 		{"wildcard is rejected", "*", []string{"http://localhost:3000"}},
 		{"wildcard among others is dropped", "https://a.example.com,*", []string{"https://a.example.com"}},
+		{"scheme wildcard is rejected", "https://*", []string{"http://localhost:3000"}},
+		{"subdomain wildcard is rejected", "https://*.example.com,https://a.example.com", []string{"https://a.example.com"}},
+		{"trailing slash is trimmed", "https://mytax.example.com/", []string{"https://mytax.example.com"}},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
