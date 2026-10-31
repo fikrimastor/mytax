@@ -3,7 +3,6 @@ package security
 import (
  "context"
  "errors"
- "encoding/json"
  "net/http"
  "strings"
  "github.com/coreos/go-oidc/v3/oidc"
@@ -22,7 +21,7 @@ func (v *AccessVerifier) Verify(ctx context.Context, raw string)(Identity,error)
  // go-oidc verifies JWT issuer, signature, expiry and audience. Configure
  // Keycloak audience mapper to include the actual API resource audience.
  var claims AccessClaims
- if err:=json.Unmarshal(token.Claims,&claims);err!=nil{return Identity{},err}
+ if err:=token.Claims(&claims);err!=nil{return Identity{},err}
  if err:=AuthorizeAccess(claims,v.client,v.scope);err!=nil{return Identity{},err}
  id:=Identity{Subject:token.Subject,Issuer:token.Issuer,Audience:v.audience,Verified:true}
  if err:=id.Valid(v.issuer,v.audience);err!=nil{return Identity{},err}
