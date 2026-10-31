@@ -52,7 +52,7 @@ func ResidentGrossTax(ya int,chargeableIncomeSen int64)(Result,error){
   upper:=b.UpToSen;if upper==0||upper>chargeableIncomeSen{upper=chargeableIncomeSen}
   delta:=upper-lower
   if delta<=0{continue}
-  if delta>math.MaxInt64/b.RatePercent && b.RatePercent>0 {return Result{},errors.New("income too large")}
+  if b.RatePercent>0 && delta>(math.MaxInt64-50)/b.RatePercent {return Result{},errors.New("income too large")}
   tax:=(delta*b.RatePercent+50)/100
   if out.GrossTaxSen>math.MaxInt64-tax{return Result{},errors.New("tax overflow")}
   out.Lines=append(out.Lines,Line{FromSen:lower,ToSen:upper,RatePercent:b.RatePercent,TaxSen:tax})
