@@ -1,0 +1,96 @@
+{
+  "realm": "mytax-ci",
+  "enabled": true,
+  "sslRequired": "none",
+  "accessTokenLifespan": 300,
+  "registrationAllowed": false,
+  "clientScopes": [
+    {
+      "name": "basic",
+      "description": "Needed because declaring clientScopes stops Keycloak creating built-ins: without this mapper tokens have NO sub claim.",
+      "protocol": "openid-connect",
+      "attributes": { "include.in.token.scope": "false", "display.on.consent.screen": "false" },
+      "protocolMappers": [
+        {
+          "name": "sub",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-sub-mapper",
+          "consentRequired": false,
+          "config": { "access.token.claim": "true", "introspection.token.claim": "true" }
+        }
+      ]
+    },
+    {
+      "name": "mytax.api",
+      "description": "SYNTHETIC CI ONLY. Grants audience mytax-api.",
+      "protocol": "openid-connect",
+      "attributes": { "include.in.token.scope": "true", "display.on.consent.screen": "false" },
+      "protocolMappers": [
+        {
+          "name": "mytax-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "mytax-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "mytax-web",
+      "name": "mytax web (CI test client)",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "defaultClientScopes": ["basic", "mytax.api"],
+      "optionalClientScopes": []
+    },
+    {
+      "clientId": "other-client",
+      "name": "client NOT allowed by the API (CI negative test)",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "defaultClientScopes": ["basic", "mytax.api"],
+      "optionalClientScopes": []
+    },
+    {
+      "clientId": "no-scope-client",
+      "name": "client without mytax.api scope (CI negative test)",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "defaultClientScopes": ["basic"],
+      "optionalClientScopes": []
+    }
+  ],
+  "users": [
+    {
+      "username": "alice",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "alice@example.invalid",
+      "firstName": "Alice",
+      "lastName": "Synthetic",
+      "credentials": [{ "type": "password", "value": "ci-only-alice-pw", "temporary": false }]
+    },
+    {
+      "username": "bob",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "bob@example.invalid",
+      "firstName": "Bob",
+      "lastName": "Synthetic",
+      "credentials": [{ "type": "password", "value": "ci-only-bob-pw", "temporary": false }]
+    }
+  ]
+}

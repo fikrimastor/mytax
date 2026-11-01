@@ -1,0 +1,15 @@
+# LOCAL / CI TEST ONLY. Disposable Keycloak with a synthetic realm.
+# NEVER deploy this file to Coolify or production. The realm enables the
+# password (direct) grant and uses throwaway passwords.
+#   docker compose -f docker-compose.keycloak.yml up -d
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.5.2
+    command: ["start-dev", "--import-realm", "--http-port=8081", "--hostname=http://localhost:8081", "--health-enabled=true"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ci-admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ci-only-admin-pw
+    ports:
+      - "127.0.0.1:8081:8081"
+    volumes:
+      - ./services/api/testdata/keycloak:/opt/keycloak/data/import:ro
