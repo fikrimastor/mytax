@@ -8,6 +8,14 @@
 - `keycloak_e2e_test.go`: real token -> `RequireAccess` -> `TenantDB` -> PostgreSQL RLS with the restricted `mytax_app` role. Covers alice/bob cross-tenant denial, missing/garbage token, malformed tenant id, spoofed `X-User-ID`/`X-Tenant-ID` headers, wrong-client and no-scope tokens, 60 concurrent requests over a 3-connection pool, and `app.subject` leakage.
 - `export_test.go` exposes an HTTP-capable verifier constructor to test files only. Production `NewAccessVerifier` still requires an HTTPS issuer.
 
+## Lazy verifier (API can boot before Keycloak)
+`oidc.NewProvider` does network discovery, so building the verifier at boot crashed the API whenever Keycloak was not ready yet (for example Coolify starting both together).
+- `security.ValidateAccessConfig` (HTTPS issuer, audience, client, scope) now runs **at startup**, so a misconfiguration still crashes at boot.
+- `security.LazyVerifier` performs only the discovery lazily. Until it succeeds every protected request is rejected with **503** `authentication unavailable` (`ErrVerifierUnavailable`); it is never treated as authenticated. Attempts are single-flight, rate-limited (10s attempt timeout, 5s minimum retry in `cmd/server/main.go`), and the verifier is cached after the first success. A missing token is still 401.
+- Tested: fake-clock unit tests for backoff, caching, single-flight under 20 concurrent callers, timeout and nil verifier (also `-race` x20); a live test where a simulated outage returns 503 and then a real Keycloak token is accepted without restart; and mutation checks (removing the 503 mapping, the single-flight guard or the backoff each makes a test fail).
+- Smoke-tested on the built binary: with `MYTAX_OIDC_ISSUER=https://127.0.0.1:1/...` it starts, `/healthz` is 200, the secure route is 503 (about 0.5 ms inside the backoff window) and 401 without a token; with an `http://` issuer it still exits at boot.
+- Not covered: behaviour after a *successful* build when Keycloak later goes down (go-oidc caches keys; not tested), and the lazy path against a real HTTPS issuer (needs the staging Keycloak).
+
 ## Findings
 - Declaring `clientScopes` in a realm import stops Keycloak creating built-ins, so tokens had **no `sub`** until a `basic` scope with `oidc-sub-mapper` was added. The old synthetic-JWKS tests could not catch this.
 - Mutation check: removing the membership check or the `azp` check makes the e2e test fail with the expected messages. With the membership check removed, RLS alone still returned count 0 (no data leaked).

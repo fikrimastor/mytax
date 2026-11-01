@@ -4,6 +4,7 @@ import (
  "context"
  "encoding/base64"
  "encoding/json"
+ "errors"
  "fmt"
  "net/http"
  "net/http/httptest"
@@ -11,7 +12,9 @@ import (
  "os"
  "strings"
  "sync"
+ "sync/atomic"
  "testing"
+ "time"
 
  "github.com/jackc/pgx/v5/pgxpool"
  "github.com/labstack/echo/v4"
@@ -136,4 +139,37 @@ func TestKeycloakToRLSEndToEnd(t *testing.T) {
  var leaked string
  if err := pool.QueryRow(ctx, "select coalesce(current_setting('app.subject',true),'')").Scan(&leaked); err != nil { t.Fatal(err) }
  if leaked != "" { t.Fatalf("subject leaked across transactions: %q", leaked) }
+}
+
+// The API may boot before Keycloak is ready. With a lazy verifier it must
+// answer 503 (never 200/401-as-success) until the provider is reachable, then
+// accept a real token without a restart.
+func TestKeycloakLazyVerifierRecovers(t *testing.T) {
+ issuer := os.Getenv("MYTAX_TEST_KEYCLOAK_ISSUER")
+ if issuer == "" { t.Skip("MYTAX_TEST_KEYCLOAK_ISSUER not set: lazy verifier NOT verified live") }
+ ctx := context.Background()
+ tok, _ := e2eToken(t, issuer, "mytax-web", "alice", "ci-only-alice-pw")
+
+ var reachable atomic.Bool // flips when "Keycloak becomes ready"
+ lazy, err := security.NewLazyVerifier(func(c context.Context) (security.TokenVerifier, error) {
+  if !reachable.Load() { return nil, errors.New("simulated: provider not ready") }
+  return security.NewTestAccessVerifier(c, issuer, "mytax-api", "mytax-web", "mytax.api")
+ }, 5*time.Second, 50*time.Millisecond)
+ if err != nil { t.Fatal(err) }
+
+ e := echo.New()
+ e.GET("/p", security.RequireAccess(lazy, func(c echo.Context) error { return c.NoContent(http.StatusOK) }))
+ status := func(token string) int {
+  req := httptest.NewRequest(http.MethodGet, "/p", nil)
+  req.Header.Set("Authorization", "Bearer "+token)
+  rec := httptest.NewRecorder()
+  e.ServeHTTP(rec, req)
+  return rec.Code
+ }
+ if got := status(tok); got != http.StatusServiceUnavailable { t.Fatalf("before provider is ready: got %d want 503", got) }
+ reachable.Store(true)
+ time.Sleep(80 * time.Millisecond) // past minRetry
+ if got := status(tok); got != http.StatusOK { t.Fatalf("after provider is ready: got %d want 200", got) }
+ if got := status(tok + "x"); got != http.StatusUnauthorized { t.Fatalf("forged token after recovery: got %d want 401", got) }
+ _ = ctx
 }

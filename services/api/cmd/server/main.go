@@ -32,9 +32,15 @@ func main(){
   allowedClient:=os.Getenv("MYTAX_OIDC_ALLOWED_CLIENT")
   requiredScope:=os.Getenv("MYTAX_OIDC_REQUIRED_SCOPE")
   if issuer==""||audience==""||databaseURL==""||allowedClient==""||requiredScope=="" {e.Logger.Fatal("auth preview requires issuer, audience, and DATABASE_URL")}
-  ctx,cancel:=context.WithTimeout(context.Background(),15*time.Second)
-  verifier,err:=security.NewAccessVerifier(ctx,issuer,audience,allowedClient,requiredScope)
-  cancel();if err!=nil {e.Logger.Fatal(err)}
+  // Config errors still crash at boot; only the network discovery is lazy so
+  // the API can start before Keycloak is ready. Until it succeeds, 503.
+  if err:=security.ValidateAccessConfig(issuer,audience,allowedClient,requiredScope);err!=nil {e.Logger.Fatal(err)}
+  verifier,err:=security.NewLazyVerifier(func(ctx context.Context)(security.TokenVerifier,error){
+   v,err:=security.NewAccessVerifier(ctx,issuer,audience,allowedClient,requiredScope)
+   if err!=nil{return nil,err}
+   return v,nil
+  },10*time.Second,5*time.Second)
+  if err!=nil {e.Logger.Fatal(err)}
   pool,err:=pgxpool.New(context.Background(),databaseURL)
   if err!=nil {e.Logger.Fatal(err)}
   defer pool.Close()

@@ -10,8 +10,15 @@ import (
 // AccessVerifier is distinct from the ID-token verifier. It validates
 // signature, issuer, expiry and a REQUIRED audience claim on access JWTs.
 type AccessVerifier struct{issuer,audience,client,scope string; verifier *oidc.IDTokenVerifier}
+// ValidateAccessConfig performs the offline checks of NewAccessVerifier. A
+// service that builds its verifier lazily must call it at startup so that a
+// misconfiguration still fails fast instead of hiding behind "unavailable".
+func ValidateAccessConfig(issuer,audience,client,scope string)error{
+ if !strings.HasPrefix(issuer,"https://")||audience==""||client==""||scope=="" {return errors.New("HTTPS issuer and audience required")}
+ return nil
+}
 func NewAccessVerifier(ctx context.Context,issuer,audience,client,scope string)(*AccessVerifier,error){
- if !strings.HasPrefix(issuer,"https://")||audience==""||client==""||scope=="" {return nil,errors.New("HTTPS issuer and audience required")}
+ if err:=ValidateAccessConfig(issuer,audience,client,scope);err!=nil{return nil,err}
  provider,err:=oidc.NewProvider(ctx,issuer);if err!=nil{return nil,err}
  return &AccessVerifier{issuer:issuer,audience:audience,client:client,scope:scope,verifier:provider.Verifier(&oidc.Config{ClientID:audience})},nil
 }

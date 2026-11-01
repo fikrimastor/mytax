@@ -2,6 +2,7 @@ package security
 
 import (
  "context"
+ "errors"
  "net/http"
  "github.com/labstack/echo/v4"
 )
@@ -14,6 +15,7 @@ func RequireAccess(verifier TokenVerifier,next echo.HandlerFunc) echo.HandlerFun
   token,err:=Bearer(c.Request())
   if err!=nil{return c.JSON(http.StatusUnauthorized,map[string]string{"error":"unauthorized"})}
   id,err:=verifier.Verify(c.Request().Context(),token)
+  if errors.Is(err,ErrVerifierUnavailable){return c.JSON(http.StatusServiceUnavailable,map[string]string{"error":"authentication unavailable"})}
   if err!=nil||!id.Verified{return c.JSON(http.StatusUnauthorized,map[string]string{"error":"unauthorized"})}
   c.Set("verified_identity",id)
   return next(c)
