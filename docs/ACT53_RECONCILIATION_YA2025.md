@@ -34,7 +34,7 @@ Everything else (SELF, DISABILITY_EQUIPMENT, SELF_EDUCATION / SELF_UPSKILL, MEDI
 ### Finding kinds used in the registry notes
 | Kind | Meaning | Used now |
 |---|---|---|
-| `ACT53_CONFIRMED_YA2025` | Act and amending Finance Act text give the value and place it in YA 2025 | 12 entries |
+| `ACT53_CONSISTENT_YA2025` | Act and amending Finance Act text agree on the value and place it in YA 2025. The Act text is a non-authentic AGC copy with no tax-professional review, so the entry status stays `DRAFT_REVIEW_REQUIRED` | 12 entries |
 | `ACT53_SCOPE` | Amount agrees; scope or conditions need care or are not modelled | MEDICAL_VACCINATION |
 | `ACT53_YA_UNCERTAIN`, `ACT53_DIFFERS` | Kept for future use | none |
 

@@ -14,7 +14,7 @@ Legend for verification (never merge these levels): **C** committed, **L** local
 | YA 2025 relief registry (31 entries) vs Act 53, Finance Acts 2024 and 2025 | yes | yes | yes | n/a | no |
 | Coolify deployment | yes | Docker only | n/a | **no** | no |
 
-The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main` and has **no pull request**. PR 2 (competitive landscape docs) is open and unmerged.
+PR 3 (branch `pr3-gaps`) is open as a **draft** and unmerged. The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main`. PR 2 (competitive landscape docs) is also open and unmerged.
 
 ## Done so far (all Draft, nothing approved)
 - Source records with hashes: pasted LHDN tables, Act 53 as at 21 May 2024 and 1 January 2026, Finance Act 2024 (Act 862), Akta Kewangan 2025 (Akta 874). See `docs/sources/`.
@@ -26,7 +26,7 @@ The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main` and has *
 ## Open items
 
 ### 1. Verification and CI
-- [ ] Open a pull request for the branch and merge to `main` once reviewed (not requested yet).
+- [ ] Merge PR 3 (draft, branch `pr3-gaps`) to `main` once reviewed. The pull request exists; it is not merged.
 - [x] Two-tenant isolation matrix added: symmetric isolation, cross-tenant writes refused by RLS, privilege-escalation attempts, spoofed identities, transaction-local subject after commit, rollback, error and panic, and 24 goroutines over 4 pooled connections. Local result: passed on PostgreSQL 16 with `-race`, and 8 mutation checks each fail a test. See `docs/POSTGRES_SECURITY_RUNBOOK.md`. **CI: passed** (run 110 on `fd1593e`, `go test -race`, no skipped test; the PostgreSQL server log in that run shows the expected RLS and privilege refusals).
 - [x] CI now runs `go test -race` and fails on any skipped test.
 - [ ] Live Keycloak test (access token, client, scopes, tenant authorization). JWKS key rotation and caching tests. Token revocation. Roles beyond exact client and scope.
@@ -47,6 +47,8 @@ The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main` and has *
 - [ ] YA 2023 and YA 2024: the code still rejects them; the owner decides whether to enable. A YA 2026 package would be built from Akta 874 and must not be copied from YA 2025.
 - [ ] Fact vocabulary is inconsistent across rules (for example `qualifying_publication`, `qualifying_reading_material`, `internet_in_own_name`, `own_name`). Unifying changes API behaviour and needs a decision.
 - [ ] Two engines (`policy` and `eligibility`) carry overlapping rules. Decide one source of truth.
+- [ ] First-home s.46B **A x B / C apportionment between co-claimants is not modelled.** The facts `co_claimant_none` and `within_three_years_of_spa` only force `REVIEW_REQUIRED`; the rule does not compute the shared fraction.
+- [ ] Rebate spouse-flag conflict now fails closed, but s.6A is not checked to determine whether both spouses may claim the same rebate.
 
 ### 3. Product wiring
 - [ ] Connect `family`, rebates and the dividend review into `assessment` and the API, update API contracts and README.
@@ -61,8 +63,11 @@ The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main` and has *
 ### 5. Claude connector (MCP server) — planned
 See `docs/MCP_CONNECTOR_PLAN.md`. Plan only; phases P0 to P4 with gates. Depends on items 2, 3 and 4 above, in particular rule coverage and a canonical fact vocabulary.
 
+### 6. PR 3 scope cleanup
+- [ ] Split scope-creep files out of PR 3 into separate changes: `services/api/Dockerfile`, `apps/web/Dockerfile`, `docker-compose.yml`, `services/api/cmd/server/cors.go`, `apps/web/package-lock.json`.
+
 ## Suggested order
-1. Pull request and review of the current branch; close the security test gaps in section 1.
+1. Review and merge PR 3 (draft); close the security test gaps in section 1.
 2. Rule coverage for the most common receipt categories, with the canonical fact vocabulary.
 3. Wire the engines into `assessment` and the API.
 4. Live Keycloak and Coolify checks.

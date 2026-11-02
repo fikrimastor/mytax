@@ -52,4 +52,4 @@ So every call returns `REVIEW_REQUIRED` and `computed` false. The only number is
 - Compost machine claimable once across YA 2025 to 2027 (needs data across years). Breastfeeding once per two years.
 - Statutory rounding. The supplied texts have no rounding rule.
 - Enabling YA 2023 and YA 2024: a decision for the repository owner.
-- Tax-professional review. CI has not run on this branch. Two PostgreSQL integration tests skip without a database.
+- Tax-professional review. CI has not run on this branch. Nine PostgreSQL integration tests skip without a database (seven use the two-tenant `needDB` fixture), and CI fails on any skipped test.

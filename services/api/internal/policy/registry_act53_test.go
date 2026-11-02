@@ -33,7 +33,7 @@ func TestRegistryAct53FindingsKeepAmountsAndDraftStatus(t *testing.T) {
 func TestRegistryAct53FindingKinds(t *testing.T) {
 	reg := registryByID()
 	kinds := map[string][]string{
-		Act53Confirmed: {"SSPN", "EV_COMPOST", "DISABLED_SELF", "DISABLED_SPOUSE", "DISABLED_CHILD", "EDU_MED_INSURANCE",
+		Act53Consistent: {"SSPN", "EV_COMPOST", "DISABLED_SELF", "DISABLED_SPOUSE", "DISABLED_CHILD", "EDU_MED_INSURANCE",
 			"MEDICAL_LEARNING_DISABILITY", "CHILDCARE", "FIRST_HOME_INTEREST_LOW", "FIRST_HOME_INTEREST_MID", "MEDICAL_SCREENING", "PARENTS"},
 		Act53Scope: {"MEDICAL_VACCINATION"},
 	}
@@ -44,8 +44,8 @@ func TestRegistryAct53FindingKinds(t *testing.T) {
 			}
 		}
 	}
-	// Confirmed entries must cite the amending Finance Act (or the Act section for the first-home rule).
-	for _, id := range kinds[Act53Confirmed] {
+	// Consistent entries must cite the amending Finance Act (or the Act section for the first-home rule).
+	for _, id := range kinds[Act53Consistent] {
 		if !strings.Contains(reg[id].Note, "Finance Act 2024") {
 			t.Fatalf("%s must cite Finance Act 2024: %q", id, reg[id].Note)
 		}
