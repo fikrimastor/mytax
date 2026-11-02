@@ -15,9 +15,39 @@ func TestRebateBoundaryAtRM35000(t *testing.T) {
 }
 
 func TestRebateSelfSpouseAndWifeAreSeparateRM400(t *testing.T) {
-	r, err := ProvisionalRebates(500000, 3000000, RebateFacts{SelfDeductionClaimed: true, SpouseDeductionClaimed: true, WifeHusbandDeductionClaimed: true})
-	if err != nil || r.UncappedProvisionalRebateSen != 120000 || r.TaxAfterProvisionalRebateSen != 380000 {
+	r, err := ProvisionalRebates(500000, 3000000, RebateFacts{SelfDeductionClaimed: true, SpouseDeductionClaimed: true})
+	if err != nil || r.UncappedProvisionalRebateSen != 80000 || r.TaxAfterProvisionalRebateSen != 420000 {
 		t.Fatalf("%+v %v", r, err)
+	}
+	w, err := ProvisionalRebates(500000, 3000000, RebateFacts{WifeHusbandDeductionClaimed: true})
+	if err != nil || w.UncappedProvisionalRebateSen != 40000 || w.TaxAfterProvisionalRebateSen != 460000 {
+		t.Fatalf("%+v %v", w, err)
+	}
+}
+
+func TestRebateSpouseAndWifeFlagsConflictFailClosed(t *testing.T) {
+	r, err := ProvisionalRebates(500000, 3000000, RebateFacts{SelfDeductionClaimed: true, SpouseDeductionClaimed: true, WifeHusbandDeductionClaimed: true})
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Only the self rebate is granted; the conflicting spouse item yields no candidate.
+	if r.UncappedProvisionalRebateSen != 40000 || r.TaxAfterProvisionalRebateSen != 460000 || r.RefundSen != 0 {
+		t.Fatalf("conflicting spouse claims granted a rebate: %+v", r)
+	}
+	if r.Status != "REVIEW_REQUIRED" {
+		t.Fatalf("status %s", r.Status)
+	}
+	var conflict *RebateLine
+	for i := range r.Lines {
+		if r.Lines[i].ID == "REBATE_SPOUSE_47" {
+			conflict = &r.Lines[i]
+		}
+		if r.Lines[i].ID == "REBATE_45A" {
+			t.Fatalf("wife rebate line emitted on conflict: %+v", r.Lines)
+		}
+	}
+	if conflict == nil || conflict.AmountSen != 0 || len(conflict.Reasons) != 1 || conflict.Reasons[0] != "SPOUSE_REBATE_FLAGS_CONFLICT" {
+		t.Fatalf("missing fail-closed conflict line: %+v", r.Lines)
 	}
 }
 

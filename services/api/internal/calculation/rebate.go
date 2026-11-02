@@ -87,11 +87,21 @@ func ProvisionalRebates(grossTaxSen, chargeableIncomeSen int64, f RebateFacts) (
 	if err := fixed("REBATE_SELF_46_1_A", f.SelfDeductionClaimed); err != nil {
 		return RebateResult{}, err
 	}
-	if err := fixed("REBATE_SPOUSE_47", f.SpouseDeductionClaimed); err != nil {
-		return RebateResult{}, err
-	}
-	if err := fixed("REBATE_45A", f.WifeHusbandDeductionClaimed); err != nil {
-		return RebateResult{}, err
+	// s.47(1)/(2) and s.45A are mutually exclusive: the same spouse cannot be both the
+	// s.47 spouse and the s.45A wife claim. Both flags asserted means one is wrong, so
+	// grant neither RM400 and send the item to review.
+	if f.SpouseDeductionClaimed && f.WifeHusbandDeductionClaimed {
+		out.Status = "REVIEW_REQUIRED"
+		if err := add("REBATE_SPOUSE_47", 0, "SPOUSE_REBATE_FLAGS_CONFLICT"); err != nil {
+			return RebateResult{}, err
+		}
+	} else {
+		if err := fixed("REBATE_SPOUSE_47", f.SpouseDeductionClaimed); err != nil {
+			return RebateResult{}, err
+		}
+		if err := fixed("REBATE_45A", f.WifeHusbandDeductionClaimed); err != nil {
+			return RebateResult{}, err
+		}
 	}
 	if f.ZakatPaidSen > 0 {
 		if !f.ZakatReceiptFromAuthority {
