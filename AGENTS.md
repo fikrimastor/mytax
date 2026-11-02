@@ -30,8 +30,7 @@ Official starting references:
 - Keep policy logic deterministic, testable, separate from AI, and governed by immutable approved versions. AI is limited to extraction/classification assistance.
 
 ## Project structure
-- `services/api/internal/policy`: draft relief rules, registry, approval contracts.
-- `services/api/internal/eligibility`: expense candidate screening, shared caps, exclusions.
+- `services/api/internal/policy`: draft relief rules, registry, approval contracts, the canonical fact list and the single claim-evaluation engine (shared caps, exclusive families, duplicate detection).
 - `services/api/internal/calculation`: rate arithmetic, not full statutory liability.
 - `services/api/internal/assessment`, `reconciliation`, `formbe`, `income`: partial workflows.
 - `services/api/internal/evidence`: synthetic metadata-only prototype.

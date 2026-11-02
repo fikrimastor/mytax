@@ -1,5 +1,7 @@
 # Milestone 9 — expense-level relief candidate assessment
 
+**Update 2026-11-03:** this endpoint is now served by `internal/policy`. Response fields follow the policy shape (`claim_id`, `status`, `provisional_amount_sen`, `approved_amount_sen`, `provisional_total_sen`, `filing_ready`); rule ids `EDUCATION_UPSKILL` and `EDUCATION_OTHER` became `EDUCATION_SELF_SKILLS` and `EDUCATION_SELF_OTHER`.
+
 Primary official basis: https://www.hasil.gov.my/individu/pelepasan-cukai/ (YA 2025) and https://www.hasil.gov.my/media/d1rhwb05/pelepasan-cukai-tt-2025.pdf
 
 POST /v1/eligibility/preview accepts assessment_year=2025 and claims with immutable ID, expense_key, rule_id, amount_sen, evidence_reference and verified facts. It deterministically orders by ID and checks shared lifestyle/education/medical caps, selected nested caps, duplicate expense identifiers and first-home tier exclusivity.

@@ -49,7 +49,7 @@ Claim:
 
 ### 3. Rules and fact vocabulary
 - Rules that exist only in eligibility move into `YA2025Draft()` under policy IDs: `EDUCATION_UPSKILL` becomes `EDUCATION_SELF_SKILLS`, `EDUCATION_OTHER` becomes `EDUCATION_SELF_OTHER`, and `MEDICAL_DENTAL` is added (limit RM1,000, group `MEDICAL_SELF_FAMILY`, facts `resident`, `within_year`, `qualifying_dental`, `qualifying_beneficiary`, `no_other_claim`).
-- New file `internal/policy/facts.go` lists the canonical fact names as constants: `snake_case`; `qualifying_<thing>` for properties of the item or service; `<thing>_in_own_name` for ownership; shared facts `resident`, `within_year`, `no_other_claim`, `qualifying_beneficiary`.
+- New file `internal/policy/facts.go` lists the canonical fact names as a single sorted list (`CanonicalFacts`): `snake_case`; `qualifying_<thing>` for properties of the item or service; `<thing>_in_own_name` for ownership; shared facts `resident`, `within_year`, `no_other_claim`, `qualifying_beneficiary`.
 - A test fails if any rule in any catalog requires a fact that is not in the canonical list.
 - Where a merged rule had weaker facts in eligibility than in policy, the policy facts win (stricter). Where it had facts policy lacks, they are added to the policy rule.
 
@@ -60,8 +60,9 @@ Claim:
 - `docs/ASSESSMENT_PREVIEW.md`, `docs/RELIEF_LIFESTYLE_YA2025.md`, `docs/ROADMAP.md` and the project-structure list in `AGENTS.md` (which still names `internal/eligibility`) are updated in the same change.
 
 ### 5. Testing and fail-closed
-1. Before moving any code, add golden tests that record what `eligibility.Evaluate` returns today for a claim matrix: valid claim, over limit, group limit, duplicate `expense_key`, missing key, missing evidence, unknown rule, missing and false facts, both first-home tiers together (exclusive), total overflow, more than 1000 claims, duplicate claim ID, non-positive amount.
+1. Before moving any code, add golden tests that record what `eligibility.Evaluate` returns today for a claim matrix: valid claim, over limit, group limit, duplicate `expense_key`, missing key, missing evidence, unknown rule, missing and false facts, both first-home tiers together (exclusive), claim count limit, more than 1000 claims, duplicate claim ID, non-positive amount.
 2. After the move, the unified `Evaluate` must give the same amounts and the same set of failing conditions for each case. The allowed differences are only the field and reason renames in section 2 and the merged-rule IDs and facts in section 3.
+   The int64 running-total overflow guard cannot be reached with real catalog limits, so it is covered by a test on a synthetic package.
 3. The duplicated rule tests in the two packages (`firsthome_test.go`, `lifestyle_test.go`) are merged into one set under `policy`. `catalog_parity_test.go` is deleted, because there is one catalog.
 4. New test: no code path returns `Approved` or a non-zero `approved_amount_sen` for a Draft package.
 5. Verification before merge: `go vet`, `go test -race ./...`, the PostgreSQL integration tests on a throwaway PostgreSQL 16 with zero skips, and CI passing.
