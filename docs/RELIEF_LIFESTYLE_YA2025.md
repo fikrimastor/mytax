@@ -19,9 +19,9 @@ Item 10 (additional sports relief, RM1,000) is separate and **not modelled here*
 ## What is modelled
 | Rule ID | Cap | Pool | Required facts (all must be true) |
 |---|---|---|---|
-| `LIFESTYLE_BOOKS` | RM2,500 | LIFESTYLE | existing facts, unchanged; cites s.46(1)(p)(i) |
+| `LIFESTYLE_BOOKS` | RM2,500 | LIFESTYLE | resident, in the YA, qualifying reading material, qualifying beneficiary, no other claim; cites s.46(1)(p)(i) |
 | `LIFESTYLE_DEVICE` (new) | RM2,500 | LIFESTYLE | cites s.46(1)(p)(ii); resident, in the YA, qualifying beneficiary, qualifying device, not business use |
-| `LIFESTYLE_INTERNET` | RM2,500 | LIFESTYLE | existing facts, unchanged; cites s.46(1)(p)(iv) |
+| `LIFESTYLE_INTERNET` | RM2,500 | LIFESTYLE | resident, in the YA, internet in own name, qualifying expense, no other claim; cites s.46(1)(p)(iv) |
 | `LIFESTYLE_COURSE` (new) | RM2,500 | LIFESTYLE | resident, in the YA, qualifying beneficiary, upskilling course, **course not falling under s.46(1)(f)(iii)** |
 
 The rules live only in `internal/policy` (`YA2025Draft`); `internal/eligibility` was removed on 2026-11-03. Amounts are integer sen.
