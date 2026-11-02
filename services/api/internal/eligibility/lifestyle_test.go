@@ -266,3 +266,21 @@ func TestLifestyleManySmallClaimsStopExactlyAtCap(t *testing.T) {
 		t.Fatalf("cap edge wrong: %d %d", r.Decisions[24].CandidateSen, r.Decisions[25].CandidateSen)
 	}
 }
+
+func TestLifestyleCourseExcludesSection46_1_f_iii_Courses(t *testing.T) {
+	c := claim("a", "course-1", "LIFESTYLE_COURSE", 100000)
+	c.Facts["not_course_under_46_1_f_iii"] = false // course falls under s.46(1)(f)(iii)
+	r, err := Evaluate(Draft2025(), []Claim{c})
+	if err != nil || r.ProvisionalTotalSen != 0 || r.Decisions[0].State != "REVIEW_REQUIRED" {
+		t.Fatalf("(f)(iii) course must not be claimed as lifestyle: %+v %v", r, err)
+	}
+	found := false
+	for _, reason := range r.Decisions[0].Reasons {
+		if reason == "FACT_NOT_VERIFIED:not_course_under_46_1_f_iii" {
+			found = true
+		}
+	}
+	if !found {
+		t.Fatalf("missing reason: %v", r.Decisions[0].Reasons)
+	}
+}

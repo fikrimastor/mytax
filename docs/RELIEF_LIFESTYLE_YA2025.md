@@ -4,7 +4,8 @@ Status: **DRAFT. Not approved, not professionally reviewed, never reduces charge
 
 ## Source
 - Pasted HASiL text: `docs/sources/ya2025/hasil-user-supplied-2026-11-02.txt` (sha256 `eeb2b22c53c5f7c09884e48fbcd81af34e3dff6b1355cd8a7f84fb2ababec0d5`), item 9 "Gaya hidup".
-- **Statutory section: not yet cited.** The agent could not read the Act: `lom.agc.gov.my` answers "Invalid request" to direct URLs and only serves links with server-issued tokens. A person should download the consolidated Income Tax Act 1967 (Act 53) and the relevant Finance Act amendments and save them under `docs/sources/`.
+- Statute: Income Tax Act 1967 (Act 53), AGC "updated text as at 21 May 2024" (**not an authentic text**), s.46(1)(p)(i), (ii), (iv), (v) and s.46(3). Provenance, hashes and excerpt: `docs/sources/act53/`.
+- The Act text predates later amendments. Whether anything after 21 May 2024 changes YA 2025 lifestyle relief is **not verified**.
 
 ## What the source says (as pasted)
 Expenses for self, spouse or child, shared cap **RM2,500**:
@@ -18,10 +19,10 @@ Item 10 (additional sports relief, RM1,000) is separate and **not modelled here*
 ## What is modelled
 | Rule ID | Cap | Pool | Required facts (all must be true) |
 |---|---|---|---|
-| `LIFESTYLE_BOOKS` | RM2,500 | LIFESTYLE | existing facts, unchanged |
-| `LIFESTYLE_DEVICE` (new) | RM2,500 | LIFESTYLE | resident, in the YA, qualifying beneficiary, qualifying device, not business use |
-| `LIFESTYLE_INTERNET` | RM2,500 | LIFESTYLE | existing facts, unchanged |
-| `LIFESTYLE_COURSE` (new) | RM2,500 | LIFESTYLE | resident, in the YA, qualifying beneficiary, recognised course |
+| `LIFESTYLE_BOOKS` | RM2,500 | LIFESTYLE | existing facts, unchanged; cites s.46(1)(p)(i) |
+| `LIFESTYLE_DEVICE` (new) | RM2,500 | LIFESTYLE | cites s.46(1)(p)(ii); resident, in the YA, qualifying beneficiary, qualifying device, not business use |
+| `LIFESTYLE_INTERNET` | RM2,500 | LIFESTYLE | existing facts, unchanged; cites s.46(1)(p)(iv) |
+| `LIFESTYLE_COURSE` (new) | RM2,500 | LIFESTYLE | resident, in the YA, qualifying beneficiary, upskilling course, **course not falling under s.46(1)(f)(iii)** |
 
 Both `internal/policy` (`YA2025Draft`) and `internal/eligibility` (`Draft2025`) carry the new rules. Amounts are integer sen.
 
@@ -35,8 +36,17 @@ Behaviour:
 ## Tests
 `internal/eligibility/lifestyle_test.go` and `internal/policy/lifestyle_test.go`: cap boundaries (1 sen, cap-1, cap, cap+1, far above) for every rule, shared cap across the four rules, order independence, each required fact individually missing or false, evidence/expense-id/duplicate/unknown-rule fail-closed, separate pools, no approval leakage, bad input and unsupported year. Mutation checks (cap +1 sen, dropping a required fact) make these tests fail as intended.
 
+## What the Act text says (s.46(1)(p), as read by the agent)
+- Four items, total deduction "subject to a maximum amount of two thousand five hundred ringgit", each "as evidenced by receipts": (i) books, journals, magazines, newspapers and similar publications "for the purpose of enhancing knowledge"; (ii) personal computer, smartphone or tablet (not used for own business); (iii) deleted by Act 851; (iv) monthly internet bill "under that individual's name"; (v) any course for upskilling or self-enhancement **other than a course falling under s.46(1)(f)(iii)**.
+- Items (i), (ii), (iv) name the user's own use or the use of wife or child. Item (v) names no beneficiary. The LHDN table groups all four under self, spouse or child. The model requires the beneficiary fact for the course too (stricter, fails closed).
+- "Not prohibited reading material" is in the LHDN table, **not** in the text of (p)(i).
+- s.46(3): spending by a spouse is deemed spent by the other spouse where s.45(2) applies or the spender has no total income. Not modelled.
+- s.46(1)(t) (additional RM2,500 device relief, purchases 1 Jun 2020 to 31 Dec 2022) has expired. Not modelled.
+- s.46(1)(f)(iii): up-skilling courses by a body recognised by the Director General of Skills Development, YA 2023 to 2026, max RM2,000 inside the RM7,000 education cap. A course in that category cannot be lifestyle.
+- A printed footnote on the same page says "This provision has effect for the year of assessment 2016 until the year of assessment 2020" (Finance Act 2015). The extraction does not show which provision it is attached to, and (p) shows no end year. How this applies to YA 2025 is **unresolved**.
+
 ## Known gaps (not decided, do not treat as rules)
-1. Statutory citations missing (see above).
+1. Reading of the Act text is by the agent only; a qualified person must confirm it.
 2. Meaning of "qualifying beneficiary" (self, spouse, child), spouse/child allocation and who may claim a child's expense are not modelled.
 3. "Prohibited reading material", "business use", "recognised course" and device definitions are caller-supplied yes/no facts. Nothing verifies them.
 4. Any frequency or per-item limit that may exist for devices or other items is **unknown**; not checked against any source.
@@ -47,6 +57,7 @@ Behaviour:
 
 ## Verification status
 - Committed: see git log for this branch.
+- Act 53 reading: done from an uploaded PDF (sha256 in `docs/sources/act53/README.md`); not independently reviewed.
 - Locally tested: `go vet ./...` and `go test ./...` passed on 2026-11-02. Two PostgreSQL integration tests were **skipped** (database fixture not configured), so they prove nothing.
 - CI: not yet run for this change.
 - Independent / tax-professional review: not done.

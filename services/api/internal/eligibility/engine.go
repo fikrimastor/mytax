@@ -14,7 +14,7 @@ func Draft2025() Catalog {return Catalog{Year:2025,Pools:[]Pool{{"LIFESTYLE",250
  {"LIFESTYLE_INTERNET",250000,"LIFESTYLE","",[]string{"resident","incurred_in_ya","own_name","qualifying_internet"}},
  {"LIFESTYLE_BOOKS",250000,"LIFESTYLE","",[]string{"resident","incurred_in_ya","qualifying_publication"}},
  {"LIFESTYLE_DEVICE",250000,"LIFESTYLE","",[]string{"resident","incurred_in_ya","qualifying_beneficiary","qualifying_device","not_business_use"}},
- {"LIFESTYLE_COURSE",250000,"LIFESTYLE","",[]string{"resident","incurred_in_ya","qualifying_beneficiary","recognized_course"}},
+ {"LIFESTYLE_COURSE",250000,"LIFESTYLE","",[]string{"resident","incurred_in_ya","qualifying_beneficiary","upskilling_course","not_course_under_46_1_f_iii"}},
  {"EDUCATION_UPSKILL",200000,"EDUCATION","",[]string{"resident","incurred_in_ya","recognized_course"}},
  {"EDUCATION_OTHER",700000,"EDUCATION","",[]string{"resident","incurred_in_ya","qualifying_education"}},
  {"MEDICAL_VACCINATION",100000,"MEDICAL","",[]string{"resident","incurred_in_ya","qualifying_vaccine","qualifying_person"}},

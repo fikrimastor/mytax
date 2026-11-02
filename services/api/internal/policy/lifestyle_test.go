@@ -1,6 +1,9 @@
 package policy
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 // Lifestyle (YA2025 item 9) tests for the policy package. The Approved status used
 // in some tests is an arithmetic fixture only; it is NOT tax-policy sign-off.
@@ -188,5 +191,47 @@ func TestLifestyleRejectsBadInputAndYear(t *testing.T) {
 		if _, err := Evaluate(q, nil); err == nil {
 			t.Fatalf("year %d accepted", year)
 		}
+	}
+}
+
+func TestLifestyleRulesCiteAct53ParagraphAndPassProvenanceShape(t *testing.T) {
+	p := YA2025Draft()
+	para := map[string]string{
+		"LIFESTYLE_BOOKS": "s.46(1)(p)(i)", "LIFESTYLE_DEVICE": "s.46(1)(p)(ii)",
+		"LIFESTYLE_INTERNET": "s.46(1)(p)(iv)", "LIFESTYLE_COURSE": "s.46(1)(p)(v)",
+	}
+	for id, want := range para {
+		r := findRule(t, p, id)
+		cited := false
+		for _, s := range r.Sources {
+			if s.URL == Act53URL && strings.Contains(s.Section, want) && strings.Contains(s.Section, "not an authentic text") {
+				cited = true
+			}
+			if !strings.HasPrefix(s.URL, "https://www.hasil.gov.my/") {
+				t.Fatalf("%s source URL outside provenance allowlist: %s", id, s.URL)
+			}
+		}
+		if !cited {
+			t.Fatalf("%s must cite Act 53 %s with authenticity caveat: %+v", id, want, r.Sources)
+		}
+	}
+}
+
+func TestLifestyleCourseExcludesSection46_1_f_iii_Courses(t *testing.T) {
+	p := YA2025Draft()
+	p.Status = Approved // arithmetic fixture only
+	r := findRule(t, p, "LIFESTYLE_COURSE")
+	need := map[string]bool{}
+	for _, f := range r.RequiredFacts {
+		need[f] = true
+	}
+	if !need["not_course_under_46_1_f_iii"] || !need["upskilling_course"] {
+		t.Fatalf("course rule lost its Act-based facts: %v", r.RequiredFacts)
+	}
+	c := claimFor(t, p, "a", "LIFESTYLE_COURSE", 100000)
+	c.Facts["not_course_under_46_1_f_iii"] = false // course falls under s.46(1)(f)(iii)
+	res, err := Evaluate(p, []Claim{c})
+	if err != nil || res.ApprovedTotalSen != 0 || res.Decisions[0].Status != "REVIEW_REQUIRED" {
+		t.Fatalf("(f)(iii) course must not be claimed as lifestyle: %+v %v", res, err)
 	}
 }

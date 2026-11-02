@@ -39,11 +39,20 @@ Items to confirm, not decided here:
 8. **Item 22 (first home interest):** sale and purchase agreement dated 1 Jan 2025 to 31 Dec 2027; RM7,000 (price up to RM500,000) or RM5,000 (above RM500,000 up to RM750,000). Date window is not enforced in code.
 9. Required facts in the draft catalog are yes/no flags. They do not yet model dates, ages, beneficiaries, spouse/child allocation or cross-category exclusions.
 
+### Act 53 cross-check (added after reading s.46)
+Source: `docs/sources/act53/README.md` (updated text as at 21 May 2024, not authentic, predates later amendments). Only s.46(1)(f), (p), (r), (t), (u), (v) were read.
+- Lifestyle (p): RM2,500 shared cap and four items confirmed; see `docs/RELIEF_LIFESTYLE_YA2025.md`.
+- Up-skilling (f)(iii): RM2,000 for YA 2023 to 2026 inside the RM7,000 education cap: consistent with the registry.
+- Sports (u): RM1,000 in its own paragraph, separate from (p): consistent with the registry.
+- EV charging (v): RM2,500 for YA 2023 to 2027: consistent. Composter is **not** in this text.
+- **Childcare (r): registry says RM3,000 (LHDN table); Act text gives RM2,000 plus a further RM1,000 only for YA 2020 to 2024. Unresolved; treat the registry value as unconfirmed by the Act.**
+- Breastfeeding (q): RM1,000, child aged 2 and below, not allowed for the next YA: consistent.
+
 ## 3. Not covered by the pasted source
 Tax rebates, zakat, spouse/child allocation rules, joint or separate assessment, non-resident treatment, income classification, PCB, statutory rounding, YA 2026 values.
 
 ## 4. Next steps
-- Pull statutory text from `lom.agc.gov.my` and add section citations.
+- Statutory text for s.46 is now in hand (see above). Still to read: s.47, s.48, s.49, Schedule 1 rates, and amendments after 21 May 2024.
 - Ask the repository owner to save the live pages and the YA 2025 Form BE explanatory notes (PDF) so a real file hash exists.
 - Model one relief end to end (lifestyle is the smallest) with facts, caps and boundary tests.
 - Send this document and the fixtures to a qualified Malaysian tax professional. Status stays `Draft` until they approve.
