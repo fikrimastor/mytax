@@ -51,6 +51,7 @@ Everything else (SELF, DISABILITY_EQUIPMENT, SELF_EDUCATION / SELF_UPSKILL, MEDI
 - **Schedule 1 Part XXII (FA 2024 s.16, YA 2025 onward) with s.6(1)(r):** "notwithstanding Part I", an individual's dividend from a company that is deemed derived from Malaysia (s.14), **in excess of RM100,000, is charged at 2%**. The text says the chargeable income for this is as prescribed by the Minister where the individual has other income. Not computed anywhere in this repository. The gross-tax notice now says so.
 
 ## Conditions in the Act not yet modelled
+Spouse and child rules (s.45A, s.47, s.48), s.6A rebates and a dividend review are now drafted in `docs/FAMILY_REBATE_DIVIDEND_YA2025.md`. Still not modelled:
 - s.46(3), s.50(2): spouse expenses and premiums are deemed to be the other spouse's where s.45(2) applies or the spender has no total income.
 - s.47(4): no spouse deduction if the wife is assessed separately. s.47(6): foreign income test.
 - s.48(1): maintenance, unmarried, full-time instruction, articles or indentures; s.48(4): two claimants get 50% each; s.48(5): no deduction if the child's total income exceeds the deduction; s.48(9): "child" means legitimate child, step-child or adopted child.
