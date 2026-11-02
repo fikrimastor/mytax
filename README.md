@@ -31,5 +31,8 @@ Local API: `http://localhost:8080`. Override frontend API with `NUXT_PUBLIC_API_
 3. Implement detailed eligibility, shared caps and statutory computation.
 4. Add secure user accounts, encrypted evidence and receipt ingestion.
 5. Map verified amounts to Form BE, then introduce business/Form B support.
+6. Claude connector (MCP server) for receipt assessment: planned, gated, see `docs/MCP_CONNECTOR_PLAN.md`.
+
+Open items and current verification status: `docs/ROADMAP.md`.
 
 See `docs/COMPLIANCE.md` for policy approval requirements.

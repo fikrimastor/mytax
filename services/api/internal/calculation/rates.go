@@ -28,7 +28,10 @@ type Result struct {
 }
 const SourceURL = "https://www.hasil.gov.my/individu/kadar-cukai/"
 // 0 upper bound is a sentinel for the unbounded final band.
-// These marginal rates are from HASiL resident-individual YA 2025 table.
+// These marginal rates are from the HASiL resident-individual YA 2025 table and match
+// Schedule 1 Part I of the Income Tax Act 1967 (AGC updated texts as at 21 May 2024 and
+// 1 January 2026, neither an authentic text; paragraph 1 is identical in both). See docs/ACT53_RECONCILIATION_YA2025.md.
+// Not covered: s.6A rebates, non-resident 30% (Sch.1 para 1A), statutory rounding.
 var ya2025 = []Band{
  {500000,0},{2000000,1},{3500000,3},{5000000,6},
  {7000000,11},{10000000,19},{40000000,25},
@@ -45,7 +48,7 @@ func Rates(ya int)([]Band,error){
 func ResidentGrossTax(ya int,chargeableIncomeSen int64)(Result,error){
  if chargeableIncomeSen<0{return Result{},errors.New("income must not be negative")}
  bands,err:=Rates(ya);if err!=nil{return Result{},err}
- out:=Result{AssessmentYear:ya,ChargeableIncomeSen:chargeableIncomeSen,Status:"ILLUSTRATIVE_GROSS_TAX_ONLY",SourceURL:SourceURL,Notice:"Not a filing-ready tax calculation. Chargeable income, statutory rounding, rebates, credits, PCB and applicable special cases are not validated."}
+ out:=Result{AssessmentYear:ya,ChargeableIncomeSen:chargeableIncomeSen,Status:"ILLUSTRATIVE_GROSS_TAX_ONLY",SourceURL:SourceURL,Notice:"Not a filing-ready tax calculation. Chargeable income, statutory rounding, rebates, credits, PCB and applicable special cases are not validated. Dividend income of an individual above RM100,000 is charged separately at 2% under Schedule 1 Part XXII from YA2025 and is not computed here."}
  lower:=int64(0)
  for _,b:=range bands{
   if chargeableIncomeSen<=lower {break}

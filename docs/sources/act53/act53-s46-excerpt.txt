@@ -1,0 +1,117 @@
+EXCERPT from Income Tax Act 1967 (Act 53), ONLINE VERSION OF UPDATED TEXT as at 21 May 2024 (not an authentic text).
+Taken from the PDF supplied by the repository owner (sha256 771ced020407dd6686fc493d6f9c1940bc29296fed0072422fb881c42737c49e) via pdftotext -layout.
+Line numbers refer to that extracted text. Printed Act pages in brackets. Excerpt is for citation only.
+
+---- s.46(1)(f)(i)-(iii) and cap (extracted lines 5948-5970; printed pp. 151-152)
+152                     Laws of Malaysia                    ACT 53
+
+                recognized by the Government or approved by the
+                Minister;
+
+           (ii) any course of study for a Masters or Doctorate
+                degree undertaken for the purpose of acquiring
+                any qualification or skill, in any institution or
+                professional body in Malaysia recognized by the
+                Government or approved by the Minister; or
+
+          (iii) any course of study undertaken for the purpose of
+                upskilling or self-enhancement and that course is
+                conducted by a body recognized by the Director
+                General of Skills Development under the National
+                Skills Development Act 2006 [Act 652], for years
+                of assessment 2023, 2024, 2025 and 2026, limited
+                to a maximum amount of two thousand ringgit for
+                each year of assessment,
+
+           and the total deduction under this paragraph shall be
+           subject to a maximum amount of seven thousand
+           ringgit;
+
+---- s.46(1)(p) lifestyle (extracted lines 6229-6267; printed pp. 158-159)
+            (p) an amount expended or deemed expended under
+                subsection (3) in that basis year by that individual—
+
+                     (i) for the purchase or subscription of books, journals,
+                         magazines, newspapers and other similar
+                         publications for the purpose of enhancing
+                         knowledge for his own use or for the use of his
+
+*NOTE —This provision has effect for the year of assessment 2016 until the year of assessment 2020
+–see section 3 and paragraph 12(d) of the Finance Act 2015 [Act 773].
+                  Income Tax                                159
+
+          wife or child, or in the case of a wife, for her own
+          use or for the use of her husband or child;
+
+     (ii) for the purchase of a personal computer,
+          smartphone or tablet (not being used for the
+          purpose of his own business) for his own use or for
+          the use of his wife or child, or in the case of a wife,
+          for her own use or for the use of her husband or
+          child;
+
+     (iii) (Deleted by Act 851)
+
+     (iv) for the payment of monthly bill for internet
+          subscription under that individual’s name for his
+          own use or for the use of his wife or child, or in
+          the case of a wife, for her own use or for the use of
+          her husband or child; and
+
+     (v) for the payment of any course of study undertaken
+         other than the course of study falling under
+         subparagraph 46(1)(f)(iii) for the purpose of
+         upskilling or self-enhancement,
+
+     as evidenced by receipts issued in respect of the
+     purchase or payment, as the case may be, and the total
+     deduction under this paragraph is subject to a maximum
+     amount of two thousand five hundred ringgit;
+
+---- s.46(1)(t) additional device relief, time-limited (extracted lines 6348-6368; printed p. 161-162)
+(t) an amount limited to a maximum of two thousand and
+    five hundred ringgit expended or deemed expended
+    under subsection (3) in that basis year by that individual
+    for the purchase of a personal computer, smartphone or
+    tablet (not being used for the purposes of his own
+    business) for his own use or for the use of his wife or
+    child, or in the case of a wife, for her own use or for the
+    use of her husband or child as evidenced by receipts
+    issued in respect of the purchase and the deduction under
+    this paragraph shall be additional to any deduction under
+    paragraph (p):
+
+    Provided that—
+162                     Laws of Malaysia                   ACT 53
+
+           (a) the purchase is made on or after 1 June 2020 but
+               not later than 31 December 2022; and
+
+           (b) the total amount of deduction under this paragraph
+               shall exclude the amount deducted under
+               paragraph (p);
+
+---- s.46(2) and (3) (extracted lines 6413-6435; printed p. 163)
+  (2) In this section—
+
+  “child” shall be construed as referring to a child as defined in
+subsection 48(9);
+
+  (3) For the purposes of paragraphs (1)(d), (g), (h), (ha), (k), (p), (r),
+(s), (t) and (u) any amount expended by the wife or the husband in the
+year of assessment—
+
+         (a) where subsection 45(2) applies, shall be deemed to have
+             been expended by the husband of the wife who elects or
+             by the wife of the husband who elects, as the case may
+             be; or
+
+         (b) where the wife or the husband has no total income, shall
+             be deemed to have been expended by the husband of that
+             wife who has no total income or the wife of that husband
+             who has no total income, as the case may be:
+
+  Provided that where paragraph 45(2)(b) applies or the husband has
+no total income, any amount expended by the husband shall be deemed
+to have been expended by the wife who has been allowed a deduction
+under section 45A.
