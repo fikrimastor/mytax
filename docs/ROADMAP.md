@@ -63,9 +63,6 @@ PR 3 (branch `claude/quirky-wozniak-o9r7ih`) is open as a **draft** and unmerged
 ### 5. Claude connector (MCP server) — planned
 See `docs/MCP_CONNECTOR_PLAN.md`. Plan only; phases P0 to P4 with gates. Depends on items 2, 3 and 4 above, in particular rule coverage and a canonical fact vocabulary.
 
-### 6. PR 3 scope cleanup
-- [ ] Split scope-creep files out of PR 3 into separate changes: `services/api/Dockerfile`, `apps/web/Dockerfile`, `docker-compose.yml`, `services/api/cmd/server/cors.go`, `apps/web/package-lock.json`.
-
 ## Suggested order
 1. Review and merge PR 3 (draft); close the security test gaps in section 1.
 2. Rule coverage for the most common receipt categories, with the canonical fact vocabulary.
