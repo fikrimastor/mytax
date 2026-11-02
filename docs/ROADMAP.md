@@ -14,7 +14,7 @@ Legend for verification (never merge these levels): **C** committed, **L** local
 | YA 2025 relief registry (31 entries) vs Act 53, Finance Acts 2024 and 2025 | yes | yes | yes | n/a | no |
 | Coolify deployment | yes | Docker only | n/a | **no** | no |
 
-PR 3 (branch `pr3-gaps`) is open as a **draft** and unmerged. The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main`. PR 2 (competitive landscape docs) is also open and unmerged.
+PR 3 (branch `claude/quirky-wozniak-o9r7ih`) is open as a **draft** and unmerged. The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main`. PR 2 (competitive landscape docs) is also open and unmerged.
 
 ## Done so far (all Draft, nothing approved)
 - Source records with hashes: pasted LHDN tables, Act 53 as at 21 May 2024 and 1 January 2026, Finance Act 2024 (Act 862), Akta Kewangan 2025 (Akta 874). See `docs/sources/`.
@@ -26,7 +26,7 @@ PR 3 (branch `pr3-gaps`) is open as a **draft** and unmerged. The branch `claude
 ## Open items
 
 ### 1. Verification and CI
-- [ ] Merge PR 3 (draft, branch `pr3-gaps`) to `main` once reviewed. The pull request exists; it is not merged.
+- [ ] Merge PR 3 (draft, branch `claude/quirky-wozniak-o9r7ih`) to `main` once reviewed. The pull request exists; it is not merged.
 - [x] Two-tenant isolation matrix added: symmetric isolation, cross-tenant writes refused by RLS, privilege-escalation attempts, spoofed identities, transaction-local subject after commit, rollback, error and panic, and 24 goroutines over 4 pooled connections. Local result: passed on PostgreSQL 16 with `-race`, and 8 mutation checks each fail a test. See `docs/POSTGRES_SECURITY_RUNBOOK.md`. **CI: passed** (run 110 on `fd1593e`, `go test -race`, no skipped test; the PostgreSQL server log in that run shows the expected RLS and privilege refusals).
 - [x] CI now runs `go test -race` and fails on any skipped test.
 - [ ] Live Keycloak test (access token, client, scopes, tenant authorization). JWKS key rotation and caching tests. Token revocation. Roles beyond exact client and scope.
