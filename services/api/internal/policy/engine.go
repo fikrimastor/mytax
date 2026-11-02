@@ -20,6 +20,7 @@ type Source struct {
 type Rule struct {
  ID string `json:"id"`
  Group string `json:"group"`
+ ExclusiveFamily string `json:"exclusive_family,omitempty"`
  LimitSen int64 `json:"limit_sen"`
  RequiredFacts []string `json:"required_facts"`
  Sources []Source `json:"sources"`
