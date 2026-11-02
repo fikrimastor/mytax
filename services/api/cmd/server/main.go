@@ -16,7 +16,6 @@ import (
  "github.com/fikrimastor/mytax/services/api/internal/reconciliation"
  "github.com/fikrimastor/mytax/services/api/internal/formbe"
  "github.com/fikrimastor/mytax/services/api/internal/income"
- "github.com/fikrimastor/mytax/services/api/internal/eligibility"
  "github.com/fikrimastor/mytax/services/api/internal/evidence"
  "github.com/fikrimastor/mytax/services/api/internal/security"
  "github.com/fikrimastor/mytax/services/api/internal/persistence"
@@ -63,10 +62,10 @@ func main(){
   return c.JSON(http.StatusOK,output)
  })
  e.POST("/v1/eligibility/preview",func(c echo.Context)error{
-  var input struct {AssessmentYear int `json:"assessment_year"`; Claims []eligibility.Claim `json:"claims"`}
+  var input struct {AssessmentYear int `json:"assessment_year"`; Claims []policy.Claim `json:"claims"`}
   if err:=c.Bind(&input);err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":"invalid JSON"})}
   if input.AssessmentYear!=2025{return c.JSON(http.StatusBadRequest,map[string]string{"error":"only YA 2025 supported"})}
-  result,err:=eligibility.Evaluate(eligibility.Draft2025(),input.Claims)
+  result,err:=policy.Evaluate(policy.YA2025Draft(),input.Claims)
   if err!=nil{return c.JSON(http.StatusBadRequest,map[string]string{"error":err.Error()})}
   return c.JSON(http.StatusOK,result)
  })
