@@ -1,6 +1,9 @@
 package calculation
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 func TestOfficialYA2025Boundaries(t *testing.T){
  // Rates and cumulative amounts from HASiL official YA2025 table.
@@ -32,4 +35,11 @@ func TestBracketProgression(t *testing.T){
   if err!=nil||r.GrossTaxSen<previous{t.Fatalf("non-monotonic at %d",income)}
   previous=r.GrossTaxSen
  }
+}
+
+func TestNoticeWarnsAboutSeparateDividendTax(t *testing.T) {
+	r, err := ResidentGrossTax(2025, 1000000)
+	if err != nil || !strings.Contains(r.Notice, "Part XXII") || !strings.Contains(r.Notice, "RM100,000") {
+		t.Fatalf("notice must warn about dividend tax: %q %v", r.Notice, err)
+	}
 }

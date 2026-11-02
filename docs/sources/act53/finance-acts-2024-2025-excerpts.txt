@@ -1,0 +1,648 @@
+EXCERPTS from two Finance Acts supplied by the repository owner on 2026-11-02 (zip sha256 a4be6230d28c10c2f907df20ce50c6bb162b4f9e6afc5c07df451dc240d27e18).
+Finance Act 2024 (Act 862): Royal Assent 24 December 2024, gazetted 31 December 2024; PDF sha256 184f137160ab332d34aa91de2820acc39eb11c280a772b94cc497074aa1103e9 (33 pages).
+Akta Kewangan 2025 (Akta 874, Bahasa Melayu; amending text keeps English quoted provisions): Perkenan Diraja 27 Disember 2025, warta 31 Disember 2025; PDF sha256 869948f1ae964090aedd7e5afa2f63e533d4f0d4d292cfd2a9ae4bdbb9a6e68b (25 pages).
+Extracted with pdftotext -layout; blank lines removed; line numbers refer to the extracted text. For citation only. Both PDFs carry Percetakan Nasional Malaysia Berhad copyright notices; no hash was compared with the official publication.
+
+==== FINANCE ACT 2024 (Act 862): s.3 commencement and s.4 to s.16, extracted lines 171-730
+Commencement of amendments to the Income Tax Act 1967
+3. (1) Sections 4, 8, 11, 12, 13, 14, 15, 16 and 17, and
+paragraphs 9(a), (b), (c), (d) and (g) have effect for the year of
+assessment 2025 and subsequent years of assessment.
+    (2) Sections 5 and 10 come into operation on 1 January 2025.
+    (3) Section 6 comes into operation on 1 April 2025.
+  (4) Section 7 comes into operation on the coming into operation
+of this Act.
+  (5) Paragraphs 9(e), (f) and (h) have effect from the year
+of assessment 2025 until the year of assessment 2027.
+Amendment of section 6
+4. The Income Tax Act 1967, which is referred to as the
+“principal Act” in this Chapter, is amended in subsection 6(1)—
+      (a) in paragraph (q), by substituting for the full stop at the
+          end of the paragraph a semicolon; and
+      (b) by inserting after paragraph (q) the following paragraph:
+            “(r) notwithstanding anything contrary to this Act
+                 or any other written law, income tax shall be
+                 charged for each year of assessment upon the
+                 income of an individual, who is a shareholder
+                 of a company, either through direct shareholding
+                 or a nominee, which consists of dividend paid,
+                 credited or distributed, whether in monetary form
+                 or otherwise, by the company, and the dividend
+                 is deemed by virtue of section 14 to be derived
+                 from Malaysia, at the appropriate rate as specified
+                 under Part XXII of Schedule 1.”.
+                            Finance                                7
+Amendment of section 15c
+5. Section 15c of the principal Act is amended—
+    (a) in subsection (1), by substituting for the words
+        “subsection (2)” the words “subsections (2) and (2a)”;
+    (b) in subsection (2)—
+            (i) by inserting after the words “the date of acquisition
+                of the shares of the relevant company” the words
+                “by the company, limited liability partnership,
+                trust body or co-operative society”;
+            (ii) in paragraph (b)—
+                  (A)   by substituting for the words “asset:”
+                        the words “asset; or”; and
+                  (B)   by deleting the words “Provided that
+                        the defined value of the real property
+                        situated in Malaysia (including any right
+                        or interest thereof) owned by another
+                        controlled company, is not less than
+                        seventy-five per cent of the value of its
+                        total tangible asset; or”;
+           (iii) in the proviso, by substituting for the full stop
+                 at the end of the proviso a colon; and
+           (iv) by inserting after the proviso the following second
+                proviso:
+                     “Provided further that where at any date
+                  the relevant company disposes of the real property
+                  or the shares of another controlled company,
+                  or both, whereby the defined value of the real
+                  property or the shares of another controlled
+                  company, or both, owned at the date of disposal
+                  and thereafter is less than seventy-five per cent
+                  of the value of its total tangible assets,
+                  that relevant company shall not be regarded
+                  as a relevant company under subsection (1)
+                  as from that date of disposal.”;
+8                        Laws of Malaysia                    Act 862
+    (c) by inserting after subsection (2) the following subsection:
+             “(2a) Where the relevant company is a real property
+          company as defined under subparagraph 34a(6) of
+          Schedule 2 to the Real Property Gains Tax Act 1976
+          prior to 1 January 2024, the date of acquisition of
+          shares of the relevant company shall be deemed to be
+          the date of acquisition of those shares as determined
+          in accordance with subparagraph 34a(2) of Schedule 2
+          to that Act.”;
+    (d) by substituting for subsection (3) the following subsection:
+             “(3) Where, on the date of acquisition of the shares
+          of the relevant company, the defined value referred to
+          in paragraphs (2)(a), (b) and (c) is less than seventy-five
+          per cent of the value of its total tangible asset and
+          the relevant company subsequently acquires real property
+          or shares of another controlled company, or both,
+          resulting in the defined value of the real property or
+          shares, or both, owned on the date of acquisition by
+          the relevant company being not less than seventy-five
+          per cent of the value of its total tangible asset
+          (hereinafter referred to as the “subsequent acquisition
+          date”), the shares of the relevant company shall be
+          deemed to be acquired on the subsequent acquisition
+          date.”;
+    (e) in subsection (4)—
+             (i) in paragraph (a)—
+                   (A)    by substituting for the words
+                          “paragraph 3(a)” the words “subsection (3)”;
+                   (B)    by inserting after the words “in accordance
+                          with the” the word “following”;
+                   (C)    in the formula, in explanation A,
+                          by substituting for the words “referred to in
+                          subsection (1)” the words “disposed by
+                          a company, limited liability partnership,
+                          trust body or co-operative society”; and
+                        Finance                                9
+              (D)    in the formula, in explanations B and C,
+                     by substituting for the words “date of
+                     acquisition of the shares of the relevant
+                     company referred to in subsection (1)”
+                     the words “subsequent acquisition date”;
+                     and
+       (ii) in paragraph (b), by substituting for the words
+            “paragraph (3)(b)” the words “subsection (2)”;
+(f) by inserting after subsection (4) the following subsection:
+        “(4a) Where subsection (2a) applies, the acquisition
+      price of the real property company as determined
+      under subparagraph 34 a (3) of Schedule 2 to the
+      Real Property Gains Tax Act 1976 prior to 1 January 2024
+      shall be deemed to be the acquisition price of the
+      shares of the relevant company.”; and
+(g) in subsection (5)—
+        (i) by inserting before the definition of “defined value”
+            the following definition:
+                 ‘ “another controlled company” means
+              a controlled company which owns real property
+              situated in Malaysia (including any right
+              or interest thereof) or shares in another
+              controlled company, or owns both, where
+              the defined value of the real property
+              or shares, or both, is not less than seventy-five
+              per cent of the value of its total tangible
+              asset;’; and
+       (ii) in the definition of “value of its total tangible
+            assets”, by inserting before the word “means”
+            the words “in relation to the relevant company
+            or another controlled company,”.
+10                      Laws of Malaysia                    Act 862
+Amendment of section 34
+6. Subsection 34(6) of the principal Act is amended—
+     (a) by substituting for paragraph (h) the following paragraph:
+           “(h) an amount equal to the expenditure incurred
+                by the relevant person in the relevant period on the
+                provision of services, public amenities and
+                contributions to a charity or community project
+                pertaining to education, health, housing, conservation
+                or preservation of environment, enhancement
+                of income of the poor, infrastructure, information
+                and communication technology or maintenance
+                of a building designated as a heritage site by
+                the Commissioner of Heritage under the
+                National Heritage Act 2005 [Act 645], and where
+                the amount of expenditure is—
+                    (i) not more than three hundred thousand
+                        ringgit, the amount of expenditure shall
+                        be verified and the charity or community
+                        project shall be approved, by the relevant
+                        government authority; or
+                   (ii) more than three hundred thousand ringgit,
+                        the amount of expenditure shall be verified
+                        by the relevant government authority and
+                        the charity or community project shall be
+                        approved by the Minister:
+                  Provided that where a deduction has been
+                made under this paragraph, no further deduction
+                of the same amount shall be allowed under
+                subsection 44(6).”; and
+     (b) by substituting for paragraph (ha) the following paragraph:
+            “(ha) an amount equal to the expenditure incurred
+                  by a company on the provision of infrastructure
+                  in relation to its business which is available
+                  for public use, and where the amount of
+                  expenditure is—
+                      (i) not more than three hundred thousand
+                          ringgit, the amount of expenditure and
+                          the provision of infrastructure shall be
+                          verified and approved by the relevant
+                          government authority; or
+                             Finance                         11
+                    (ii) more than three hundred thousand
+                         ringgit, the amount of expenditure
+                         shall be verified by the relevant
+                         government authority and the provision
+                         of infrastructure shall be approved
+                         by the Minister:
+                 Provided that where a deduction has been
+               made under this paragraph, no further deduction
+               of the same amount shall be allowed under
+               subsection 44(6).”.
+Amendment of section 44
+7. Subsection 44(7) of the principal Act is amended in
+the definition of “organization”, in paragraph (k), by deleting
+the words “as defined in subsection 46(2)”.
+Amendment of section 45a
+8. Subsection 45 a (1) of the principal Act is amended
+by substituting for the words “five thousand ringgit” the words
+“six thousand ringgit”.
+Amendment of section 46
+9. Subsection 46(1) of the principal Act is amended—
+     (a) in paragraph (c)—
+             (i) by substituting for the word “parents” wherever
+                 appearing the words “parents or grandparents”;
+                 and
+            (ii) in the proviso—
+                   (A)   in subsubparagraph (b), by substituting
+                         for the words ‘ “parents” ’ the words
+                         ‘ “parents or grandparents” ’; and
+12                        Laws of Malaysia                  Act 862
+                    (B)     by inserting after subsubparagraph (c)
+                            the following subsubparagraph:
+                               “(ca) “complete medical examination”
+                                     shall include any vaccination;”;
+     (b) in paragraph (e), by substituting for the words
+         “six thousand ringgit” the words “seven thousand ringgit”;
+     (c) in paragraph (h)—
+             (i) in subparagraph (i), by inserting after the word
+                 “expenses” the words “or payment of fees for
+                 disease detection test”; and
+             (ii) by substituting for subparagraph (ii) the following
+                  subparagraph:
+                    “(ii) the purchase of self-testing medical
+                          device registered under the Medical
+                          Device Act 2012 [Act 737] (not being
+                          used for the purposes of his own
+                          business), as evidenced by receipts
+                          of the purchase; or”;
+     (d) in paragraph (ha), by substituting for the words
+         “four thousand ringgit” the words “six thousand ringgit”;
+     (e) by substituting for paragraph (k) the following paragraph:
+          “(k) an amount limited to a maximum of eight thousand
+               ringgit deposited for each basis year for the
+               years of assessment 2025, 2026 and 2027 by that
+               individual for his child into the Skim Simpanan
+               Pendidikan Nasional account established under the
+               Perbadanan Tabung Pendidikan Tinggi Nasional
+               Act 1997 [Act 566]:
+                  Provided that—
+                          (i) if any withdrawal is made from the
+                              account by that individual in that basis
+                              year, the amount deposited during that
+                        Finance                                     13
+                      year shall be reduced by that withdrawal
+                      and regard shall be had only to the
+                      reduced amount subject to a maximum
+                      amount of eight thousand ringgit;
+                 (ii) t h e w i t h d r a w a l r e f e r r e d t o i n
+                      subparagraph (i) shall not include
+                      the amount withdrawn for higher
+                      education which is received by the child;
+                 (iii) where a wife living together with her
+                       husband is assessed separately for that
+                       year, the deduction under this paragraph
+                       shall only be allowed either to the
+                       husband or to the wife; and
+                 (iv) the maximum amount of deduction
+                      under this paragraph shall apply,
+                      notwithstanding that, that individual
+                      may have more than one child;”;
+(f) in the proviso to paragraph (r), in paragraph (c),
+    by substituting for the words “until 2024” the words
+    “until 2027”;
+(g) in paragraph (u)—
+        (i) by substituting for the words “or child” wherever
+            appearing the words “, child or parents”; and
+        (ii) by inserting the following proviso:
+                 “Provided that for the purposes of this
+               paragraph, “parents” shall be individuals
+               resident in Malaysia; and”; and
+(h) by substituting for paragraph (v) the following paragraph:
+      “(v) expenses expended in that basis year by that
+           individual—
+              (i) for the payment of installation, rental,
+                  purchase including hire-purchase of equipment
+                  or subscription for use of electric vehicle
+14                      Laws of Malaysia                      Act 862
+                       charging facility for his own vehicle and
+                       not being used for the purposes of his own
+                       business for each basis year for the years
+                       of assessment 2023, 2024, 2025, 2026
+                       and 2027; or
+                   (ii) for the purchase of food waste compost
+                        machine used for the household purpose of
+                        the individual for the years of assessment
+                        2025, 2026 and 2027:
+                          Provided that—
+                              (a)   the claim is evidenced by
+                                    receipts issued in respect of
+                                    the payment or purchase, as the
+                                    case may be;
+                              (b)   the deduction under
+                                    subparagraph (ii) shall only be
+                                    claimed once in the years
+                                    of assessment as stated in
+                                    subparagraph (ii); and
+                              (c)   the total amount of deduction
+                                    under this paragraph is subject
+                                    to a maximum amount of two
+                                    thousand and five hundred ringgit;”.
+Substitution of section 46b
+10. The principal Act is amended by substituting for section 46b
+the following section:
+     “Deduction for individual on interest expended
+     46b. (1) Subject to this section, in the case of an individual
+     who is a citizen and resident for the basis year for the
+     relevant year, there shall be allowed for that relevant
+                         Finance                                  15
+year personal deduction in respect of interest expended
+in that basis year by the individual to finance the purchase
+of a residential property:
+  Provided that—
+     (a) the residential property is the first residential property
+         purchased by the individual to be occupied as his
+         place of residence and limited to only one unit;
+     (b) the Sale and Purchase Agreement for the purchase
+         is executed on or after 1 January 2025 but
+         not later than 31 December 2027; and
+     (c) the individual shall not derive any income in respect
+         of that residential property.
+  (2) Subject to subsection (3)—
+     (a) there shall be allowed to that individual a deduction
+         of a maximum amount of—
+              (i) seven thousand ringgit, in relation to
+                  a residential property where the purchase
+                  price is not more than five hundred thousand
+                  ringgit; or
+             (ii) five thousand ringgit, in relation to a residential
+                  property where the purchase price is more
+                  than five hundred thousand ringgit but not
+                  more than seven hundred and fifty thousand
+                  ringgit; and
+     (b) the deduction under paragraph (a) shall be for each
+         basis year for a year of assessment for a period
+         of three consecutive basis years beginning from
+         the basis year in which the interest referred to in
+         subsection (1) is first expended by that individual.
+  (3) Where—
+     (a) two or more individuals are each entitled to claim
+         deduction for the relevant year under this section
+         for interest expended in respect of the same residential
+         property; and
+16                      Laws of Malaysia                    Act 862
+          (b) the total amount of interest expended by those
+              individuals in the basis year for that relevant year
+              exceed the amount of deduction allowable for that
+              relevant year under subsection (2),
+     there shall be allowed to each of those individuals for that
+     relevant year an amount to be determined in accordance with
+     the following formula:
+                                             B
+                              A        X
+                                             C
+        where     A      is the total amount of deduction allowed
+                         under subsection (2) for that relevant year;
+                  B      is the total interest expended in the
+                         basis year for that relevant year by that
+                         individual; and
+                  C      is the total interest expended in the basis
+                         year for that relevant year by all such
+                         individuals.
+       (4) For the purposes of subsection (1), any amount
+     expended by the wife or the husband in the relevant year—
+          (a) where subsection 45(2) applies, shall be deemed
+              to have been expended by the husband of the wife
+              who elects or by the wife of the husband who elects,
+              as the case may be; or
+          (b) where the wife or the husband has no total income,
+              shall be deemed to have been expended by the
+              husband of that wife or the wife of that husband,
+              as the case may be:
+       Provided that where paragraph 45(2)(b) applies or where
+     the husband has no total income, any amount expended
+     by the husband shall be deemed to have been expended by
+     the wife who has been allowed a deduction under section 45a.
+        (5) For the purposes of this section, “residential property”
+     means a house, condominium unit, apartment or flat which
+     is built as a dwelling house.”.
+                             Finance                              17
+Amendment of section 47
+11. Paragraph 47(1)(b) of the principal Act is amended
+by substituting for the words “five thousand ringgit” the words
+“six thousand ringgit”.
+Amendment of section 48
+12. Paragraph 48(2)(b) of the principal Act is amended
+by substituting for the words “six thousand ringgit” the words
+“eight thousand ringgit”.
+Amendment of section 49
+13. Subsection 49(1 b ) of the principal Act is amended
+by substituting for the words “three thousand ringgit” wherever
+appearing the words “four thousand ringgit”.
+Amendment of section 107c
+14. Subsection 107c(8) of the principal Act is amended in the
+proviso by substituting for the words “ninth month” the words
+“eleventh month”.
+Amendment of section 108
+15. Section 108 of the principal Act is amended—
+     (a) by renumbering the existing section as subsection (1);
+         and
+     (b) by inserting after the renumbered subsection (1)
+         the following subsection:
+              “(2) Where a dividend is paid, credited or distributed,
+           whether in monetary form or otherwise, by a company
+           to any of its shareholders which is an individual,
+           either through direct shareholding or a nominee,
+           and the dividend is deemed by virtue of section 14
+           to be derived from Malaysia, the company shall,
+18                         Laws of Malaysia                          Act 862
+            upon paying, crediting or distributing the dividend,
+            furnish the shareholders with a certificate setting forth
+            in respect of the dividend—
+                (a) the gross amount; and
+                (b) the amount paid or credited or where the
+                    dividend consists of property other than
+                    money, the amount of the market value of that
+                    property at the time of the distribution of the
+                    dividend.”.
+Amendment of Schedule 1
+16. Schedule 1 to the principal Act is amended by inserting after
+Part XXI the following part:
+                                 “Part XXII
+     1.   Notwithstanding Part I, income tax shall be charged upon the income
+          of an individual which consists of dividend paid, credited or
+          distributed, whether in monetary form or otherwise, by a company,
+          and the dividend is deemed by virtue of section 14 to be derived
+          from Malaysia, in excess of one hundred thousand ringgit at
+          the rate of 2 per cent on every ringgit of the chargeable income
+          in respect of such dividend.
+     2.   In this Part, where the individual has income from a source other
+          than dividend referred to in paragraph 1, the chargeable income
+          of the individual referred to in that paragraph, shall be as prescribed
+          by the Minister.”.
+Amendment of Schedule 6
+
+==== AKTA KEWANGAN 2025 (Akta 874): s.3 to s.8, extracted lines 168-420
+Permulaan kuat kuasa pindaan kepada Akta Cukai Pendapatan 1967
+3. (1) Seksyen 4, 7, 8, 9, 17 dan 18, dan subperenggan 6(a)(i),
+(ii), (iii) dan (iv) berkuat kuasa bagi tahun taksiran 2026 dan
+tahun-tahun taksiran yang berikutnya.
+  (2) Subperenggan 6(a)(v) dan perenggan 6(c) berkuat kuasa
+bagi tahun taksiran 2026.
+  (3) Subperenggan 6(a)(vi) dan perenggan 6(b) berkuat kuasa
+bagi tahun-tahun taksiran 2026 dan 2027.
+  (4) Seksyen 5, 10, 11, 12, 13 dan 16 mula berkuat kuasa
+pada 1 Januari 2026.
+  (5) Seksyen 14 berkuat kuasa bagi tahun taksiran 2028 dan
+tahun-tahun taksiran yang berikutnya.
+    (6) Seksyen 15 berkuat kuasa bagi tahun taksiran 2027.
+Pindaan seksyen 6
+4. Akta Cukai Pendapatan 1967, yang disebut “Akta ibu” dalam
+Bab ini, dipinda dalam subseksyen 6(1)—
+      (a) dalam perenggan (r), dengan menggantikan noktah
+          di hujung perenggan itu dengan koma bernoktah; dan
+      (b) dengan memasukkan selepas perenggan (r) perenggan
+          yang berikut:
+            “(s) income tax shall be charged for each year of
+                 assessment upon the income of an individual,
+                 who is a partner of a limited liability partnership,
+                 which consists of profits derived from Malaysia
+                 paid, credited or distributed, whether in cash or
+                 in kind, to the individual by the limited liability
+                 partnership at the appropriate rate as specified in
+                 Part XXIII of Schedule 1.”.
+                         Kewangan                               7
+Pindaan seksyen 15c
+5. Subseksyen 15c(4a) Akta ibu dipinda dengan memasukkan
+selepas perkataan “applies, the acquisition price” perkataan
+“of the shares”.
+Pindaan seksyen 46
+6. Seksyen 46 Akta ibu dipinda—
+    (a) dalam subseksyen (1)—
+            (i) dalam proviso kepada perenggan (c), dalam
+                perenggan (ca), dengan menggantikan perkataan
+                “any vaccination” dengan perkataan “any
+                vaccination of a vaccine registered with the
+                National Pharmaceutical Regulatory Agency”;
+            (ii) dalam proviso kepada perenggan (g), dengan
+                 menggantikan perenggan (d) dengan perenggan
+                 yang berikut:
+                  “(d) for the purposes of subparagraph (iii),
+                       the vaccination which qualifies for
+                       deduction shall be vaccines registered with
+                       the National Pharmaceutical Regulatory
+                       Agency;”;
+           (iii) dalam perenggan (ha), dengan menggantikan
+                 perkataan “limited to a maximum of six thousand
+                 ringgit” dengan perkataan “limited to a maximum
+                 of ten thousand ringgit”;
+           (iv) dengan menggantikan perenggan (r) dengan
+                perenggan yang berikut:
+                   “(r) an amount limited to a maximum of
+                        three thousand ringgit expended or
+                        deemed to have been expended under
+8   Undang-Undang Malaysia                Akta 874
+         subsection (3) in that basis year by the
+         individual on the amount expended for
+         the payment of child care fees to—
+            (i) a child care centre registered under
+                the Child Care Centre Act 1984
+                [Act 308] or a kindergarten
+                registered under the Education
+                Act 1996 [Act 550] for a child
+                of the individual aged six years
+                and below; or
+           (ii) a care centre registered under the
+                Care Centres Act 1993 [Act 506]
+                for a child of the individual aged
+                twelve years and below:
+                  Provided that—
+                    (a) w h e r e a w i f e l i v i n g
+                        together with her husband
+                        is assessed separately for
+                        that year, the deduction
+                        under this paragraph shall
+                        only be allowed either
+                        to the husband or to the
+                        wife;
+                    (b) the claim is evidenced by a
+                        receipt issued by the child
+                        care centre, kindergarten
+                        or care centre; and
+                    (c) the maximum amount
+                        of deduction under this
+                        paragraph shall apply
+                        notwithstanding that the
+                        individual may have more
+                        than one child;”;
+             Kewangan                                9
+(v) dengan memasukkan selepas perenggan (s)
+    perenggan yang berikut:
+     “(sa) an amount limited to a maximum of one
+           thousand ringgit expended or deemed to
+           have been expended under subsection (3)
+           in that basis year by the individual as
+           evidenced by a receipt on the amount
+           expended for the payment of entrance fee
+           to a tourist attraction, or for a cultural
+           and arts programme;”; dan
+(vi) dengan menggantikan perenggan (v) dengan
+     perenggan yang berikut:
+      “(v) expenses expended in that basis year by
+           the individual—
+               (i) for the payment of installation,
+                   rental, purchase including
+                   hire-purchase of equipment or
+                   subscription for the use of electric
+                   vehicle charging facility for his
+                   own vehicle and not being used for
+                   the purposes of his own business
+                   for each basis year for the years
+                   of assessment 2023, 2024, 2025,
+                   2026 and 2027;
+              (ii) for the purchase of food waste
+                   compost machine used for the
+                   household purpose of the individual
+                   for the years of assessment 2025,
+                   2026 and 2027;
+             (iii) for the payment of installation or
+                   for the purchase of food waste
+                   grinder machine used for the
+                   household purpose of the individual
+                   for the years of assessment 2026
+                   and 2027; or
+10               Undang-Undang Malaysia                Akta 874
+                          (iv) for the payment of installation or
+                               for the purchase of closed-circuit
+                               television used for the household
+                               purpose of the individual for
+                               the years of assessment 2026
+                               and 2027;”;
+     (b) dengan memasukkan selepas subseksyen (1) subseksyen
+         yang berikut:
+            “(1a) The expenses referred to in paragraph (1)(v)
+          are subject to the following:
+               (a) the claim is evidenced by a receipt issued in
+                   respect of the payment or purchase, as the
+                   case may be;
+               (b) the deduction under subparagraph (1)(v)(ii)
+                   shall be claimed once either in the year of
+                   assessment 2025, 2026 or 2027;
+               (c) the deduction under subparagraphs (1)(v)(iii)
+                   and (iv) shall be claimed once either in the
+                   year of assessment 2026 or 2027; and
+               (d) the total amount of deduction under this
+                   paragraph is subject to a maximum amount
+                   of two thousand five hundred ringgit.”; dan
+     (c) dalam subseksyen (3), dengan memasukkan selepas
+         perkataan “(s),” perkataan “(sa),”.
+Pindaan seksyen 49
+7. Seksyen 49 Akta ibu dipinda—
+     (a) dengan memasukkan selepas subseksyen (3) subseksyen
+         yang berikut:
+             “(3a) A deduction under subsection (1) shall be
+          allowed where an insurance under subsection (3) is
+          contracted for by an individual on the life of the child
+          of the individual.”; dan
+                            Kewangan                             11
+     (b) dengan memasukkan selepas subseksyen (4) subseksyen
+         yang berikut:
+              “(5) A child in this section is a child—
+                 (a) under the age of eighteen years and unmarried;
+                 (b) who attains the age of eighteen years and
+                     above, unmarried and is receiving full-time
+                     instruction at any university, college, school
+                     or other similar educational establishment;
+                 (c) who is unmarried and is serving under articles
+                     or indentures with a view to qualifying in
+                     a trade or profession; or
+                 (d) who is unmarried and physically or mentally
+                     disabled in accordance with any written law.
+              (6) For the purposes of this section, a child of an
+           individual or his wife refers to a legitimate child or
+           step-child of his or his wife, or a child adopted by
+           the individual or his wife in accordance with any
+           written law.”.
+Pindaan seksyen 50
+8. Subseksyen 50(2) Akta ibu dipinda dengan memasukkan
+selepas perkataan “subsection 49(3),” perkataan “insurance referred
+to in subsection 49(3a),”.
+Seksyen baharu 54c
+9. Akta ibu dipinda dengan memasukkan selepas seksyen 54b
+yang dipotong seksyen yang berikut:
+  “Special treatment on distribution of profits by limited
+
+==== AKTA KEWANGAN 2025 (Akta 874): s.17 Amendment of Schedule 1, extracted lines 580-615
+Pindaan Jadual 1
+17. Jadual 1 kepada Akta ibu dipinda dengan memasukkan selepas
+Bahagian XXII bahagian yang berikut:
+                                “Part XXIII
+     1. Notwithstanding Part I, income tax shall be charged upon the income
+     of an individual, who is a partner of a limited liability partnership, which
+     consists of profits derived from Malaysia paid, credited or distributed,
+     whether in cash or in kind, to the individual by the limited liability
+     partnership, in excess of one hundred thousand ringgit at the rate of
+     two per cent on every ringgit of the chargeable income in respect of
+     such profits.
+     2. In this Part, where the individual has income from a source other
+     than profits referred to in paragraph 1, the chargeable income of the
+     individual referred to in the paragraph, shall be as prescribed by the
+     Minister.”.
+Pindaan Jadual 6
+18. Jadual 6 kepada Akta ibu dipinda—
+    (a) dengan menggantikan perenggan 12c dengan perenggan
+        yang berikut:
+            “12c. Any profit paid, credited or distributed, whether
+             in cash or in kind, to partners other than an individual,
+             by a limited liability partnership.”; dan
+16                    Undang-Undang Malaysia               Akta 874
+        (b) dengan memasukkan selepas perenggan 12c perenggan
+            yang berikut:
+
