@@ -19,9 +19,43 @@ func TestFirstHomeEachRequiredFactBlocks(t *testing.T) {
 		for _, f := range ruleByID(t, rule).RequiredFacts {
 			need[f] = true
 		}
-		for _, f := range []string{"citizen", "no_income_from_property", "occupied_as_residence", "qualifying_spa_date"} {
+		for _, f := range []string{"citizen", "no_income_from_property", "occupied_as_residence", "qualifying_spa_date", "co_claimant_none", "within_three_years_of_spa"} {
 			if !need[f] {
 				t.Fatalf("%s lost required fact %s", rule, f)
+			}
+		}
+	}
+}
+
+// s.46B also limits the relief to three consecutive basis years from the SPA date and
+// apportions it where more than one person claims interest on the same property. Until
+// the A x B / C apportionment is implemented, the claimant must confirm there is no
+// co-claimant and that the claim year is within three years of the SPA. Missing or
+// false facts fail closed; they never produce a provisional amount.
+func TestFirstHomeCoClaimantAndThreeYearFactsFailClosed(t *testing.T) {
+	for _, rule := range []string{"FIRST_HOME_LOW", "FIRST_HOME_MID"} {
+		for _, fact := range []string{"co_claimant_none", "within_three_years_of_spa"} {
+			for _, missing := range []bool{true, false} {
+				c := claim("a", "loan-1", rule, 300000)
+				if missing {
+					delete(c.Facts, fact)
+				} else {
+					c.Facts[fact] = false
+				}
+				r, err := Evaluate(Draft2025(), []Claim{c})
+				if err != nil {
+					t.Fatalf("%s/%s missing=%v: %v", rule, fact, missing, err)
+				}
+				d := r.Decisions[0]
+				found := false
+				for _, reason := range d.Reasons {
+					if reason == "FACT_NOT_VERIFIED:"+fact {
+						found = true
+					}
+				}
+				if d.State != "REVIEW_REQUIRED" || r.ProvisionalTotalSen != 0 || r.ApprovedTotalSen != 0 || !found {
+					t.Fatalf("%s/%s missing=%v must fail closed: %+v %+v", rule, fact, missing, r, d)
+				}
 			}
 		}
 	}

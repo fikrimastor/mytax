@@ -41,7 +41,7 @@ func YA2025Draft() Package {
 			{ID: "EDUCATION_SELF_OTHER", Group: "EDUCATION_SELF", LimitSen: 700000, RequiredFacts: []string{"resident", "within_year", "qualifying_course", "own_education", "no_other_claim"}, Sources: src},
 			// s.46B first-home interest. Fact names mirror the eligibility engine's
 			// FIRST_HOME_* rules; internal/eligibility/catalog_parity_test.go enforces parity.
-			{ID: "FIRST_HOME_LOW", LimitSen: 700000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "price_up_to_500k", "qualifying_interest"}, Sources: firstHomeSources()},
-			{ID: "FIRST_HOME_MID", LimitSen: 500000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "price_above_500k_upto_750k", "qualifying_interest"}, Sources: firstHomeSources()},
+			{ID: "FIRST_HOME_LOW", LimitSen: 700000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_up_to_500k", "qualifying_interest"}, Sources: firstHomeSources()},
+			{ID: "FIRST_HOME_MID", LimitSen: 500000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_above_500k_upto_750k", "qualifying_interest"}, Sources: firstHomeSources()},
 		}}
 }

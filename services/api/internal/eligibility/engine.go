@@ -59,8 +59,8 @@ func Draft2025() Catalog {
 		{"EDUCATION_OTHER", 700000, "EDUCATION", "", []string{"resident", "incurred_in_ya", "qualifying_education"}},
 		{"MEDICAL_VACCINATION", 100000, "MEDICAL", "", []string{"resident", "within_year", "qualifying_vaccine", "qualifying_beneficiary", "no_other_claim"}},
 		{"MEDICAL_DENTAL", 100000, "MEDICAL", "", []string{"resident", "incurred_in_ya", "qualifying_dental", "qualifying_person"}},
-		{"FIRST_HOME_LOW", 700000, "", "FIRST_HOME", []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "price_up_to_500k", "qualifying_interest"}},
-		{"FIRST_HOME_MID", 500000, "", "FIRST_HOME", []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "price_above_500k_upto_750k", "qualifying_interest"}},
+		{"FIRST_HOME_LOW", 700000, "", "FIRST_HOME", []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_up_to_500k", "qualifying_interest"}},
+		{"FIRST_HOME_MID", 500000, "", "FIRST_HOME", []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_above_500k_upto_750k", "qualifying_interest"}},
 	}}
 }
 func Evaluate(cat Catalog, claims []Claim) (Result, error) {
