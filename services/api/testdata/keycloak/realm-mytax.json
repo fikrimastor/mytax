@@ -1,0 +1,121 @@
+{
+  "realm": "mytax",
+  "enabled": true,
+  "sslRequired": "external",
+  "accessTokenLifespan": 300,
+  "clientScopes": [
+    {
+      "name": "mytax-subject",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "sub",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-sub-mapper",
+          "config": {
+            "access.token.claim": "true",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "name": "mytax-api-audience",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "false",
+        "display.on.consent.screen": "false"
+      },
+      "protocolMappers": [
+        {
+          "name": "mytax-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "mytax-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    },
+    {
+      "name": "mytax:evidence:read",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      }
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "mytax-web",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "defaultClientScopes": [
+        "mytax-subject",
+        "mytax-api-audience"
+      ],
+      "optionalClientScopes": [
+        "mytax:evidence:read"
+      ]
+    },
+    {
+      "clientId": "mytax-other",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "defaultClientScopes": [
+        "mytax-subject",
+        "mytax-api-audience"
+      ],
+      "optionalClientScopes": [
+        "mytax:evidence:read"
+      ]
+    },
+    {
+      "clientId": "mytax-short",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "attributes": {
+        "access.token.lifespan": "5"
+      },
+      "defaultClientScopes": [
+        "mytax-subject",
+        "mytax-api-audience"
+      ],
+      "optionalClientScopes": [
+        "mytax:evidence:read"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "username": "ci-user",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "ci-user@example.invalid",
+      "firstName": "CI",
+      "lastName": "User",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "ci-only-password",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}
