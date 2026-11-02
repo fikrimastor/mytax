@@ -27,7 +27,8 @@ The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main` and has *
 
 ### 1. Verification and CI
 - [ ] Open a pull request for the branch and merge to `main` once reviewed (not requested yet).
-- [ ] Security tests listed in `AGENTS.md` that are **not** covered by the two PostgreSQL tests: concurrent pooled access, wrong-tenant **write** attempts (the app role has SELECT on four tables and INSERT on `evidence_metadata`, whose `WITH CHECK` policy no test exercises), a second subject in the second tenant. The existing tests cover the role flags, a no-subject read returning zero rows, a cross-tenant read being refused, and no subject leaking after pool reuse.
+- [x] Two-tenant isolation matrix added: symmetric isolation, cross-tenant writes refused by RLS, privilege-escalation attempts, spoofed identities, transaction-local subject after commit, rollback, error and panic, and 24 goroutines over 4 pooled connections. Local result: passed on PostgreSQL 16 with `-race`, and 8 mutation checks each fail a test. See `docs/POSTGRES_SECURITY_RUNBOOK.md`. CI result for this change is recorded below once known.
+- [x] CI now runs `go test -race` and fails on any skipped test.
 - [ ] Live Keycloak test (access token, client, scopes, tenant authorization). JWKS key rotation and caching tests. Token revocation. Roles beyond exact client and scope.
 - [ ] Live Coolify deployment check (`SERVICE_URL_*` variables on the real instance).
 - [ ] Compare each supplied PDF hash with the official publication. The PDFs are not in the repository.
