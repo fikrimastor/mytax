@@ -30,16 +30,11 @@ type Response struct {
 func Preview(req Request)(Response,error){
  if req.AssessmentYear!=2025{return Response{},errors.New("assessment preview only supports YA 2025")}
  if req.DeclaredChargeableIncomeSen<0 || req.DeclaredChargeableIncomeSen>math.MaxInt64/2{return Response{},errors.New("invalid chargeable income")}
- if len(req.Claims)>1000{return Response{},errors.New("too many claims")}
  screened,err:=policy.Evaluate(policy.YA2025Draft(),req.Claims)
  if err!=nil{return Response{},err}
  gross,err:=calculation.ResidentGrossTax(req.AssessmentYear,req.DeclaredChargeableIncomeSen)
  if err!=nil{return Response{},err}
- var excluded int64
- for _,d:=range screened.Decisions {
-  if d.ProvisionalAmountSen>math.MaxInt64-excluded{return Response{},errors.New("claim amount overflow")}
-  excluded+=d.ProvisionalAmountSen
- }
+ excluded:=screened.ProvisionalTotalSen
  rec:=Reconciliation{
   DeclaredChargeableIncomeSen:req.DeclaredChargeableIncomeSen,
   TaxCalculationInputSen:gross.ChargeableIncomeSen,

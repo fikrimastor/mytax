@@ -9,7 +9,7 @@ func TestDraftClaimsNeverReduceTax(t *testing.T){
  if err!=nil{t.Fatal(err)}
  full,err:=Preview(Request{
   AssessmentYear:2025,DeclaredChargeableIncomeSen:7000000,
-  Claims:[]policy.Claim{{ID:"internet",RuleID:"LIFESTYLE_INTERNET",AmountSen:12900,EvidencePresent:true,
+  Claims:[]policy.Claim{{ID:"internet",RuleID:"LIFESTYLE_INTERNET",AmountSen:12900,ExpenseKey:"inv-1",EvidenceReference:"invoice",
    Facts:map[string]bool{"resident":true,"within_year":true,"internet_in_own_name":true,"qualifying_expense":true,"no_other_claim":true}}},
  })
  if err!=nil{t.Fatal(err)}
