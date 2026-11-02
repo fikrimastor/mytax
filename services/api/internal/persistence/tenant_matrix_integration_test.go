@@ -20,8 +20,8 @@ import (
 // These tests need the two-tenant fixture (testdata/security_fixture.sql) and connect as the
 // restricted application role. They skip only when no database is configured; CI fails on any skip.
 //
-// Fixture: tenant A has subject "test-subject" and one evidence row; tenant B has subject
-// "test-subject-b" and one evidence row.
+// Fixture: tenant A has subject "test-subject" plus one evidence row and one audit event;
+// tenant B has subject "test-subject-b" plus one evidence row and one audit event.
 
 const (
 	testIssuer   = "https://issuer.example"
@@ -123,8 +123,16 @@ func TestSymmetricTwoTenantIsolation(t *testing.T) {
 			if err := tx.QueryRow(ctx, "select tenant_id::text from evidence_metadata").Scan(&seen); err != nil || seen != c.own {
 				return fmt.Errorf("%s sees evidence of tenant %q, want %q (err=%v)", c.subject, seen, c.own, err)
 			}
-			if n, err := count(ctx, tx, "audit_events"); err != nil || n != 0 {
-				return fmt.Errorf("audit_events n=%d err=%v", n, err)
+			var auditTenant string
+			if err := tx.QueryRow(ctx, "select tenant_id::text from audit_events").Scan(&auditTenant); err != nil || auditTenant != c.own {
+				return fmt.Errorf("%s sees audit event of tenant %q, want only its own %q (err=%v)", c.subject, auditTenant, c.own, err)
+			}
+			if n, err := count(ctx, tx, "audit_events"); err != nil || n != 1 {
+				return fmt.Errorf("%s sees %d audit_events, want exactly its own 1 (err=%v)", c.subject, n, err)
+			}
+			var otherAudit int
+			if err := tx.QueryRow(ctx, "select count(*) from audit_events where tenant_id=$1::uuid", c.other).Scan(&otherAudit); err != nil || otherAudit != 0 {
+				return fmt.Errorf("%s sees %d audit_events of the other tenant (err=%v)", c.subject, otherAudit, err)
 			}
 			return nil
 		})

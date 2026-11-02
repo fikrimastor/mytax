@@ -1,6 +1,10 @@
 package calculation
 
-import "testing"
+import (
+	"math"
+	"math/big"
+	"testing"
+)
 
 func TestDividendAlwaysNeedsReviewAndNeverComputes(t *testing.T) {
 	for _, d := range []int64{0, 1, 9999999, 10000000, 10000001, 11000000, 500000000} {
@@ -19,6 +23,28 @@ func TestDividendIllustrationBoundaries(t *testing.T) {
 		r, _ := ReviewIndividualDividend(2025, tc.d)
 		if r.IllustrativeExcessTaxSen != tc.want {
 			t.Fatalf("d=%d illustration=%d want=%d", tc.d, r.IllustrativeExcessTaxSen, tc.want)
+		}
+	}
+}
+
+func TestDividendIllustrationDoesNotOverflowNearMaxInt64(t *testing.T) {
+	// At these excesses the naive (excess*2 + 50) / 100 overflows int64. Compare against an
+	// arbitrary-precision 2% half-up computation.
+	for _, d := range []int64{
+		math.MaxInt64,
+		DividendThresholdSen + math.MaxInt64/2 + 1,
+		DividendThresholdSen + math.MaxInt64/2,
+	} {
+		excess := new(big.Int).Sub(big.NewInt(d), big.NewInt(DividendThresholdSen))
+		num := new(big.Int).Mul(excess, big.NewInt(2))
+		num.Add(num, big.NewInt(50))
+		want := num.Div(num, big.NewInt(100)).Int64()
+		r, err := ReviewIndividualDividend(2025, d)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if r.IllustrativeExcessTaxSen != want {
+			t.Fatalf("dividend=%d illustration=%d want=%d", d, r.IllustrativeExcessTaxSen, want)
 		}
 	}
 }

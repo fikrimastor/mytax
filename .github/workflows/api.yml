@@ -43,6 +43,7 @@ jobs:
           set -euo pipefail
           test -n "$MYTAX_TEST_DATABASE_URL"
           go mod tidy
+          git diff --exit-code go.mod go.sum
           go test -race -count=1 -v ./... 2>&1 | tee "$RUNNER_TEMP/go-test.log"
           # A skipped test is not proof. Any skip fails the job.
           if grep -E -- '--- SKIP' "$RUNNER_TEMP/go-test.log"; then

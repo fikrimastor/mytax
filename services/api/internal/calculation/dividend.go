@@ -46,6 +46,12 @@ func ReviewIndividualDividend(ya int, dividendSen int64) (DividendReview, error)
 	}
 	excess := dividendSen - DividendThresholdSen
 	r.Reasons = append(r.Reasons, "EXCESS_ONLY_OR_WHOLE_DIVIDEND_UNRESOLVED", "CHARGEABLE_INCOME_PRESCRIPTION_NOT_AVAILABLE")
-	r.IllustrativeExcessTaxSen = (excess*2 + 50) / 100 // 2% half-up to the sen, illustration only
+	// 2% = excess/50 rounded half-up. Divide before multiplying so a near-MaxInt64 dividend
+	// cannot overflow int64. The remainder r < 50, so r*2 < 100 never overflows either.
+	// 2% of the remainder is r/50; half-up means anything at or above 25 rounds up.
+	r.IllustrativeExcessTaxSen = excess / 50
+	if excess%50 >= 25 {
+		r.IllustrativeExcessTaxSen++
+	}
 	return r, nil
 }
