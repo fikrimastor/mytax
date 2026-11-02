@@ -43,7 +43,7 @@ Behaviour:
 - s.46(3): spending by a spouse is deemed spent by the other spouse where s.45(2) applies or the spender has no total income. Not modelled.
 - s.46(1)(t) (additional RM2,500 device relief, purchases 1 Jun 2020 to 31 Dec 2022) has expired. Not modelled.
 - s.46(1)(f)(iii): up-skilling courses by a body recognised by the Director General of Skills Development, YA 2023 to 2026, max RM2,000 inside the RM7,000 education cap. A course in that category cannot be lifestyle.
-- A printed footnote on the same page says "This provision has effect for the year of assessment 2016 until the year of assessment 2020" (Finance Act 2015). The extraction does not show which provision it is attached to, and (p) shows no end year. How this applies to YA 2025 is **unresolved**.
+- The printed footnote "This provision has effect for the year of assessment 2016 until the year of assessment 2020" (Finance Act 2015) is marked with an asterisk on paragraph **(o)** (RM1,500 for parents aged 60+), not on (p). Paragraph (p) carries no such note in this text. (Corrected on re-reading; an earlier version of this document wrongly tied it to (p).)
 
 ## Known gaps (not decided, do not treat as rules)
 1. Reading of the Act text is by the agent only; a qualified person must confirm it.

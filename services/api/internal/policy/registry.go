@@ -54,7 +54,27 @@ func ReliefRegistry2025() []RegistryEntry {
  }
  out:=make([]RegistryEntry,0,len(data))
  for _,e:=range data {
-  out=append(out,RegistryEntry{ID:e.id,Label:e.label,MaxSen:e.rm*100,ParentID:e.parent,Conditional:true,Note:e.note,SourceURL:OfficialReliefSource,Status:"DRAFT_REVIEW_REQUIRED"})
+  note:=e.note
+  if diff,ok:=act53Differences[e.id];ok{note+=" | ACT53_DIFFERS: "+diff}
+  out=append(out,RegistryEntry{ID:e.id,Label:e.label,MaxSen:e.rm*100,ParentID:e.parent,Conditional:true,Note:note,SourceURL:OfficialReliefSource,Status:"DRAFT_REVIEW_REQUIRED"})
  }
  return out
+}
+
+// act53Differences lists registry entries whose amount or scope could NOT be confirmed
+// against Income Tax Act 1967 (Act 53) updated text as at 21 May 2024 (not an authentic
+// text; later amendments not checked). MaxSen stays the LHDN YA2025 table value; do not
+// treat any of these as confirmed. See docs/ACT53_RECONCILIATION_YA2025.md.
+var act53Differences=map[string]string{
+ "DISABLED_SELF":"Act s.46(1)(e) gives a further RM6,000; LHDN YA2025 table gives RM7,000. Unresolved.",
+ "MEDICAL_LEARNING_DISABILITY":"Act s.46(1)(ha) gives RM4,000 (part of RM10,000); LHDN YA2025 table gives RM6,000. Unresolved.",
+ "CHILDCARE":"Act s.46(1)(r) gives RM2,000 plus a further RM1,000 only for YA2020-2024; LHDN YA2025 table gives RM3,000. Unresolved.",
+ "SSPN":"Act s.46(1)(k) gives RM8,000 for his child; a footnote limits that amendment to YA2019-2024; YA2025 basis not in this text. Unresolved.",
+ "EDU_MED_INSURANCE":"Act s.49(1B) gives RM3,000; LHDN YA2025 table gives RM4,000. Unresolved.",
+ "DISABLED_SPOUSE":"Act s.47(1)(b) gives a further RM5,000; LHDN YA2025 table gives RM6,000. Unresolved.",
+ "DISABLED_CHILD":"Act s.48(2)(b) gives RM6,000; LHDN YA2025 table gives RM8,000. Unresolved.",
+ "EV_COMPOST":"Act s.46(1)(v) covers EV charging only (YA2023-2027); composter not found in the text.",
+ "MEDICAL_SCREENING":"Act s.46(1)(h) covers complete medical exam, COVID-19 test and mental health only; self-test equipment and disease-detection test fees in the LHDN table were not found.",
+ "FIRST_HOME_INTEREST_LOW":"No matching provision in the Act text as at 21 May 2024 (s.46B covers only SPA dated 10 Mar 2009 to 31 Dec 2010). Source for YA2025 unresolved.",
+ "FIRST_HOME_INTEREST_MID":"No matching provision in the Act text as at 21 May 2024 (s.46B covers only SPA dated 10 Mar 2009 to 31 Dec 2010). Source for YA2025 unresolved.",
 }

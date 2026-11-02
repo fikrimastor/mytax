@@ -1,0 +1,733 @@
+EXCERPTS 2 from Income Tax Act 1967 (Act 53), updated text as at 21 May 2024 (NOT an authentic text). Source PDF sha256 771ced020407dd6686fc493d6f9c1940bc29296fed0072422fb881c42737c49e.
+Extracted with pdftotext -layout; blank lines removed; line numbers are of the extracted text. For citation only.
+
+---- s.46(1)(a)-(o) incl. footnotes (extracted lines 5879-6232)
+46. (1) In the case of an individual or a Hindu joint family resident
+for the basis year for a year of assessment, there shall be allowed for
+that year of assessment personal deductions of—
+         (a) nine thousand ringgit for that individual in respect of
+             himself and his dependent relatives (if any), or for that
+             Hindu joint family;
+         (b) (Deleted by Act 600);
+         (c) an amount limited to a maximum of eight thousand
+             ringgit in respect of medical treatment, dental treatment,
+             complete medical examination, special needs or carer
+             expenses expended in that basis year by that individual
+             for his parents and the claim is evidenced by certification
+             of a medical practitioner or dental practitioner that the
+             conditions of the parents require medical treatment,
+             dental treatment, complete medical examination, special
+             needs or carer and—
+               (i) in the case of medical treatment, dental treatment,
+                   complete medical examination or special needs,
+                   a receipt on the amount expended; or
+               (ii) in the case of carer, a written certification or
+                    receipt from, or work permit of, the carer:
+           Provided that for the purpose of this paragraph—
+                   Income Tax                                151
+      (a) “carer” shall not include that individual, his wife
+          or her husband or the child of the individual;
+      (b) “parents” shall      be individuals     resident    in
+          Malaysia;
+      (c) the medical treatment, dental treatment, complete
+          medical examination or care services are provided
+          in Malaysia;
+      (d) the medical practitioner or dental practitioner is
+          registered with the Malaysian Medical Council or
+          Malaysian Dental Council, respectively; and
+      (e) the deduction for the complete medical
+          examination shall be subject to a maximum
+          amount of one thousand ringgit;
+(d) an amount limited to a maximum of six thousand ringgit
+    expended or deemed expended under subsection (3) in
+    that basis year by that individual for the purchase of any
+    necessary basic supporting equipment for his own use, if
+    he is a disabled person or for the use of his wife, child or
+    parent, who is a disabled person, or in the case of a wife,
+    for her own use, if she is a disable person, or for the use
+    of her husband, child or parent, who is a disabled person;
+(e) a further six thousand ringgit for that individual if he is
+    a disabled person;
+(f) fees expended in that basis year by that individual on
+    himself for—
+      (i) any course of study up to tertiary level, other than
+          a Masters or Doctorate degree, undertaken for the
+          purpose of acquiring legal, accounting, Islamic
+          financing, technical, vocational, industrial,
+          scientific or technological qualification or skill, in
+          any institution or professional body in Malaysia
+152                     Laws of Malaysia                    ACT 53
+                recognized by the Government or approved by the
+                Minister;
+           (ii) any course of study for a Masters or Doctorate
+                degree undertaken for the purpose of acquiring
+                any qualification or skill, in any institution or
+                professional body in Malaysia recognized by the
+                Government or approved by the Minister; or
+          (iii) any course of study undertaken for the purpose of
+                upskilling or self-enhancement and that course is
+                conducted by a body recognized by the Director
+                General of Skills Development under the National
+                Skills Development Act 2006 [Act 652], for years
+                of assessment 2023, 2024, 2025 and 2026, limited
+                to a maximum amount of two thousand ringgit for
+                each year of assessment,
+           and the total deduction under this paragraph shall be
+           subject to a maximum amount of seven thousand
+           ringgit;
+      (g) medical expenses expended or deemed expended under
+          subsection (3) in that basis year by that individual—
+            (i) on himself if he is undergoing treatment for a
+                serious disease or on his wife or child who is
+                undergoing treatment for a serious disease, or in
+                the case of a wife, on herself if she is undergoing
+                treatment for a serious disease or on her husband
+                or child who is undergoing treatment for a serious
+                disease;
+           (ii) on himself if he is undergoing fertility treatment or
+                on his wife who is undergoing fertility treatment,
+                or in the case of a wife, on herself if she is
+                undergoing fertility treatment or on her husband
+                who is undergoing fertility treatment;
+                                       Income Tax                                              153
+                    (iii) on himself, his wife or child for vaccination, or in
+                          the case of a wife, on herself, her husband or child
+                          for vaccination an amount limited to a maximum
+                          of one thousand ringgit; or
+                    (iv) on himself, his wife or child for dental
+                         examination or treatment, or in the case of a wife
+                         on herself, her husband or child for dental
+                         examination or treatment, an amount limited to a
+                         maximum of one thousand ringgit:
+             Provided that—
+                    (a) the claim, in respect of—
+                           (i) serious disease treatment provided to that
+                               individual, spouse or child, or the fertility
+                               treatment provided to that individual or the
+                               spouse, is evidenced by a receipt and
+                               certification issued by a medical practitioner
+                               registered with the Malaysian Medical
+                               Council; or
+                          (ii) dental examination or treatment provided to
+                               that individual, spouse or child, is evidenced
+                               by a receipt and certification issued by a dental
+                               practitioner registered with the Malaysian
+                               Dental Council;
+                    (b) the total amount of deduction under this paragraph
+                        is subject to a maximum amount of *ten thousand
+                        ringgit; and
+                    (c) for the purpose of subparagraph (ii)—
+                           (A) the individual is married; and
+*NOTE—Previously “eight thousand ringgit”–see subparagraph 4(a)(i) of the Finance Act 2023 [Act 845].
+154                     Laws of Malaysia                    ACT 53
+               (B) “fertility treatment” means intrauterine
+                   insemination or in vitro fertilization treatment
+                   or any other fertility treatment; and
+          (d) for the purposes of subparagraph (iii), the
+              vaccinations which qualify for deduction are for:
+                  (i) pneumococcal;
+                 (ii) human papillomavirus (HPV);
+                (iii) influenza;
+                (iv) rotavirus;
+                 (v) varicella;
+                (vi) meningococcal;
+                (vii) TDAP combination (tetanus-diphtheria-
+                      acellular-pertussis); and
+               (viii) Coronavirus Disease 2019 (COVID-19);
+      (h) an amount limited to a maximum of one thousand ringgit
+          expended or deemed expended under subsection (3) in
+          that basis year by that individual on himself or on his
+          wife or on his child, or in the case of a wife, on herself
+          or on her husband or on her child, in respect of—
+            (i) complete medical examination expenses as
+                evidenced by receipts issued by a hospital or a
+                medical practitioner registered with the Malaysian
+                Medical Council;
+           (ii) Coronavirus Disease 2019 (COVID-19) detection
+                test, as evidenced by receipts issued by a hospital
+                or a medical practitioner registered with the
+                Malaysian Medical Council or receipts of the
+                                   Income Tax                                         155
+                         purchase of Coronavirus Disease                            2019
+                         (COVID-19) self-detection test kit; or
+                  (iii) mental health examination or consultation as
+                        evidenced by receipts issued by a hospital, a
+                        psychiatrist within the meaning of section 2 of the
+                        Mental Health Act 2001 [Act 615], a clinical
+                        psychologist registered with the Malaysian Allied
+                        Health Professions Council under the Allied
+                        Health Professions Act 2016 [Act 774] or a
+                        counsellor registered with the Board of
+                        Counsellors under the Counsellors Act 1998
+                        [Act 580]:
+                       Provided that the deduction under this paragraph
+                     shall be part of the amount limited to a maximum of
+                     *ten thousand ringgit in paragraph (g);
+              (ha) an amount limited to a maximum of four thousand
+                   ringgit expended or deemed expended under
+                   subsection (3) in that basis year by that individual on
+                   his child who at any time in that basis year is of the
+                   age of eighteen years and below, in respect of—
+                    (i) assessment for the purpose of diagnosis of
+                        learning disability certified by a medical
+                        practitioner registered with the Malaysian Medical
+                        Council; or
+                   (ii) early intervention programme or rehabilitation
+                        treatment for learning disability conducted by an
+                        allied health practitioner in the field of learning
+                        disability registered under the Allied Health
+                        Professions Act 2016:
+                          Provided that—
+*NOTE—Previously “eight thousand ringgit”–see subparagraph 4(a)(ii) of the Finance Act 2023
+[Act 845].
+156         Laws of Malaysia                      ACT 53
+      (a) the claim is evidenced by a receipt and
+          certification issued by the medical
+          practitioner that the assessment for the
+          purpose of diagnosis was provided to the
+          child and that the child is diagnosed with
+          learning disability;
+      (b) the claim is evidenced by a receipt and
+          certification issued by the allied health
+          practitioner that the early intervention
+          programme or rehabilitation treatment was
+          provided to the child;
+      (c) the assessment for the purpose of diagnosis,
+          early      intervention   programme       or
+          rehabilitation treatment which qualifies for
+          deduction is for the following learning
+          disabilities:
+              (i) autism spectrum disorder;
+             (ii) attention     deficit      hyperactivity
+                  disorder;
+            (iii) global developmental delay;
+             (iv) intellectual disability;
+             (v) down syndrome; and
+             (vi) specific learning disability;
+      (d) the assessment for the purpose of diagnosis,
+          early     intervention   programme      and
+          rehabilitation treatment are provided in
+          Malaysia;
+      (e) the maximum amount of deduction under
+          this paragraph shall apply notwithstanding
+                                     Income Tax                                          157
+                                   that that individual may have more than one
+                                   child; and
+                             (f) the deduction under this paragraph shall be
+                                 part of the amount limited to a maximum of
+                                 ten thousand ringgit in paragraph (g);
+             (i) (Deleted by Act 785);
+             (j) (Deleted by Act 785);
+            (k) an amount limited to a maximum of *eight thousand
+                ringgit deposited in that basis year by that individual for
+                his child into the Skim Simpanan Pendidikan Nasional
+                account established under the Perbadanan Tabung
+                Pendidikan Tinggi Nasional Act 1997 [Act 566]:
+                     Provided that if any withdrawal is made from the
+                   account by that individual in that basis year, the amount
+                   deposited during that year shall be reduced by that
+                   withdrawal and regard shall be had only to the reduced
+                   amount subject to a maximum amount of eight thousand
+                   ringgit;
+             (l) (Deleted by Act 785);
+           (m) (Deleted by Act 785);
+            (n) an amount limited to a maximum of three hundred and
+                fifty ringgit in respect of a contribution made or suffered
+                in that basis year by that individual to the Social Security
+                Organization pursuant to the Employees’ Social Security
+                Act 1969 or Employment Insurance System Act 2017
+                [Act 800];
+*NOTE—Previously “six thousand ringgit”-see section 14 of the Finance Act 2018 [Act 812]. This
+amendment has effect for the years of assessment 2019, 2020, 2021, 2022, 2023 and 2024-see also
+subsection 3(3) of Act 812, section 66 of the Finance Act 2020 [Act 831] and section 29 of the
+Finance Act 2023 [Act 845].
+158                                   Laws of Malaysia                                 ACT 53
+           *(o) an amount of one thousand five hundred ringgit for each
+                of the parent of that individual—
+                     (i) who is a resident and, at any time in that basis year,
+                         aged sixty years and above; and
+                    (ii) whose annual income does not exceed twenty-four
+                         thousand ringgit for that year of assessment:
+                               Provided that—
+                             (a) the deduction under this paragraph shall be
+                                 allowed for a maximum of two parents;
+                             (b) the deduction under this paragraph shall not
+                                 be allowed for an individual who has made
+                                 a claim under paragraph 46(1)(c) for the
+                                 same basis year; and
+                             (c) where two or more individuals are each
+                                 entitled to claim a deduction for a year of
+                                 assessment under this paragraph in respect
+                                 of the same parent, there shall be allowed to
+                                 each of those individuals, in place of the
+                                 whole deduction which would otherwise be
+                                 allowed under this paragraph, an amount of
+                                 the whole deduction equally apportioned
+                                 according to the number of the individuals
+                                 making the claim;
+            (p) an amount expended or deemed expended under
+                subsection (3) in that basis year by that individual—
+                     (i) for the purchase or subscription of books, journals,
+
+---- s.46(1)(q)-(v) (extracted lines 6269-6411)
+(q) an amount limited to a maximum of one thousand ringgit
+    expended in that basis year for that year of assessment
+    by that individual for the purchase of breastfeeding
+    equipment for that individual’s own use for a child of
+    that individual aged two years old and below, as
+    evidenced by receipts issued in respect of the purchase:
+    Provided that—
+     (a) for the purpose of this paragraph, breastfeeding
+         equipment refers to a breast pump kit and an ice
+160                     Laws of Malaysia                   ACT 53
+                pack, a breast milk collection and storage
+                equipment, and a cooler set or bag;
+           (b) the deduction under this paragraph shall not be
+               allowed for a year of assessment immediately
+               following that year of assessment; and
+            (c) the maximum amount of deduction under this
+                paragraph shall apply notwithstanding that that
+                individual may have more than one child;
+      (r) an amount limited to a maximum of two thousand ringgit
+          expended or deemed expended under subsection (3) in
+          respect of the payment of child care fees to a child care
+          centre registered with the Director General of Social
+          Welfare under the Child Care Centre Act 1984 [Act 308]
+          or a kindergarten registered under the Education Act
+          1996 [Act 550] in that basis year by that individual for a
+          child of that individual aged six years and below as
+          evidenced by receipts issued by such child care centre or
+          kindergarten:
+           Provided that—
+           (a) where a wife living together with her husband is
+               assessed separately for that year, the deduction
+               under this paragraph shall only be allowed either
+               to the husband or to the wife;
+           (b) the maximum amount of deduction under this
+               paragraph shall apply notwithstanding that that
+               individual may have more than one child; and
+            (c) a further one thousand ringgit shall be allowed for
+                the years of assessment 2020 until 2024;
+      (s) an amount limited to a maximum of one thousand ringgit
+          expended or deemed expended under subsection (3) in
+                  Income Tax                               161
+    that basis year by that individual as evidenced by
+    receipts on the amount expended—
+      (i) for the payment of accommodation at the premises
+          registered with the Commissioner of Tourism
+          under the Tourism Industry Act 1992 [Act 482];
+     (ii) for the payment of entrance fee to a tourist
+          attraction; or
+    (iii) for the purchase of domestic tour package through
+          a licensed travel agent registered with the
+          Commissioner of Tourism under the Tourism
+          Industry Act 1992:
+          Provided that—
+           (a) for the purposes of subparagraphs (i) and
+               (ii), the payment is made on or after
+               1 March 2020 but not later than 31
+               December 2022; and
+           (b) for the purposes of subparagraph (iii), the
+               purchase is made on or after 1 January 2021
+               but not later than 31 December 2022;
+(t) an amount limited to a maximum of two thousand and
+    five hundred ringgit expended or deemed expended
+    under subsection (3) in that basis year by that individual
+    for the purchase of a personal computer, smartphone or
+    tablet (not being used for the purposes of his own
+    business) for his own use or for the use of his wife or
+    child, or in the case of a wife, for her own use or for the
+    use of her husband or child as evidenced by receipts
+    issued in respect of the purchase and the deduction under
+    this paragraph shall be additional to any deduction under
+    paragraph (p):
+    Provided that—
+162                     Laws of Malaysia                   ACT 53
+           (a) the purchase is made on or after 1 June 2020 but
+               not later than 31 December 2022; and
+           (b) the total amount of deduction under this paragraph
+               shall exclude the amount deducted under
+               paragraph (p);
+      (u) an amount limited to a maximum of one thousand ringgit
+          expended or deemed expended under subsection (3) in
+          that basis year by that individual—
+            (i) for the purchase of sports equipment for any sports
+                activity as defined under the Sports Development
+                Act 1997 [Act 576] (excluding motorized two-
+                wheel bicycles);
+           (ii) for the payment of rental or entrance fee to any
+                sports facility;
+          (iii) for the payment of registration fee for any sports
+                competition where the organizer is approved and
+                licensed by the Commissioner of Sports under the
+                Sports Development Act 1997; and
+           (iv) for the payment of fees for gym membership or
+                sports training for carrying out any sports activity
+                as defined under the Sports Development Act
+                1997 which is provided by a sports club or
+                societies registered with the Commissioner of
+                Sports or companies incorporated under the
+                Companies Act 2016 [Act 777],
+          for his own use or under his name or for the use of or
+          under the name of his wife or child, or in the case of a
+          wife, for her own use or under her name or for the use of
+          or under the name of her husband or child as evidenced
+          by receipts issued in respect of the purchase or payment,
+          as the case may be; and
+                             Income Tax                               163
+         (v) an amount limited to a maximum of two thousand and
+             five hundred ringgit expended for each basis year for the
+             years of assessment 2023, 2024, 2025, 2026 and 2027 by
+             that individual for the payment of installation, rental,
+             purchase including hire-purchase of equipment or
+             subscription for use of electric vehicle charging facility
+             for his own vehicle and not being used for the purposes
+             of his own business as evidenced by receipts issued in
+             respect of the payment on the amount expended.
+
+---- s.47-s.51 (extracted lines 6520-6900)
+47. (1) In the case of an individual resident for the basis year for a
+year of assessment who in that basis year had a wife living together
+with him, there shall, subject to subsections (3) and (4), be allowed for
+that year of assessment a deduction of—
+         (a) four thousand ringgit for the wife; and
+         (b) a further five thousand ringgit for the wife if she is a
+             disabled person.
+  (2) In the case of an individual resident for the basis year for a year
+of assessment who in that basis year—
+         (a) made payments to a wife of his by way or in the nature
+             of alimony pendente lite;
+         (b) made payments by way of alimony or maintenance (in
+             pursuance of an order of a court or otherwise) to a former
+             wife whose marriage with him was dissolved or annulled
+             (by a court or otherwise) in accordance with any law or
+             customs applicable to him; or
+         (c) made payments in pursuance of an order of a court, a
+             deed or a written agreement to a wife from whom he was
+             separated by an order of a court, a deed of separation or
+             a written agreement for separation,
+          then, subject to subsection (3), there shall be allowed for that
+          year of assessment a deduction of the aggregate amount of
+          those payments.
+  (3) The total of the deductions allowed for a year of assessment to
+an individual under paragraph (1)(a) and subsection (2) shall not
+exceed four thousand ringgit.
+                            Income Tax                             167
+  (4) Where an individual’s wife is assessed separately in her name
+for any year of assessment on her income no allowance or deduction
+shall be made to him in respect of that wife under subsection (1).
+  (5) Notwithstanding subsection 45(2) but subject to subsection (4),
+where an individual’s wife has no total income which can be
+aggregated with that of her husband for a year of assessment, an
+allowance or deduction shall be made to him in respect of that wife
+under subsection (1).
+  (6) Subsection (5) shall not apply if the wife, other than a wife who
+is a disabled person, has an income which is derived from sources
+outside Malaysia and her gross income from those sources for a year
+of assessment is more than the amount of deduction allowed for a wife.
+Deduction for children
+48. (1) Subject to this section, where an individual who is resident
+for the basis year for a year of assessment—
+         (a) pays (wholly or in part) in that basis year for the
+             maintenance at any time in that basis year of an
+             unmarried child who at any time in that basis year is
+             under the age of eighteen years;
+         (b) pays (wholly or in part) in that basis year—
+               (i) for the maintenance at any time in that basis year
+                   of an unmarried child who at any time in that basis
+                   year is receiving full-time instruction at any
+                   university, college, school or other similar
+                   educational establishment; or
+               (ii) for that instruction;
+         (c) pays (wholly or in part) in that basis year for the
+             maintenance at any time in that basis year of an
+             unmarried child (in subparagraphs (i) to (ii) referred to
+168                         Laws of Malaysia                    ACT 53
+              as the child) who at any time in that basis year is serving
+              under articles or indentures with a view to qualifying in
+              a trade or profession or—
+                (i) pays (wholly or in part) in that basis year for any
+                    part-time education which is received by the child
+                    at any time in that basis year and relates to that
+                    trade or profession;
+               (ii) pays (wholly or in part) in that basis year on behalf
+                    of the child any premium payable under or in
+                    connection with those articles or indentures; or
+              (iii) makes in that basis year on behalf of the child any
+                    other payment payable under or in connection with
+                    those articles or indentures; or
+         (d) pays (wholly or in part) in that basis year for the
+             maintenance at any time in that basis year of an
+             unmarried child if it is proved to the satisfaction of the
+             Director General that the child is physically or mentally
+             disabled,
+there shall be allowed for that year of assessment in respect of that
+child the appropriate deduction, if any, specified in subsection (2):
+  Provided that where a wife living together with her husband is
+assessed separately for any year of assessment on her income, she may
+elect in writing that the appropriate deduction be wholly allowed to her
+for that year of assessment.
+ (2) The appropriate deduction referred to in subsection (1) is—
+         (a) in respect of children falling under paragraphs (1)(a) to
+             (c), two thousand ringgit for each child;
+         (b) in respect of children falling under paragraph (1)(d), six
+             thousand ringgit for each child.
+                           Income Tax                               169
+ (3) (a) Where for a year of assessment any individual is entitled
+         under paragraph (1)(b), (c) or (d) to a deduction specified
+         under paragraph (2)(a) or (b), as the case may be, in respect
+         of a child over the age of eighteen years and the child is
+         receiving full-time instruction at a university, college or
+         other establishment (similar to a university or college) of
+         higher education, or is serving under articles or indentures
+         with a view to qualifying in a trade or profession, then there
+         shall be allowed—
+               (i) in the case where that individual is entitled under
+                   paragraph (1)(b) or (c) to a deduction, in
+                   substitution for deduction specified under
+                   paragraph (2)(a), a deduction of four times of the
+                   amount of deduction specified under that
+                   paragraph (2)(a); or
+              (ii) in the case where that individual is entitled under
+                   paragraph (1)(d) to a deduction, in addition to a
+                   deduction specified under paragraph (2)(b), a
+                   further deduction of eight thousand ringgit:
+             Provided that in the case of a child who is receiving full-
+           time instruction outside Malaysia, it shall be in respect of
+           an award of degree (including a degree at Master or
+           Doctorate level) or the equivalent of a degree.
+      (b) for the purpose of paragraph (a), the instruction and
+          educational establishment referred to in that paragraph
+          shall be approved by the relevant government authority.
+  (4) Where two or more individuals are each entitled to claim a
+deduction for a year of assessment under this section for a payment
+made in respect of the same child, there shall be allowed to each of
+those individuals, in place of the whole deduction which would
+otherwise be allowed under this section, a reduced deduction of fifty
+per cent of that whole deduction.
+170                                     Laws of Malaysia                                   ACT 53
+  (5) A deduction shall not be allowed to an individual under this
+section for a year of assessment in respect of any child whose total
+income, wherever derived or accruing, for that year exceeds the
+amount of the deduction that would otherwise be allowed under this
+section to that individual in respect of that child.
+  (6) (Deleted by Act 644).
+  (7) (Deleted by Act 531).
+  (8) (Deleted by Act A226).
+  (9) In this section “child”, in relation to an individual or his wife,
+means a legitimate child or step-child of his or his wife, or a child
+proved to the satisfaction of the Director General to have been adopted
+by the individual or his wife in accordance with any law.
+Deduction for insurance premiums
+*49. (1) Subject to this section, in the case of an individual resident
+for the basis year for a year of assessment, there shall be allowed for
+that year of assessment a deduction―
+             (a) not exceeding three thousand ringgit, in respect of
+                 premium paid by that individual for any insurance or any
+                 voluntary contribution made by that individual to the
+                 Employees Provident Fund or for both;
+             (b) not exceeding four thousand ringgit, in respect of any
+                 voluntary or obligatory contribution to approved scheme
+                 (other than a private retirement scheme) made or
+                 suffered by that individual who is an employee or a self-
+                 employed person within the meaning of the
+                 Employees Provident Fund Act 1991 [Act 452], or a
+*NOTE—The amendment made to this provision via section 10 of the Finance Act 2012 [Act 742] has
+comes into operation from the year of assessment 2012 until the year of assessment 2021 and in respect
+of paragraph 10(c) until the year of assessment 2025-see also subsection 3(4) of Act 742, section 64 of
+the Finance Act 2020 [Act 831] and section 65 of the Finance Act 2021 [Act 833].
+                           Income Tax                             171
+             pensionable officer within the meaning of section 2 of
+             the Pensions Act 1980; or
+        (c) not exceeding four thousand ringgit, in respect of any
+            amount made or suffered by that individual on any
+            contribution under any written law relating to widow,
+            widower and orphan’s pension or under any approved
+            scheme within the meaning of any such law.
+(1A) For the purpose of subsection (1)―
+        (a) the total amount of deduction under subsection (1) shall
+            not exceed seven thousand ringgit;
+       (aa) the total amount of deduction for voluntary contribution
+            to the Employees Provident Fund under paragraph (1)(a)
+            shall not include the amount of deduction for voluntary
+            contribution to the Employees Provident Fund under
+            paragraph (1)(b) made by an individual who is an
+            employee or a self-employed person within the meaning
+            of the Employees Provident Fund Act 1991, or a
+            pensionable officer within the meaning of section 2 of the
+            Pensions Act 1980;
+        (b) where subsection 50(2) or 50(3) applies, the amount of
+            deduction to be allowed shall be in accordance with
+            paragraphs (1)(a), (b) and (c) and the total deduction
+            under subsection 50(2) or (3) shall not exceed seven
+            thousand ringgit.
+        (c) (Deleted by Act 845).
+(1B)     (a) Subject to this section, in the case of an individual
+             resident for the basis year for a year of assessment who
+             has paid any premium for insurance on education or for
+             medical benefits, there shall be allowed for that year of
+             assessment in addition to the deduction allowed under
+             subsection (1), a deduction of the aggregate amount of
+172                          Laws of Malaysia                    ACT 53
+              the payments or a deduction of three thousand ringgit,
+              whichever is the less;
+         (b) for the purposes of paragraph (a), where
+             subsection 50(2) applies, the total deduction under the
+             paragraph shall not exceed three thousand ringgit.
+ (1C) (Deleted by Act 719).
+  (1D) In the case of an individual resident for the basis year for a year
+of assessment who has—
+         (a) paid premium for deferred annuity; or
+         (b) made or suffered the making of a contribution to a
+             private retirement scheme,
+there shall be allowed for that year of assessment a deduction of the
+aggregate amount of the payments or contribution or both or a
+deduction of three thousand ringgit whichever is the less.
+  (1E) For the purposes of subsection (1D), where subsection 50(2)
+or (3) applies, the total deduction under that subsection shall not
+exceed three thousand ringgit.
+  (2) For the purposes of subsection (1), other than voluntary
+contributions to the Employees Provident Fund made by any
+individual, no regard shall be had to any contribution to an approved
+scheme unless the contribution was obligatory by reason of—
+         (a) any contract of employment of the individual claiming a
+             deduction in respect of the contribution; or
+         (b) any provision in the rules, regulations, by-laws or
+             constitution of the scheme,
+and, where the contribution was partly obligatory by reason of such a
+contract or provision and partly not so obligatory, regard shall be had
+only to the part which was so obligatory.
+                             Income Tax                                173
+  (3) In relation to an individual claiming a deduction under
+subsection (1) and (1D), “insurance” and “deferred annuity”, mean an
+insurance or deferred annuity contracted for by the individual—
+         (a) on the individual’s life;
+         (b) on the life of a wife of the individual or, where the
+             individual is a female, on the life of the individual’s
+             husband; or
+         (c) on the joint lives of the individual and a wife or wives of
+             his or on the joint lives of two or more wives of his or,
+             where the individual is a female, on the joint lives of—
+                (i) the individual and her husband;
+                (ii) the individual, her husband and any other wife or
+                     wives of his;
+               (iii) the individual and any other wife or wives of her
+                     husband; or
+               (iv) her husband and any other wife or wives of his,
+being an insurance or deferred annuity contracted for with an insurance
+company for securing on death either a capital sum or a deferred annuity
+or both (whether in conjunction with any other benefit or not) or an
+insurance or deferred annuity contracted for with a government, a public
+body or the controlling authority of any nationalized insurance business.
+ (4) For the purposes of subsection (1B) reference to an insurance
+means an insurance contracted for by an individual for himself, his
+wife or child, or in the case of a wife, for herself, her husband or child.
+174                         Laws of Malaysia                    ACT 53
+Application of section 49 where husband and wife are living
+together
+50. (1) Where an individual who is resident for the basis year for a
+year of assessment has a wife living together with him at any time in
+that basis year, and they did not in that basis year—
+         (a) cease to live together; or
+         (b) cease to be husband and wife of each other,
+the application of section 49 to that individual shall be subject to this
+section.
+  (2) Any premium for any insurance or deferred annuity within the
+meaning of subsection 49(3), or for any insurance on education or
+medical benefits within the meaning of subsection 49(4), which has
+been paid by the wife or the husband in the year of assessment—
+         (a) where subsection 45(2) applies, shall be deemed to have
+             been paid by the husband of the wife who elects or by
+             the wife of the husband who elects, as the case may be;
+             or
+         (b) where the wife or the husband has no total income, shall
+             be deemed to have been paid by the husband of that wife
+             who has no total income or the wife of that husband who
+             has no total income, as the case may be:
+  Provided that where paragraph 45(2)(b) applies, or the husband has
+no total income, any amount paid by the husband shall be deemed to
+have been paid by the wife who has been allowed a deduction under
+section 45A.
+  (3) Where subsection 45(2) applies for the year of assessment, and
+in that year the wife who elects or the husband who elects has made or
+suffered the making of a contribution as an employee to an approved
+scheme or as a self-employed person within the meaning of the
+Employees Provident Fund Act 1991, or as a pensionable officer
+                            Income Tax                              175
+within the meaning of section 2 of the Pensions Act 1980 to the
+Employees Provident Fund—
+         (a) the contribution shall be deemed to have been made by
+             the husband or the wife in whose name the assessment
+             was made, as the case may be, in that year; and
+         (b) the reference to a contract of employment in
+             paragraph 49(2)(a) shall be deemed to include a
+             reference to a contract of employment of the wife who
+             elects or the husband who elects, as the case may be.
+ (4) (Deleted by Act 451).
+Deduction must be claimed
+51. Notwithstanding sections 47 to 50, no deduction shall be allowed
+under those sections in ascertaining the chargeable income of an
+individual for a year of assessment unless a claim has been made for
+that year for the deduction or for a deduction of a larger or smaller
+amount in respect of the same subject matter.
+                        Chapter 8—Special cases
+
+---- s.6A rebates (extracted lines 1655-1705)
+6A. (1) Subject to this section, income tax charged for each year of
+assessment upon the chargeable income of every individual resident
+for the basis year for that year shall be rebated for that year of
+assessment in accordance with subsections (2), (2A) and (3) before any
+set off is made under section 110 and any credit is allowed under
+section 132 or 133.
+  (2) A rebate shall be granted for a year of assessment in the
+following amounts:
+         (a) four hundred ringgit in the case of an individual who has
+             been allowed a deduction under paragraph 46(1)(a) for
+             that year of assessment where his chargeable income for
+             that year of assessment does not exceed thirty-five
+             thousand ringgit;
+46                        Laws of Malaysia                   ACT 53
+         (b) four hundred ringgit in the case of an individual who has
+             been allowed a deduction under subsection 47(1) or (2)
+             for that year of assessment where his chargeable income
+             for that year of assessment does not exceed thirty-five
+             thousand ringgit;
+         (c) four hundred ringgit in the case of a wife who has been
+             allowed a deduction under section 45A for that year of
+             assessment where her chargeable income for that year of
+             assessment does not exceed thirty-five thousand ringgit:
+  Provided that where Part XIV or XV of Schedule 1 applies,
+thirty-five thousand ringgit shall consist of chargeable income of that
+individual from all sources.
+  (2A) A rebate shall be granted for a year of assessment in respect of
+departure levy which is charged and levied under the
+Departure Levy Act 2019 [Act 813] on any person who leaves
+Malaysia by air for the purpose of performing umrah or other religious
+pilgrimage and shall be evidenced by the boarding pass and—
+         (a) in the case of umrah, a copy of the visa issued by the
+             embassy of the Kingdom of Saudi Arabia; or
+         (b) in the case of any other religious pilgrimage, a written
+             verification by a religious body recognized by the
+             Committee for the Promotion of Inter Religious
+             Understanding and Harmony Among Adherents, Prime
+             Minister’s Department.
+ (2B) For the purpose of subsection (2A), the rebate—
+         (a) shall be granted for not more than two times in respect
+             of the departure levy paid for the purpose of performing
+
+---- Schedule 1 Part I paras 1 and 1A (extracted lines 22664-22690)
+                                    SCHEDULE 1
+                                    [Section 6]
+                                   Rates of Tax
+                                      PART I
+1. Except where paragraphs 1A, 2, 2A, 2D, 3 and 4 provide otherwise, income tax
+shall be charged for a year of assessment upon the chargeable income of every person
+at the following rates:
+      Chargeable income                    RM                       Rate of
+                                                                 income tax
+ For every ringgit of the first           5,000                  0 per cent
+ For every ringgit of the next           15,000                  1 per cent
+ For every ringgit of the next           15,000                  3 per cent
+ For every ringgit of the next           15,000                  6 per cent
+ For every ringgit of the next           20,000                 11 per cent
+ For every ringgit of the next           30,000                 19 per cent
