@@ -5,7 +5,7 @@ Status: **DRAFT. Read by the agent only. Not reviewed by a tax professional. No 
 ## Sources and limits
 Record, hashes and excerpts: `docs/sources/act53/README.md`.
 - **Text A:** Income Tax Act 1967 (Act 53), AGC updated text **as at 21 May 2024** (latest amendment Act A1706). Not an authentic text.
-- **Text B:** the same Act, AGC updated text **as at 1 January 2026** (latest amendment Act 875). Not an authentic text. Weaker provenance: the PDF is a "Print To PDF" copy made by a person, not the original AGC file, so its content cannot be tied to AGC by the file itself.
+- **Text B:** the same Act, AGC updated text **as at 1 January 2026** (latest amendment Act 875). Not an authentic text. Provenance: the PDF metadata says "Print To PDF"; the owner's screenshot of the LHDN Akta page lists Act 53 as at 1 January 2026 with a 3.50 MB download, matching this file's size. Consistent with it coming from LHDN, but no hash was compared, so it is not proven.
 - **LHDN table:** `docs/sources/ya2025/hasil-user-supplied-2026-11-02.txt`, pasted by the repository owner.
 - Text B shows the law **as it stands on 1 January 2026**. It includes amendments that start in YA 2026 and later, so a value in Text B is **not automatically a YA 2025 value**. The in-force dates come from the "amending law" and "list of sections amended" tables inside Text B.
 - Amending laws named in Text B: Act 862 "Finance Act 2024" (YA 2025 onward, with some items for YA 2025 to 2027), Act 874 "Finance Act 2025" (YA 2026 onward, some YA 2026 and 2027), Acts 863 and 875 (tax collection and enforcement). The Finance Act texts themselves were **not** supplied, so which paragraph changed in which Act is only partly visible.
