@@ -55,26 +55,40 @@ func ReliefRegistry2025() []RegistryEntry {
  out:=make([]RegistryEntry,0,len(data))
  for _,e:=range data {
   note:=e.note
-  if diff,ok:=act53Differences[e.id];ok{note+=" | ACT53_DIFFERS: "+diff}
+  if f,ok:=act53Findings[e.id];ok{note+=" | "+f.Kind+": "+f.Text}
   out=append(out,RegistryEntry{ID:e.id,Label:e.label,MaxSen:e.rm*100,ParentID:e.parent,Conditional:true,Note:note,SourceURL:OfficialReliefSource,Status:"DRAFT_REVIEW_REQUIRED"})
  }
  return out
 }
 
-// act53Differences lists registry entries whose amount or scope could NOT be confirmed
-// against Income Tax Act 1967 (Act 53) updated text as at 21 May 2024 (not an authentic
-// text; later amendments not checked). MaxSen stays the LHDN YA2025 table value; do not
-// treat any of these as confirmed. See docs/ACT53_RECONCILIATION_YA2025.md.
-var act53Differences=map[string]string{
- "DISABLED_SELF":"Act s.46(1)(e) gives a further RM6,000; LHDN YA2025 table gives RM7,000. Unresolved.",
- "MEDICAL_LEARNING_DISABILITY":"Act s.46(1)(ha) gives RM4,000 (part of RM10,000); LHDN YA2025 table gives RM6,000. Unresolved.",
- "CHILDCARE":"Act s.46(1)(r) gives RM2,000 plus a further RM1,000 only for YA2020-2024; LHDN YA2025 table gives RM3,000. Unresolved.",
- "SSPN":"Act s.46(1)(k) gives RM8,000 for his child; a footnote limits that amendment to YA2019-2024; YA2025 basis not in this text. Unresolved.",
- "EDU_MED_INSURANCE":"Act s.49(1B) gives RM3,000; LHDN YA2025 table gives RM4,000. Unresolved.",
- "DISABLED_SPOUSE":"Act s.47(1)(b) gives a further RM5,000; LHDN YA2025 table gives RM6,000. Unresolved.",
- "DISABLED_CHILD":"Act s.48(2)(b) gives RM6,000; LHDN YA2025 table gives RM8,000. Unresolved.",
- "EV_COMPOST":"Act s.46(1)(v) covers EV charging only (YA2023-2027); composter not found in the text.",
- "MEDICAL_SCREENING":"Act s.46(1)(h) covers complete medical exam, COVID-19 test and mental health only; self-test equipment and disease-detection test fees in the LHDN table were not found.",
- "FIRST_HOME_INTEREST_LOW":"No matching provision in the Act text as at 21 May 2024 (s.46B covers only SPA dated 10 Mar 2009 to 31 Dec 2010). Source for YA2025 unresolved.",
- "FIRST_HOME_INTEREST_MID":"No matching provision in the Act text as at 21 May 2024 (s.46B covers only SPA dated 10 Mar 2009 to 31 Dec 2010). Source for YA2025 unresolved.",
+// act53Finding records how a registry entry compares with the Income Tax Act 1967 (Act 53)
+// updated texts supplied by the repository owner (as at 21 May 2024 and as at 1 January 2026;
+// neither is an authentic text). MaxSen stays the LHDN YA2025 table value. Nothing here is
+// tax-professional reviewed. See docs/ACT53_RECONCILIATION_YA2025.md.
+type act53Finding struct{Kind,Text string}
+
+const (
+ // Act text as at 1 Jan 2026 gives the same value and its own wording or the amending-law table places it in YA2025.
+ Act53Confirmed="ACT53_CONFIRMED_YA2025"
+ // Value equals the Act text as at 1 Jan 2026, but the text does not show whether it applied in YA2025 or only from YA2026.
+ Act53YAUncertain="ACT53_YA_UNCERTAIN"
+ // Value in the Act text differs from the LHDN table. Unresolved.
+ Act53Differs="ACT53_DIFFERS"
+ // Amount agrees but the scope or conditions differ or are not modelled.
+ Act53Scope="ACT53_SCOPE"
+)
+
+var act53Findings=map[string]act53Finding{
+ "SSPN":{Act53Confirmed,"s.46(1)(k): RM8,000 deposited for his child for YA2025, 2026 and 2027, less withdrawals (a withdrawal for the child's higher education is not deducted); only one spouse if assessed separately."},
+ "EV_COMPOST":{Act53Confirmed,"s.46(1)(v) and (1A): EV charging YA2023-2027; food waste compost machine YA2025-2027, claimable ONCE in YA2025, 2026 or 2027; total RM2,500. Food waste grinder and CCTV start in YA2026 and are not YA2025."},
+ "DISABLED_SPOUSE":{Act53Confirmed,"s.47(1)(b): further RM6,000. s.47 was last amended by Act 862 for YA2025 onward (RM5,000 in the May 2024 text)."},
+ "DISABLED_CHILD":{Act53Confirmed,"s.48(2)(b): RM8,000. s.48 was last amended by Act 862 for YA2025 onward (RM6,000 in the May 2024 text)."},
+ "FIRST_HOME_INTEREST_LOW":{Act53Confirmed,"s.46B (Act 862, in force 1 Jan 2025): citizen and resident; first residential property, one unit, occupied as residence; SPA 1 Jan 2025 to 31 Dec 2027; no income from the property; RM7,000 (price up to RM500,000) for 3 consecutive basis years; shared by formula A x B / C between co-claimants."},
+ "FIRST_HOME_INTEREST_MID":{Act53Confirmed,"s.46B (Act 862, in force 1 Jan 2025): same conditions as the low tier; RM5,000 where price is above RM500,000 and up to RM750,000."},
+ "DISABLED_SELF":{Act53YAUncertain,"s.46(1)(e): further RM7,000 in the 1 Jan 2026 text (RM6,000 in the May 2024 text). s.46 was amended by Act 862 (YA2025) and Act 874 (YA2026); the text does not say which one raised it."},
+ "CHILDCARE":{Act53YAUncertain,"s.46(1)(r): RM3,000 in the 1 Jan 2026 text with no year limit (RM2,000 plus RM1,000 for YA2020-2024 in the May 2024 text). Child up to 6 at a registered centre or kindergarten; the extension to a care centre for a child up to 12 may be later. Which Act introduced this is not shown."},
+ "EDU_MED_INSURANCE":{Act53YAUncertain,"s.49(1B): RM4,000 in the 1 Jan 2026 text (RM3,000 in the May 2024 text). s.49 was amended by Act 862 (YA2025) and Act 874 (YA2026); the text does not say which one raised it."},
+ "MEDICAL_LEARNING_DISABILITY":{Act53Differs,"s.46(1)(ha) in the 1 Jan 2026 text: maximum RM10,000, and part of the RM10,000 in s.46(1)(g) (RM4,000 in the May 2024 text); LHDN YA2025 table: RM6,000. Unresolved; the registry keeps the lower LHDN figure."},
+ "MEDICAL_SCREENING":{Act53Scope,"s.46(1)(h), 1 Jan 2026 text: complete medical examination or disease detection test fee, self-testing medical device registered under the Medical Device Act 2012 (not for business), mental health examination; part of the RM10,000. COVID-19 tests are not named separately although the pasted LHDN table names them."},
+ "PARENTS":{Act53Scope,"s.46(1)(c), 1 Jan 2026 text: parents or grandparents resident in Malaysia, treatment in Malaysia, practitioner certification; complete medical examination up to RM1,000 and it includes vaccination of a vaccine registered with the National Pharmaceutical Regulatory Agency."},
 }

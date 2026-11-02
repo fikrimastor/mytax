@@ -6,10 +6,10 @@ package policy
 const Act53URL = "https://www.hasil.gov.my/wp-content/uploads/20240521-akta-cukai-pendapatan-1967-akta-53.pdf"
 
 // lifestyleSources cites Act 53 s.46(1)(p) paragraph para and the user-supplied LHDN table.
-// The Act text predates later amendments; whether they change YA2025 is NOT verified.
+// Both Act texts are AGC updated texts, not authentic texts; (p) is identical in the two.
 func lifestyleSources(para string) []Source {
  return []Source{
-  {URL:Act53URL,Section:"Income Tax Act 1967 (Act 53) updated text as at 21 May 2024, s.46(1)(p)"+para+" and s.46(3); not an authentic text; later amendments not checked",RetrievedOn:"2026-11-02"},
+  {URL:Act53URL,Section:"Income Tax Act 1967 (Act 53) updated texts as at 21 May 2024 and 1 January 2026, s.46(1)(p)"+para+" and s.46(3); not an authentic text; paragraph (p) reads the same in both",RetrievedOn:"2026-11-02"},
   {URL:"https://www.hasil.gov.my/individu/pelepasan-cukai/",Section:"Tahun Taksiran 2025, item 9 Gaya hidup (user-supplied snapshot)",RetrievedOn:"2026-11-02"},
  }
 }

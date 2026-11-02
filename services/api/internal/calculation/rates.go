@@ -29,8 +29,8 @@ type Result struct {
 const SourceURL = "https://www.hasil.gov.my/individu/kadar-cukai/"
 // 0 upper bound is a sentinel for the unbounded final band.
 // These marginal rates are from the HASiL resident-individual YA 2025 table and match
-// Schedule 1 Part I of the Income Tax Act 1967 (updated text as at 21 May 2024, not an
-// authentic text; amendments after that date not checked). See docs/ACT53_RECONCILIATION_YA2025.md.
+// Schedule 1 Part I of the Income Tax Act 1967 (AGC updated texts as at 21 May 2024 and
+// 1 January 2026, neither an authentic text; paragraph 1 is identical in both). See docs/ACT53_RECONCILIATION_YA2025.md.
 // Not covered: s.6A rebates, non-resident 30% (Sch.1 para 1A), statutory rounding.
 var ya2025 = []Band{
  {500000,0},{2000000,1},{3500000,3},{5000000,6},
