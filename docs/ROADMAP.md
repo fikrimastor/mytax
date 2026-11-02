@@ -8,7 +8,7 @@ Legend for verification (never merge these levels): **C** committed, **L** local
 | Area | C | L | CI | Live | Rev |
 |---|---|---|---|---|---|
 | Go API unit tests (all packages) | yes | yes | yes (8 of 8 runs on branch `claude/quirky-wozniak-o9r7ih`, latest `d607860`) | no | no |
-| PostgreSQL RLS tests (`TestTenantIsolationIntegration`, `TestPostgresRoleAndRLSIntegration`) | yes | skipped without a database | **passed on PostgreSQL 16 in CI** | n/a | no |
+| PostgreSQL RLS tests (9 tests including the two-tenant matrix, concurrency and write-refusal) | yes | passed on a local PostgreSQL 16 with `-race` | **passed on PostgreSQL 16 in CI, no skips** | n/a | no |
 | Signed JWT / JWKS negative tests | yes | yes | yes | no (no Keycloak) | no |
 | YA 2025 rate table and gross tax | yes | yes | yes | n/a | no |
 | YA 2025 relief registry (31 entries) vs Act 53, Finance Acts 2024 and 2025 | yes | yes | yes | n/a | no |
@@ -27,7 +27,7 @@ The branch `claude/quirky-wozniak-o9r7ih` is 8 commits ahead of `main` and has *
 
 ### 1. Verification and CI
 - [ ] Open a pull request for the branch and merge to `main` once reviewed (not requested yet).
-- [x] Two-tenant isolation matrix added: symmetric isolation, cross-tenant writes refused by RLS, privilege-escalation attempts, spoofed identities, transaction-local subject after commit, rollback, error and panic, and 24 goroutines over 4 pooled connections. Local result: passed on PostgreSQL 16 with `-race`, and 8 mutation checks each fail a test. See `docs/POSTGRES_SECURITY_RUNBOOK.md`. CI result for this change is recorded below once known.
+- [x] Two-tenant isolation matrix added: symmetric isolation, cross-tenant writes refused by RLS, privilege-escalation attempts, spoofed identities, transaction-local subject after commit, rollback, error and panic, and 24 goroutines over 4 pooled connections. Local result: passed on PostgreSQL 16 with `-race`, and 8 mutation checks each fail a test. See `docs/POSTGRES_SECURITY_RUNBOOK.md`. **CI: passed** (run 110 on `fd1593e`, `go test -race`, no skipped test; the PostgreSQL server log in that run shows the expected RLS and privilege refusals).
 - [x] CI now runs `go test -race` and fails on any skipped test.
 - [ ] Live Keycloak test (access token, client, scopes, tenant authorization). JWKS key rotation and caching tests. Token revocation. Roles beyond exact client and scope.
 - [ ] Live Coolify deployment check (`SERVICE_URL_*` variables on the real instance).
