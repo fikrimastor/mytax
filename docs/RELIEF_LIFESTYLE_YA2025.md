@@ -55,7 +55,7 @@ Finance Act 2024 (Act 862) s.9 amends s.46(1) paragraphs (c), (e), (h), (ha), (k
 4. Any frequency or per-item limit that may exist for devices or other items is **unknown**; not checked against any source.
 5. Reimbursed or employer-paid expenses are not modelled.
 6. Fact names now come from the canonical list in `internal/policy/facts.go`. `LIFESTYLE_BOOKS` requires `qualifying_beneficiary`; `LIFESTYLE_INTERNET` still does not (it requires `internet_in_own_name`). Whether internet should also need a beneficiary fact is not decided.
-8. Same-year overlap between lifestyle course fees and education up-skilling (RM2,000) is only prevented by identical `expense_key`.
+7. Same-year overlap between lifestyle course fees and education up-skilling (RM2,000) is only prevented by identical `expense_key`.
 
 ## Verification status
 - Committed: see git log for this branch.

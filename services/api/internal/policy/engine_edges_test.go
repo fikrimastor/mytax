@@ -87,3 +87,25 @@ func TestRuleLimitAndGroupLimitBothApply(t *testing.T) {
 		t.Fatalf("claim c missing LIMIT_REACHED: %+v", r.Decisions[2])
 	}
 }
+
+// Relief is once per family, same as the retired eligibility engine, so a
+// second claim in the same first-home tier is blocked. Fails closed.
+func TestSecondClaimInSameFirstHomeTierIsBlocked(t *testing.T) {
+	p := YA2025Draft()
+	a := claimFor(t, p, "a", "FIRST_HOME_LOW", 300000)
+	b := claimFor(t, p, "b", "FIRST_HOME_LOW", 300000)
+	b.ExpenseKey = "exp-b-other"
+	r, err := Evaluate(p, []Claim{a, b})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if r.Decisions[0].ProvisionalAmountSen != 300000 {
+		t.Fatalf("a = %+v", r.Decisions[0])
+	}
+	if r.Decisions[1].ProvisionalAmountSen != 0 || len(r.Decisions[1].Reasons) == 0 || r.Decisions[1].Reasons[0] != "MUTUALLY_EXCLUSIVE_RELIEF" {
+		t.Fatalf("b = %+v", r.Decisions[1])
+	}
+	if r.ProvisionalTotalSen != 300000 {
+		t.Fatalf("total = %d", r.ProvisionalTotalSen)
+	}
+}

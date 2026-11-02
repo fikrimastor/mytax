@@ -1,6 +1,10 @@
 package policy
 
-import "testing"
+import (
+	"reflect"
+	"sort"
+	"testing"
+)
 
 func TestFirstHomeTiersShareAnExclusiveFamily(t *testing.T) {
 	p := YA2025Draft()
@@ -27,5 +31,27 @@ func TestDentalRuleIsInTheMedicalGroup(t *testing.T) {
 	}
 	if len(r.Sources) == 0 {
 		t.Fatal("dental rule has no source")
+	}
+}
+
+// When the eligibility engine was merged into policy, the policy fact lists
+// won (they are stricter) for these rules. Clients that sent the old fact
+// names (incurred_in_ya, recognized_course, qualifying_education,
+// qualifying_person) now get UNVERIFIED_FACT reasons. equivalence_test.go
+// builds facts from the NEW catalog and therefore cannot detect fact-list
+// changes; this test pins them.
+func TestMergedRulesUsePolicyFactSets(t *testing.T) {
+	p := YA2025Draft()
+	want := map[string][]string{
+		"MEDICAL_DENTAL":        {"no_other_claim", "qualifying_beneficiary", "qualifying_dental", "resident", "within_year"},
+		"EDUCATION_SELF_SKILLS": {"no_other_claim", "own_education", "qualifying_course", "resident", "within_year"},
+		"EDUCATION_SELF_OTHER":  {"no_other_claim", "own_education", "qualifying_course", "resident", "within_year"},
+	}
+	for id, facts := range want {
+		got := append([]string(nil), findRule(t, p, id).RequiredFacts...)
+		sort.Strings(got)
+		if !reflect.DeepEqual(got, facts) {
+			t.Fatalf("%s required facts = %v, want %v", id, got, facts)
+		}
 	}
 }

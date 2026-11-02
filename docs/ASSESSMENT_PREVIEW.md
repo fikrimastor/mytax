@@ -26,3 +26,9 @@ Security: this unauthenticated endpoint is a calculation prototype; do not send 
 ```
 
 `evidence_present` and `duplicate` no longer exist: the server derives duplicates from `expense_key` and checks that `evidence_reference` is set. Decisions use `claim_id`, `status`, `provisional_amount_sen`, `approved_amount_sen` and `reasons`; the result adds `provisional_total_sen` and `filing_ready` (always false).
+
+Further differences:
+- New reason codes `EXPENSE_IDENTIFIER_MISSING` and `MUTUALLY_EXCLUSIVE_RELIEF` can appear.
+- The two first-home tiers share an exclusive family, so only one first-home claim (including a second claim in the same tier) is screened per request.
+- The error message "claim amount overflow" is now "overflow".
+- `MEDICAL_DENTAL` is a new rule.

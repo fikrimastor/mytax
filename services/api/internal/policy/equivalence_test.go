@@ -92,6 +92,9 @@ func buildRecordedClaims(p Package, c recordedCase) []Claim {
 	return out
 }
 
+// Note: facts here are built from the NEW catalog, so this test cannot detect
+// fact-list changes made when the engines were merged (education and dental
+// now use the policy fact lists). TestMergedRulesUsePolicyFactSets pins those.
 func TestUnifiedEngineMatchesRecordedEligibilityBehaviour(t *testing.T) {
 	raw, err := os.ReadFile("testdata/relief_cases.json")
 	if err != nil {
