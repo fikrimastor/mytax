@@ -81,6 +81,15 @@ type Result struct {
 // Evaluate screens claims against a package. Claims are allocated in claim-ID order so the
 // result does not depend on request order. Anything unknown, unverified, duplicated,
 // mutually exclusive or without evidence is REVIEW_REQUIRED with a zero amount.
+//
+// Allocation order: because claims are allocated in claim-ID order, when two claims
+// compete for a cap or for the same exclusive family, the lower claim ID wins.
+//
+// Expense keys: an ExpenseKey is registered even when its claim is blocked for another
+// reason, so a later claim reusing that key is flagged as a duplicate (fails closed).
+//
+// Package status: Evaluate trusts Package.Status. A caller that wants Approved amounts
+// must first run ValidateRelease.
 func Evaluate(p Package, claims []Claim) (Result, error) {
 	if p.AssessmentYear != supportedYear {
 		return Result{}, errors.New("unsupported assessment year")
