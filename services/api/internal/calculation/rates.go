@@ -48,7 +48,7 @@ func Rates(ya int)([]Band,error){
 func ResidentGrossTax(ya int,chargeableIncomeSen int64)(Result,error){
  if chargeableIncomeSen<0{return Result{},errors.New("income must not be negative")}
  bands,err:=Rates(ya);if err!=nil{return Result{},err}
- out:=Result{AssessmentYear:ya,ChargeableIncomeSen:chargeableIncomeSen,Status:"ILLUSTRATIVE_GROSS_TAX_ONLY",SourceURL:SourceURL,Notice:"Not a filing-ready tax calculation. Chargeable income, statutory rounding, rebates, credits, PCB and applicable special cases are not validated."}
+ out:=Result{AssessmentYear:ya,ChargeableIncomeSen:chargeableIncomeSen,Status:"ILLUSTRATIVE_GROSS_TAX_ONLY",SourceURL:SourceURL,Notice:"Not a filing-ready tax calculation. Chargeable income, statutory rounding, rebates, credits, PCB and applicable special cases are not validated. Dividend income of an individual above RM100,000 is charged separately at 2% under Schedule 1 Part XXII from YA2025 and is not computed here."}
  lower:=int64(0)
  for _,b:=range bands{
   if chargeableIncomeSen<=lower {break}

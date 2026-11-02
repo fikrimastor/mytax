@@ -19,7 +19,7 @@ The hashes prove those files only. They do not prove the PDF matches the live HA
 The full PDF is not in this repository. Only the short excerpt used for citation is. Keep the original PDF where the hash can be re-checked.
 
 ## Limits
-- Text predates amendments after 21 May 2024. Which later amendments affect YA 2025 has **not** been checked.
+- The 21 May 2024 text predates later amendments. Those were checked against the 1 January 2026 text and the Finance Act 2024 and 2025 texts (see below).
 - Read so far: s.6, s.6A, s.46, s.47, s.48, s.49, s.50, s.51 and Schedule 1 Part I paras 1 and 1A. Other sections have not been reconciled.
 - Second excerpt file: `act53-excerpts-2.txt`.
 - Text was extracted with `pdftotext -layout`; formatting may differ from the PDF.
@@ -35,9 +35,17 @@ The full PDF is not in this repository. Only the short excerpt used for citation
 - Read: s.6A, s.46, s.46B, s.47 to s.51, Schedule 1 Part I para 1 and 1A, the amending-law table and the list-of-sections-amended rows for those sections.
 - Full cross-check: `docs/ACT53_RECONCILIATION_YA2025.md`.
 
+## Third source: Finance Act 2024 (Act 862) and Akta Kewangan 2025 (Akta 874)
+- Uploaded by the repository owner on 2026-11-02 in a zip named `Archive.zip` (zip sha256 `a4be6230d28c10c2f907df20ce50c6bb162b4f9e6afc5c07df451dc240d27e18`).
+- `Finance-Act-2024.pdf`: Finance Act 2024, Act 862, 33 pages, Royal Assent 24 December 2024, gazetted 31 December 2024. sha256 `184f137160ab332d34aa91de2820acc39eb11c280a772b94cc497074aa1103e9`.
+- `Akta-Kewangan-2025-Akta-874.pdf`: Akta Kewangan 2025, Akta 874, in Bahasa Melayu (quoted amending provisions are in English), 25 pages, perkenan 27 December 2025, warta 31 December 2025. sha256 `869948f1ae964090aedd7e5afa2f63e533d4f0d4d292cfd2a9ae4bdbb9a6e68b`.
+- Both carry Percetakan Nasional Malaysia Berhad copyright notices. No hash was compared with the official publication.
+- The full PDFs are not committed. Excerpts: `finance-acts-2024-2025-excerpts.txt` (sha256 `65f1c909f825c6b25f52e048b7e4aeb1311efdd3500132cfb0e0fe5a2065e8e2`).
+- Read: FA 2024 s.3 to s.16; FA 2025 s.3 to s.8 and s.17. These settle the year in which each change to s.46, s.46B, s.47, s.48, s.49 and Schedule 1 applies; see `docs/ACT53_RECONCILIATION_YA2025.md`.
+
 ## Differences noticed between the 21 May 2024 Act text and the LHDN YA 2025 table (first source only; mostly settled by the 2026 text, see the reconciliation doc)
 These are open questions, not conclusions.
-1. **Childcare, s.46(1)(r):** Act text says RM2,000, with "a further one thousand ringgit" for YA 2020 to 2024. The LHDN YA 2025 table shows RM3,000. This text gives no basis for RM3,000 in YA 2025.
+1. **Childcare, s.46(1)(r):** Act text says RM2,000, with "a further one thousand ringgit" for YA 2020 to 2024. The LHDN YA 2025 table shows RM3,000. Settled: Finance Act 2024 s.9(f) extends the further RM1,000 to YA 2027.
 2. **EV charging, s.46(1)(v):** RM2,500 for YA 2023 to 2027 matches. The LHDN table also names "mesin kompos sisa makanan domestik" (food-waste composter); that is not in the text of (v).
 3. **Lifestyle course, s.46(1)(p)(v):** excludes courses under s.46(1)(f)(iii). LHDN table says only "kursus peningkatan kemahiran". Model follows the Act.
 4. **Footnote on the page where (p) starts:** the asterisk and the note "effect for YA 2016 until YA 2020" belong to paragraph (o) (parent RM1,500), not (p). Resolved on re-reading. See `docs/ACT53_RECONCILIATION_YA2025.md` for the full cross-check.

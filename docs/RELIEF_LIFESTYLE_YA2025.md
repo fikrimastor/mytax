@@ -45,6 +45,9 @@ Behaviour:
 - s.46(1)(f)(iii): up-skilling courses by a body recognised by the Director General of Skills Development, YA 2023 to 2026, max RM2,000 inside the RM7,000 education cap. A course in that category cannot be lifestyle.
 - The printed footnote "This provision has effect for the year of assessment 2016 until the year of assessment 2020" (Finance Act 2015) is marked with an asterisk on paragraph **(o)** (RM1,500 for parents aged 60+), not on (p). Paragraph (p) carries no such note in this text. (Corrected on re-reading; an earlier version of this document wrongly tied it to (p).)
 
+## Amendments checked
+Finance Act 2024 (Act 862) s.9 amends s.46(1) paragraphs (c), (e), (h), (ha), (k), (r), (u) and (v) only, and Akta Kewangan 2025 (Akta 874) s.6 amends (c)(ca), (g), (ha), (r), (s)/(sa) and (v) only. **Neither touches paragraph (p) lifestyle.** The list-of-sections-amended table in the 1 January 2026 Act text also shows no amendment to s.46 after Act 845 other than Acts 851, 862 and 874. So the s.46(1)(p) text read in the May 2024 and January 2026 texts applies to YA 2025. Source files: `docs/sources/act53/finance-acts-2024-2025-excerpts.txt`.
+
 ## Known gaps (not decided, do not treat as rules)
 1. Reading of the Act text is by the agent only; a qualified person must confirm it.
 2. Meaning of "qualifying beneficiary" (self, spouse, child), spouse/child allocation and who may claim a child's expense are not modelled.

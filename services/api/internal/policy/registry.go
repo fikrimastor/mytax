@@ -62,33 +62,35 @@ func ReliefRegistry2025() []RegistryEntry {
 }
 
 // act53Finding records how a registry entry compares with the Income Tax Act 1967 (Act 53)
-// updated texts supplied by the repository owner (as at 21 May 2024 and as at 1 January 2026;
-// neither is an authentic text). MaxSen stays the LHDN YA2025 table value. Nothing here is
-// tax-professional reviewed. See docs/ACT53_RECONCILIATION_YA2025.md.
+// updated texts (as at 21 May 2024 and 1 January 2026; neither is an authentic text) and with
+// the Finance Act 2024 (Act 862) and Finance Act 2025 (Act 874) texts supplied by the repository
+// owner. MaxSen stays the LHDN YA2025 table value. Nothing here is tax-professional reviewed.
+// See docs/ACT53_RECONCILIATION_YA2025.md and docs/sources/act53.
 type act53Finding struct{Kind,Text string}
 
 const (
- // Act text as at 1 Jan 2026 gives the same value and its own wording or the amending-law table places it in YA2025.
+ // The Act and the amending Finance Act texts give the same value and place it in YA2025.
  Act53Confirmed="ACT53_CONFIRMED_YA2025"
- // Value equals the Act text as at 1 Jan 2026, but the text does not show whether it applied in YA2025 or only from YA2026.
+ // Value equals a later Act text, but the supplied texts do not show whether it applied in YA2025. No entry uses this now.
  Act53YAUncertain="ACT53_YA_UNCERTAIN"
- // Value in the Act text differs from the LHDN table. Unresolved.
+ // The supplied Act texts give a different value for YA2025. Unresolved. No entry uses this now.
  Act53Differs="ACT53_DIFFERS"
- // Amount agrees but the scope or conditions differ or are not modelled.
+ // Amount agrees but scope or conditions need care or are not modelled.
  Act53Scope="ACT53_SCOPE"
 )
 
 var act53Findings=map[string]act53Finding{
- "SSPN":{Act53Confirmed,"s.46(1)(k): RM8,000 deposited for his child for YA2025, 2026 and 2027, less withdrawals (a withdrawal for the child's higher education is not deducted); only one spouse if assessed separately."},
- "EV_COMPOST":{Act53Confirmed,"s.46(1)(v) and (1A): EV charging YA2023-2027; food waste compost machine YA2025-2027, claimable ONCE in YA2025, 2026 or 2027; total RM2,500. Food waste grinder and CCTV start in YA2026 and are not YA2025."},
- "DISABLED_SPOUSE":{Act53Confirmed,"s.47(1)(b): further RM6,000. s.47 was last amended by Act 862 for YA2025 onward (RM5,000 in the May 2024 text)."},
- "DISABLED_CHILD":{Act53Confirmed,"s.48(2)(b): RM8,000. s.48 was last amended by Act 862 for YA2025 onward (RM6,000 in the May 2024 text)."},
- "FIRST_HOME_INTEREST_LOW":{Act53Confirmed,"s.46B (Act 862, in force 1 Jan 2025): citizen and resident; first residential property, one unit, occupied as residence; SPA 1 Jan 2025 to 31 Dec 2027; no income from the property; RM7,000 (price up to RM500,000) for 3 consecutive basis years; shared by formula A x B / C between co-claimants."},
- "FIRST_HOME_INTEREST_MID":{Act53Confirmed,"s.46B (Act 862, in force 1 Jan 2025): same conditions as the low tier; RM5,000 where price is above RM500,000 and up to RM750,000."},
- "DISABLED_SELF":{Act53YAUncertain,"s.46(1)(e): further RM7,000 in the 1 Jan 2026 text (RM6,000 in the May 2024 text). s.46 was amended by Act 862 (YA2025) and Act 874 (YA2026); the text does not say which one raised it."},
- "CHILDCARE":{Act53YAUncertain,"s.46(1)(r): RM3,000 in the 1 Jan 2026 text with no year limit (RM2,000 plus RM1,000 for YA2020-2024 in the May 2024 text). Child up to 6 at a registered centre or kindergarten; the extension to a care centre for a child up to 12 may be later. Which Act introduced this is not shown."},
- "EDU_MED_INSURANCE":{Act53YAUncertain,"s.49(1B): RM4,000 in the 1 Jan 2026 text (RM3,000 in the May 2024 text). s.49 was amended by Act 862 (YA2025) and Act 874 (YA2026); the text does not say which one raised it."},
- "MEDICAL_LEARNING_DISABILITY":{Act53Differs,"s.46(1)(ha) in the 1 Jan 2026 text: maximum RM10,000, and part of the RM10,000 in s.46(1)(g) (RM4,000 in the May 2024 text); LHDN YA2025 table: RM6,000. Unresolved; the registry keeps the lower LHDN figure."},
- "MEDICAL_SCREENING":{Act53Scope,"s.46(1)(h), 1 Jan 2026 text: complete medical examination or disease detection test fee, self-testing medical device registered under the Medical Device Act 2012 (not for business), mental health examination; part of the RM10,000. COVID-19 tests are not named separately although the pasted LHDN table names them."},
- "PARENTS":{Act53Scope,"s.46(1)(c), 1 Jan 2026 text: parents or grandparents resident in Malaysia, treatment in Malaysia, practitioner certification; complete medical examination up to RM1,000 and it includes vaccination of a vaccine registered with the National Pharmaceutical Regulatory Agency."},
+ "SSPN":{Act53Confirmed,"Finance Act 2024 s.9(e) replaces s.46(1)(k): RM8,000 deposited for his child for YA2025, 2026 and 2027, less withdrawals (a withdrawal for the child's higher education is not deducted); one spouse only if assessed separately."},
+ "EV_COMPOST":{Act53Confirmed,"Finance Act 2024 s.9(h), s.46(1)(v): EV charging YA2023-2027; food waste compost machine YA2025-2027, claimable ONCE; total RM2,500. Food waste grinder and CCTV start in YA2026 (Finance Act 2025) and are not YA2025."},
+ "DISABLED_SELF":{Act53Confirmed,"Finance Act 2024 s.9(b): s.46(1)(e) raised from RM6,000 to RM7,000 for YA2025 onward."},
+ "DISABLED_SPOUSE":{Act53Confirmed,"Finance Act 2024 s.11: s.47(1)(b) raised from RM5,000 to RM6,000 for YA2025 onward. Finance Act 2024 s.8 makes the same change in s.45A(1) for a wife claiming a disabled husband (RM4,000 plus a further RM6,000)."},
+ "DISABLED_CHILD":{Act53Confirmed,"Finance Act 2024 s.12: s.48(2)(b) raised from RM6,000 to RM8,000 for YA2025 onward."},
+ "EDU_MED_INSURANCE":{Act53Confirmed,"Finance Act 2024 s.13: s.49(1B) raised from RM3,000 to RM4,000 for YA2025 onward."},
+ "MEDICAL_LEARNING_DISABILITY":{Act53Confirmed,"Finance Act 2024 s.9(d): s.46(1)(ha) raised from RM4,000 to RM6,000 for YA2025 onward, part of the RM10,000 in s.46(1)(g). Finance Act 2025 s.6(a)(iii) raises it to RM10,000 from YA2026 only."},
+ "CHILDCARE":{Act53Confirmed,"Finance Act 2024 s.9(f) extends the further RM1,000 in s.46(1)(r) proviso (c) from YA2024 to YA2027, so YA2025 is RM2,000 plus RM1,000. Child up to 6 at a registered centre or kindergarten. Finance Act 2025 s.6(a)(iv) (YA2026 onward) makes it a flat RM3,000 and adds care centres for a child up to 12."},
+ "FIRST_HOME_INTEREST_LOW":{Act53Confirmed,"Finance Act 2024 s.10 replaces s.46B, in force 1 Jan 2025: citizen and resident; first residential property, one unit, occupied as residence; SPA 1 Jan 2025 to 31 Dec 2027; no income from the property; RM7,000 (price up to RM500,000) for 3 consecutive basis years; shared by formula A x B / C between co-claimants."},
+ "FIRST_HOME_INTEREST_MID":{Act53Confirmed,"Finance Act 2024 s.10 replaces s.46B, in force 1 Jan 2025: same conditions as the low tier; RM5,000 where price is above RM500,000 and up to RM750,000."},
+ "MEDICAL_SCREENING":{Act53Confirmed,"Finance Act 2024 s.9(c), s.46(1)(h) from YA2025: complete medical examination or disease detection test fee, self-testing medical device registered under the Medical Device Act 2012 (not for business), mental health examination; part of the RM10,000. COVID-19 tests are no longer named separately in (h)(ii) although the pasted LHDN table still names them."},
+ "PARENTS":{Act53Confirmed,"Finance Act 2024 s.9(a) from YA2025: s.46(1)(c) covers parents or grandparents resident in Malaysia, and a complete medical examination includes any vaccination. Finance Act 2025 s.6(a)(i) limits that to a vaccine registered with the National Pharmaceutical Regulatory Agency from YA2026."},
+ "MEDICAL_VACCINATION":{Act53Scope,"s.46(1)(g)(iii) up to RM1,000 within the RM10,000. For YA2025 the qualifying vaccines are the eight listed in the s.46(1)(g) proviso (d) of the May 2024 text (pneumococcal, HPV, influenza, rotavirus, varicella, meningococcal, TDAP, COVID-19). Finance Act 2025 s.6(a)(ii) replaces that list with NPRA-registered vaccines from YA2026."},
 }

@@ -19,6 +19,7 @@ func TestRegistryAct53FindingsKeepAmountsAndDraftStatus(t *testing.T) {
 		"DISABLED_SELF": 700000, "MEDICAL_LEARNING_DISABILITY": 600000, "CHILDCARE": 300000,
 		"SSPN": 800000, "EDU_MED_INSURANCE": 400000, "DISABLED_SPOUSE": 600000, "DISABLED_CHILD": 800000,
 		"FIRST_HOME_INTEREST_LOW": 700000, "FIRST_HOME_INTEREST_MID": 500000, "EV_COMPOST": 250000,
+		"MEDICAL_SCREENING": 100000, "PARENTS": 800000, "MEDICAL_VACCINATION": 100000,
 	}
 	reg := registryByID()
 	for id, sen := range want {
@@ -32,10 +33,9 @@ func TestRegistryAct53FindingsKeepAmountsAndDraftStatus(t *testing.T) {
 func TestRegistryAct53FindingKinds(t *testing.T) {
 	reg := registryByID()
 	kinds := map[string][]string{
-		Act53Confirmed:   {"SSPN", "EV_COMPOST", "DISABLED_SPOUSE", "DISABLED_CHILD", "FIRST_HOME_INTEREST_LOW", "FIRST_HOME_INTEREST_MID"},
-		Act53YAUncertain: {"DISABLED_SELF", "CHILDCARE", "EDU_MED_INSURANCE"},
-		Act53Differs:     {"MEDICAL_LEARNING_DISABILITY"},
-		Act53Scope:       {"MEDICAL_SCREENING", "PARENTS"},
+		Act53Confirmed: {"SSPN", "EV_COMPOST", "DISABLED_SELF", "DISABLED_SPOUSE", "DISABLED_CHILD", "EDU_MED_INSURANCE",
+			"MEDICAL_LEARNING_DISABILITY", "CHILDCARE", "FIRST_HOME_INTEREST_LOW", "FIRST_HOME_INTEREST_MID", "MEDICAL_SCREENING", "PARENTS"},
+		Act53Scope: {"MEDICAL_VACCINATION"},
 	}
 	for kind, ids := range kinds {
 		for _, id := range ids {
@@ -44,22 +44,35 @@ func TestRegistryAct53FindingKinds(t *testing.T) {
 			}
 		}
 	}
-	// Only the real difference may say "Unresolved".
+	// Confirmed entries must cite the amending Finance Act (or the Act section for the first-home rule).
+	for _, id := range kinds[Act53Confirmed] {
+		if !strings.Contains(reg[id].Note, "Finance Act 2024") {
+			t.Fatalf("%s must cite Finance Act 2024: %q", id, reg[id].Note)
+		}
+	}
+	// No entry is currently unresolved or year-uncertain.
 	for id, e := range reg {
-		if strings.Contains(e.Note, "Unresolved") && id != "MEDICAL_LEARNING_DISABILITY" {
-			t.Fatalf("%s says Unresolved without being a difference", id)
+		if strings.Contains(e.Note, Act53Differs) || strings.Contains(e.Note, Act53YAUncertain) || strings.Contains(e.Note, "Unresolved") {
+			t.Fatalf("%s unexpectedly unresolved: %q", id, e.Note)
 		}
 	}
-	// Uncertain entries must say the text does not settle the year.
-	for _, id := range kinds[Act53YAUncertain] {
-		if !strings.Contains(reg[id].Note, "not") {
-			t.Fatalf("%s must explain the year uncertainty", id)
-		}
-	}
-	// Entries confirmed only by the amount must not carry a finding by accident.
+	// Entries with no amending-law finding must not carry a finding by accident.
 	for _, id := range []string{"SELF", "SELF_EDUCATION", "LIFESTYLE", "SPORTS", "SOCSO", "SPOUSE", "CHILD_UNDER_18", "CHILD_STUDY_HIGHER", "PRS"} {
 		if strings.Contains(reg[id].Note, "ACT53_") {
 			t.Fatalf("%s unexpectedly flagged", id)
+		}
+	}
+}
+
+// YA2026 changes must not leak into the YA2025 values.
+func TestRegistryDoesNotUseYA2026Values(t *testing.T) {
+	reg := registryByID()
+	if reg["MEDICAL_LEARNING_DISABILITY"].MaxSen != 600000 {
+		t.Fatal("learning disability must stay RM6,000 for YA2025 (RM10,000 starts YA2026)")
+	}
+	for id := range reg {
+		if strings.Contains(id, "TOURIST") || strings.Contains(id, "CCTV") || strings.Contains(id, "GRINDER") {
+			t.Fatalf("YA2026-only relief %s must not be in the YA2025 registry", id)
 		}
 	}
 }
