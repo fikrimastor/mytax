@@ -189,9 +189,10 @@ func ChildDeductions(children []Child, claims []ChildClaim) (Result, error) {
 			if _, why := wholeAmount(child); len(why) > 0 {
 				d.Reasons = append(d.Reasons, why...)
 			}
-			if len(d.Reasons) == 0 {
-				byChild[c.ChildID] = append(byChild[c.ChildID], c)
-			}
+			// s.48(4) sharing depends on every claimant for the child, not only the ones
+			// whose facts happen to pass. Keep the claim in the group so an unresolved
+			// co-claimant blocks the whole group instead of lifting the other to 100%.
+			byChild[c.ChildID] = append(byChild[c.ChildID], c)
 		}
 	}
 
@@ -204,6 +205,23 @@ func ChildDeductions(children []Child, claims []ChildClaim) (Result, error) {
 		child := kids[id]
 		whole, _ := wholeAmount(child)
 		group := byChild[id]
+		// Fail closed: while any claimant in the group has unresolved facts, s.48(4)
+		// sharing cannot be determined, so no claimant gets a candidate amount.
+		unresolved := false
+		for _, c := range group {
+			if len(decisions[c.ID].Reasons) > 0 {
+				unresolved = true
+				break
+			}
+		}
+		if unresolved {
+			for _, c := range group {
+				if d := decisions[c.ID]; len(d.Reasons) == 0 {
+					d.Reasons = append(d.Reasons, "CO_CLAIMANT_UNRESOLVED_REASONS")
+				}
+			}
+			continue
+		}
 		share := make(map[string]int64, len(group))
 		block := func(reason string) {
 			for _, c := range group {
@@ -301,6 +319,7 @@ type SpouseInput struct {
 	SpouseForeignIncomeSen  int64
 	ForeignIncomeVerified   bool
 	AlimonyPaidSen          int64 // s.47(2), HUSBAND role only
+	AlimonyVerified         bool  // s.47(2) facts: paid to the spouse, not joint assessment
 	S45AConditionMet        bool  // WIFE role: s.45A(1)(a), (b) or (c)
 	OnlyOneWifeClaimingS45A bool  // WIFE role: s.45A(1) proviso
 }
@@ -326,7 +345,12 @@ func SpouseDeduction(in SpouseInput) (Result, error) {
 	var alimony int64
 	if in.Role == RoleHusband {
 		if in.AlimonyPaidSen > 0 {
-			alimony = in.AlimonyPaidSen
+			// Fail closed: an unverified s.47(2) payment must not increase the candidate.
+			if in.AlimonyVerified {
+				alimony = in.AlimonyPaidSen
+			} else {
+				d.Reasons = append(d.Reasons, "ALIMONY_NOT_VERIFIED")
+			}
 		}
 		if in.LivingTogether && !in.SpouseAssessedSeparately {
 			base = wifeBaseSen

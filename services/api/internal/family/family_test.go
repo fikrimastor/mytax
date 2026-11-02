@@ -202,9 +202,13 @@ func TestChildClaimantFactsAndUnknownChild(t *testing.T) {
 	bad.ClaimantResident = false
 	good := claim("b", "p2", "k")
 	r := eval(t, []Child{okChild("k", CatUnder18)}, []ChildClaim{bad, good})
-	// The non-resident claimant is excluded, so the other claimant is the only one and gets the whole.
-	if byID(r, "a").CandidateSen != 0 || byID(r, "b").CandidateSen != 200000 {
+	// s.48(4) sharing cannot be resolved while the co-claimant is unresolved, so neither
+	// claimant gets a candidate; the clean claimant must not silently receive 100%.
+	if byID(r, "a").CandidateSen != 0 || byID(r, "b").CandidateSen != 0 || r.CandidateTotalSen != 0 {
 		t.Fatalf("%+v", r)
+	}
+	if !has(byID(r, "b"), "CO_CLAIMANT_UNRESOLVED_REASONS") {
+		t.Fatalf("clean co-claimant must be blocked: %+v", byID(r, "b"))
 	}
 	nm := claim("a", "p1", "k")
 	nm.PaidMaintenance = false
@@ -279,17 +283,35 @@ func TestSpouseHusbandAmounts(t *testing.T) {
 
 func TestSpouseAlimonyAndSharedFourThousandCap(t *testing.T) {
 	in := husband()
-	in.AlimonyPaidSen = 100000
+	in.AlimonyPaidSen, in.AlimonyVerified = 100000, true
 	if d := spouse(t, in); d.CandidateSen != 400000 {
 		t.Fatalf("wife deduction plus alimony must stay at RM4,000: %+v", d)
 	}
 	sep := husband()
 	sep.LivingTogether = false
+	sep.AlimonyVerified = true
 	for alimony, want := range map[int64]int64{0: 0, 300000: 300000, 400000: 400000, 400001: 400000, 900000: 400000} {
 		sep.AlimonyPaidSen = alimony
 		if d := spouse(t, sep); d.CandidateSen != want {
 			t.Fatalf("alimony=%d got %d want %d", alimony, d.CandidateSen, want)
 		}
+	}
+}
+
+func TestSpouseAlimonyUnverifiedNotAdded(t *testing.T) {
+	in := husband()
+	in.AlimonyPaidSen = 250000 // AlimonyVerified intentionally false
+	if d := spouse(t, in); d.CandidateSen != 400000 || !has(d, "ALIMONY_NOT_VERIFIED") {
+		t.Fatalf("unverified alimony must not increase the candidate: %+v", d)
+	}
+	sep := husband()
+	sep.LivingTogether, sep.AlimonyPaidSen = false, 250000
+	if d := spouse(t, sep); d.CandidateSen != 0 || !has(d, "ALIMONY_NOT_VERIFIED") {
+		t.Fatalf("unverified alimony must not create a standalone candidate: %+v", d)
+	}
+	sep.AlimonyVerified = true
+	if d := spouse(t, sep); d.CandidateSen != 250000 {
+		t.Fatalf("verified alimony must count: %+v", d)
 	}
 }
 
@@ -304,7 +326,7 @@ func TestSpouseAssessedSeparatelyGivesNoS47_1Deduction(t *testing.T) {
 	if d = spouse(t, in); d.CandidateSen != 0 {
 		t.Fatalf("further disabled amount must not survive s.47(4): %+v", d)
 	}
-	in.AlimonyPaidSen = 250000
+	in.AlimonyPaidSen, in.AlimonyVerified = 250000, true
 	if d = spouse(t, in); d.CandidateSen != 250000 {
 		t.Fatalf("alimony under s.47(2) is separate from s.47(4): %+v", d)
 	}
