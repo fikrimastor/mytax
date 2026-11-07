@@ -45,8 +45,8 @@ PR 3 (branch `claude/quirky-wozniak-o9r7ih`) is open as a **draft** and unmerged
 - [ ] Statutory rounding: no rule found in the texts read. The code rounds each band to the sen.
 - [ ] Non-resident rate (30% flat, Schedule 1 para 1A) not implemented.
 - [ ] YA 2023 and YA 2024: the code still rejects them; the owner decides whether to enable. A YA 2026 package would be built from Akta 874 and must not be copied from YA 2025.
-- [ ] Fact vocabulary is inconsistent across rules (for example `qualifying_publication`, `qualifying_reading_material`, `internet_in_own_name`, `own_name`). Unifying changes API behaviour and needs a decision.
-- [ ] Two engines (`policy` and `eligibility`) carry overlapping rules. Decide one source of truth.
+- [x] One engine and one rule catalog: `internal/policy` (2026-11-03). `internal/eligibility` was removed; see `docs/superpowers/specs/2026-11-03-unify-relief-engine-design.md`.
+- [x] Canonical fact list in `internal/policy/facts.go`; a test fails if any rule requires a fact outside it. New rules must use it.
 - [ ] First-home s.46B **A x B / C apportionment between co-claimants is not modelled.** The facts `co_claimant_none` and `within_three_years_of_spa` only force `REVIEW_REQUIRED`; the rule does not compute the shared fraction.
 - [ ] Rebate spouse-flag conflict now fails closed, but s.6A is not checked to determine whether both spouses may claim the same rebate.
 
@@ -65,7 +65,7 @@ See `docs/MCP_CONNECTOR_PLAN.md`. Plan only; phases P0 to P4 with gates. Depends
 
 ## Suggested order
 1. Review and merge PR 3 (draft); close the security test gaps in section 1.
-2. Rule coverage for the most common receipt categories, with the canonical fact vocabulary.
+2. Rule coverage for the most common receipt categories on the unified engine (medical batch first).
 3. Wire the engines into `assessment` and the API.
 4. Live Keycloak and Coolify checks.
 5. MCP phase P1 (synthetic data, local) once 2 and 3 are done.

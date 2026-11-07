@@ -29,7 +29,7 @@ func claimFor(t *testing.T, p Package, id, rule string, amt int64) Claim {
 	for _, k := range findRule(t, p, rule).RequiredFacts {
 		f[k] = true
 	}
-	return Claim{ID: id, RuleID: rule, AmountSen: amt, EvidencePresent: true, Facts: f}
+	return Claim{ID: id, RuleID: rule, AmountSen: amt, ExpenseKey: "exp-" + id, EvidenceReference: "invoice", Facts: f}
 }
 
 func TestLifestyleRulesHaveGroupCapAndSources(t *testing.T) {
@@ -157,19 +157,20 @@ func TestLifestyleEvidenceDuplicateAndUnknownRuleFailClosed(t *testing.T) {
 	p.Status = Approved // arithmetic fixture only
 	for _, id := range lifestyleRuleIDs {
 		c := claimFor(t, p, "a", id, 100000)
-		c.EvidencePresent = false
+		c.EvidenceReference = ""
 		r, _ := Evaluate(p, []Claim{c})
 		if r.ApprovedTotalSen != 0 || r.Decisions[0].Reasons[0] != "EVIDENCE_MISSING" {
 			t.Fatalf("%s: missing evidence must block", id)
 		}
-		c = claimFor(t, p, "a", id, 100000)
-		c.Duplicate = true
-		r, _ = Evaluate(p, []Claim{c})
-		if r.ApprovedTotalSen != 0 || r.Decisions[0].Reasons[0] != "DUPLICATE_EXPENSE" {
-			t.Fatalf("%s: duplicate must block", id)
+		first := claimFor(t, p, "a", id, 100000)
+		second := claimFor(t, p, "b", id, 100000)
+		second.ExpenseKey = first.ExpenseKey
+		r, _ = Evaluate(p, []Claim{first, second})
+		if r.Decisions[1].ApprovedAmountSen != 0 || r.Decisions[1].Reasons[0] != "DUPLICATE_EXPENSE" {
+			t.Fatalf("%s: repeated expense key must block the second claim: %+v", id, r.Decisions[1])
 		}
 	}
-	r, _ := Evaluate(p, []Claim{{ID: "a", RuleID: "LIFESTYLE_UNKNOWN", AmountSen: 1, EvidencePresent: true}})
+	r, _ := Evaluate(p, []Claim{{ID: "a", RuleID: "LIFESTYLE_UNKNOWN", AmountSen: 1, ExpenseKey: "k", EvidenceReference: "x"}})
 	if r.ApprovedTotalSen != 0 || r.Decisions[0].Reasons[0] != "UNKNOWN_RELIEF_RULE" {
 		t.Fatalf("unknown rule must fail closed: %+v", r.Decisions[0])
 	}

@@ -37,11 +37,11 @@ func YA2025Draft() Package {
 			// s.46(1)(p)(v): a course for upskilling or self-enhancement OTHER THAN a course falling under s.46(1)(f)(iii).
 			{ID: "LIFESTYLE_COURSE", Group: "LIFESTYLE", LimitSen: 250000, RequiredFacts: []string{"resident", "within_year", "upskilling_course", "not_course_under_46_1_f_iii", "qualifying_beneficiary", "no_other_claim"}, Sources: lifestyleSources("(v)")},
 			{ID: "MEDICAL_VACCINATION", Group: "MEDICAL_SELF_FAMILY", LimitSen: 100000, RequiredFacts: []string{"resident", "within_year", "qualifying_vaccine", "qualifying_beneficiary", "no_other_claim"}, Sources: src},
+			{ID: "MEDICAL_DENTAL", Group: "MEDICAL_SELF_FAMILY", LimitSen: 100000, RequiredFacts: []string{"resident", "within_year", "qualifying_dental", "qualifying_beneficiary", "no_other_claim"}, Sources: src},
 			{ID: "EDUCATION_SELF_SKILLS", Group: "EDUCATION_SELF", LimitSen: 200000, RequiredFacts: []string{"resident", "within_year", "qualifying_course", "own_education", "no_other_claim"}, Sources: src},
 			{ID: "EDUCATION_SELF_OTHER", Group: "EDUCATION_SELF", LimitSen: 700000, RequiredFacts: []string{"resident", "within_year", "qualifying_course", "own_education", "no_other_claim"}, Sources: src},
-			// s.46B first-home interest. Fact names mirror the eligibility engine's
-			// FIRST_HOME_* rules; internal/eligibility/catalog_parity_test.go enforces parity.
-			{ID: "FIRST_HOME_LOW", LimitSen: 700000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_up_to_500k", "qualifying_interest"}, Sources: firstHomeSources()},
-			{ID: "FIRST_HOME_MID", LimitSen: 500000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_above_500k_upto_750k", "qualifying_interest"}, Sources: firstHomeSources()},
+			// s.46B first-home interest. The two price tiers are mutually exclusive (ExclusiveFamily).
+			{ID: "FIRST_HOME_LOW", ExclusiveFamily: "FIRST_HOME", LimitSen: 700000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_up_to_500k", "qualifying_interest"}, Sources: firstHomeSources()},
+			{ID: "FIRST_HOME_MID", ExclusiveFamily: "FIRST_HOME", LimitSen: 500000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_above_500k_upto_750k", "qualifying_interest"}, Sources: firstHomeSources()},
 		}}
 }

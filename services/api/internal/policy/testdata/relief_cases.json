@@ -1,0 +1,725 @@
+[
+  {
+    "name": "lifestyle exactly at cap",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 250000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 250000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 250000
+    }
+  },
+  {
+    "name": "lifestyle cap plus one sen",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 250001,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 250000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED",
+            "LIMIT_REACHED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 250000
+    }
+  },
+  {
+    "name": "lifestyle cap shared by four categories",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 60000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "b",
+        "expense_key": "e2",
+        "rule_id": "LIFESTYLE_INTERNET",
+        "amount_sen": 90000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "c",
+        "expense_key": "e3",
+        "rule_id": "LIFESTYLE_DEVICE",
+        "amount_sen": 80000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "d",
+        "expense_key": "e4",
+        "rule_id": "LIFESTYLE_COURSE",
+        "amount_sen": 70000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 60000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "b",
+          "candidate_sen": 90000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "c",
+          "candidate_sen": 80000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "d",
+          "candidate_sen": 20000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED",
+            "LIMIT_REACHED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 250000
+    }
+  },
+  {
+    "name": "group cap with claim ids in reverse order",
+    "claims": [
+      {
+        "id": "b",
+        "expense_key": "e2",
+        "rule_id": "LIFESTYLE_INTERNET",
+        "amount_sen": 200000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 190000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 190000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "b",
+          "candidate_sen": 60000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED",
+            "LIMIT_REACHED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 250000
+    }
+  },
+  {
+    "name": "same expense key on two rules",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "same",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 50000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "b",
+        "expense_key": "same",
+        "rule_id": "LIFESTYLE_INTERNET",
+        "amount_sen": 50000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 50000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "b",
+          "candidate_sen": 0,
+          "reasons": [
+            "DUPLICATE_EXPENSE"
+          ]
+        }
+      ],
+      "provisional_total_sen": 50000
+    }
+  },
+  {
+    "name": "missing expense key",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 100000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 0,
+          "reasons": [
+            "EXPENSE_IDENTIFIER_MISSING"
+          ]
+        }
+      ],
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "missing evidence reference",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 100000,
+        "evidence_reference": ""
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 0,
+          "reasons": [
+            "EVIDENCE_MISSING"
+          ]
+        }
+      ],
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "unknown rule",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_UNKNOWN",
+        "amount_sen": 1,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 0,
+          "reasons": [
+            "UNKNOWN_RULE"
+          ]
+        }
+      ],
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "vaccination without qualifying vaccine",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "MEDICAL_VACCINATION",
+        "amount_sen": 200000,
+        "evidence_reference": "inv",
+        "missing_facts": [
+          "qualifying_vaccine"
+        ]
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 0,
+          "reasons": [
+            "FACT_NOT_VERIFIED:qualifying_vaccine"
+          ]
+        }
+      ],
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "device used for business",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_DEVICE",
+        "amount_sen": 100000,
+        "evidence_reference": "inv",
+        "false_facts": [
+          "not_business_use"
+        ]
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 0,
+          "reasons": [
+            "FACT_NOT_VERIFIED:not_business_use"
+          ]
+        }
+      ],
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "blocked claim does not consume the cap",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 100000,
+        "evidence_reference": "inv",
+        "missing_facts": [
+          "qualifying_reading_material"
+        ]
+      },
+      {
+        "id": "b",
+        "expense_key": "e2",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 250000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 0,
+          "reasons": [
+            "FACT_NOT_VERIFIED:qualifying_reading_material"
+          ]
+        },
+        {
+          "id": "b",
+          "candidate_sen": 250000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 250000
+    }
+  },
+  {
+    "name": "first home tiers are mutually exclusive",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "loan1",
+        "rule_id": "FIRST_HOME_LOW",
+        "amount_sen": 300000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "b",
+        "expense_key": "loan2",
+        "rule_id": "FIRST_HOME_MID",
+        "amount_sen": 300000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 300000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "b",
+          "candidate_sen": 0,
+          "reasons": [
+            "MUTUALLY_EXCLUSIVE_RELIEF"
+          ]
+        }
+      ],
+      "provisional_total_sen": 300000
+    }
+  },
+  {
+    "name": "first home low tier cap plus one",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "loan1",
+        "rule_id": "FIRST_HOME_LOW",
+        "amount_sen": 700001,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 700000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED",
+            "LIMIT_REACHED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 700000
+    }
+  },
+  {
+    "name": "first home mid tier cap plus one",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "loan1",
+        "rule_id": "FIRST_HOME_MID",
+        "amount_sen": 500001,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 500000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED",
+            "LIMIT_REACHED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 500000
+    }
+  },
+  {
+    "name": "first home without co-claimant confirmation",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "loan1",
+        "rule_id": "FIRST_HOME_LOW",
+        "amount_sen": 300000,
+        "evidence_reference": "inv",
+        "missing_facts": [
+          "co_claimant_none"
+        ]
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 0,
+          "reasons": [
+            "FACT_NOT_VERIFIED:co_claimant_none"
+          ]
+        }
+      ],
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "lifestyle medical and education pools are separate",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 250000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "b",
+        "expense_key": "e2",
+        "rule_id": "MEDICAL_VACCINATION",
+        "amount_sen": 100000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "c",
+        "expense_key": "e3",
+        "rule_id": "EDUCATION_UPSKILL",
+        "amount_sen": 200000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 250000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "b",
+          "candidate_sen": 100000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "c",
+          "candidate_sen": 200000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 550000
+    }
+  },
+  {
+    "name": "vaccination over its own limit",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "MEDICAL_VACCINATION",
+        "amount_sen": 200000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 100000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED",
+            "LIMIT_REACHED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 100000
+    }
+  },
+  {
+    "name": "dental within limit",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "MEDICAL_DENTAL",
+        "amount_sen": 50000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 50000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        }
+      ],
+      "provisional_total_sen": 50000
+    }
+  },
+  {
+    "name": "one course fee as education and lifestyle",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "course9",
+        "rule_id": "EDUCATION_UPSKILL",
+        "amount_sen": 100000,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "b",
+        "expense_key": "course9",
+        "rule_id": "LIFESTYLE_COURSE",
+        "amount_sen": 100000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decisions": [
+        {
+          "id": "a",
+          "candidate_sen": 100000,
+          "reasons": [
+            "DRAFT_LEGAL_RULE_NOT_APPROVED"
+          ]
+        },
+        {
+          "id": "b",
+          "candidate_sen": 0,
+          "reasons": [
+            "DUPLICATE_EXPENSE"
+          ]
+        }
+      ],
+      "provisional_total_sen": 100000
+    }
+  },
+  {
+    "name": "duplicate claim id is rejected",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 1,
+        "evidence_reference": "inv"
+      },
+      {
+        "id": "a",
+        "expense_key": "e2",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 1,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": true,
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "zero amount is rejected",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 0,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": true,
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "negative amount is rejected",
+    "claims": [
+      {
+        "id": "a",
+        "expense_key": "e1",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": -1,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": true,
+      "provisional_total_sen": 0
+    }
+  },
+  {
+    "name": "exactly 1000 claims are accepted",
+    "repeat": 1000,
+    "claims": [
+      {
+        "id": "x",
+        "expense_key": "x",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 10000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": false,
+      "decision_count": 1000,
+      "provisional_total_sen": 250000
+    }
+  },
+  {
+    "name": "1001 claims are rejected",
+    "repeat": 1001,
+    "claims": [
+      {
+        "id": "x",
+        "expense_key": "x",
+        "rule_id": "LIFESTYLE_BOOKS",
+        "amount_sen": 10000,
+        "evidence_reference": "inv"
+      }
+    ],
+    "expect": {
+      "error": true,
+      "provisional_total_sen": 0
+    }
+  }
+]

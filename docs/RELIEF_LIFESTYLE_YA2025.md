@@ -19,22 +19,22 @@ Item 10 (additional sports relief, RM1,000) is separate and **not modelled here*
 ## What is modelled
 | Rule ID | Cap | Pool | Required facts (all must be true) |
 |---|---|---|---|
-| `LIFESTYLE_BOOKS` | RM2,500 | LIFESTYLE | existing facts, unchanged; cites s.46(1)(p)(i) |
+| `LIFESTYLE_BOOKS` | RM2,500 | LIFESTYLE | resident, in the YA, qualifying reading material, qualifying beneficiary, no other claim; cites s.46(1)(p)(i) |
 | `LIFESTYLE_DEVICE` (new) | RM2,500 | LIFESTYLE | cites s.46(1)(p)(ii); resident, in the YA, qualifying beneficiary, qualifying device, not business use |
-| `LIFESTYLE_INTERNET` | RM2,500 | LIFESTYLE | existing facts, unchanged; cites s.46(1)(p)(iv) |
+| `LIFESTYLE_INTERNET` | RM2,500 | LIFESTYLE | resident, in the YA, internet in own name, qualifying expense, no other claim; cites s.46(1)(p)(iv) |
 | `LIFESTYLE_COURSE` (new) | RM2,500 | LIFESTYLE | resident, in the YA, qualifying beneficiary, upskilling course, **course not falling under s.46(1)(f)(iii)** |
 
-Both `internal/policy` (`YA2025Draft`) and `internal/eligibility` (`Draft2025`) carry the new rules. Amounts are integer sen.
+The rules live only in `internal/policy` (`YA2025Draft`); `internal/eligibility` was removed on 2026-11-03. Amounts are integer sen.
 
 Behaviour:
 - Shared cap of 250,000 sen across all four rules. Claims are allocated in claim-ID order, independent of input order.
 - A claim with a missing or false fact, missing evidence, duplicate expense or unknown rule is `REVIEW_REQUIRED`, contributes 0 and does not use up the cap.
-- Same `expense_key` cannot be claimed twice (eligibility engine). This also stops one course fee being claimed as lifestyle and as education up-skilling.
+- Same `expense_key` cannot be claimed twice. This also stops one course fee being claimed as lifestyle and as education up-skilling.
 - Draft rules never produce an approved amount; `FilingReady` is always false.
-- Only YA 2025 is accepted by the eligibility engine.
+- Only YA 2025 is accepted by the engine.
 
 ## Tests
-`internal/eligibility/lifestyle_test.go` and `internal/policy/lifestyle_test.go`: cap boundaries (1 sen, cap-1, cap, cap+1, far above) for every rule, shared cap across the four rules, order independence, each required fact individually missing or false, evidence/expense-id/duplicate/unknown-rule fail-closed, separate pools, no approval leakage, bad input and unsupported year. Mutation checks (cap +1 sen, dropping a required fact) make these tests fail as intended.
+`internal/policy/lifestyle_test.go`, `engine_unified_test.go` and `equivalence_test.go`: cap boundaries (1 sen, cap-1, cap, cap+1, far above) for every rule, shared cap across the four rules, order independence, each required fact individually missing or false, evidence/expense-id/duplicate/unknown-rule fail-closed, separate pools, no approval leakage, bad input and unsupported year. Mutation checks (cap +1 sen, dropping a required fact) make these tests fail as intended.
 
 ## What the Act text says (s.46(1)(p), as read by the agent)
 - Four items, total deduction "subject to a maximum amount of two thousand five hundred ringgit", each "as evidenced by receipts": (i) books, journals, magazines, newspapers and similar publications "for the purpose of enhancing knowledge"; (ii) personal computer, smartphone or tablet (not used for own business); (iii) deleted by Act 851; (iv) monthly internet bill "under that individual's name"; (v) any course for upskilling or self-enhancement **other than a course falling under s.46(1)(f)(iii)**.
@@ -54,9 +54,8 @@ Finance Act 2024 (Act 862) s.9 amends s.46(1) paragraphs (c), (e), (h), (ha), (k
 3. "Prohibited reading material", "business use", "recognised course" and device definitions are caller-supplied yes/no facts. Nothing verifies them.
 4. Any frequency or per-item limit that may exist for devices or other items is **unknown**; not checked against any source.
 5. Reimbursed or employer-paid expenses are not modelled.
-6. Fact names are not uniform: older rules use `qualifying_publication`, `own_name`, `qualifying_internet`, `internet_in_own_name`; new ones use `qualifying_beneficiary`. The older books/internet rules do not yet require a beneficiary fact. Unifying them changes API behaviour and needs an explicit decision.
-7. The `policy` engine relies on the caller's `Duplicate` flag; only the `eligibility` engine detects duplicates by `expense_key`.
-8. Same-year overlap between lifestyle course fees and education up-skilling (RM2,000) is only prevented by identical `expense_key`.
+6. Fact names now come from the canonical list in `internal/policy/facts.go`. `LIFESTYLE_BOOKS` requires `qualifying_beneficiary`; `LIFESTYLE_INTERNET` still does not (it requires `internet_in_own_name`). Whether internet should also need a beneficiary fact is not decided.
+7. Same-year overlap between lifestyle course fees and education up-skilling (RM2,000) is only prevented by identical `expense_key`.
 
 ## Verification status
 - Committed: see git log for this branch.
