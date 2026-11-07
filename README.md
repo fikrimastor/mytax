@@ -9,7 +9,7 @@ Open-source Malaysian personal income tax claim checker — early development, *
 
 ## Stack
 - Nuxt 3 + Nuxt UI frontend in `apps/web`
-- Go 1.23 + Echo API in `services/api`
+- Go 1.25 + Echo API in `services/api`
 - PostgreSQL planned (not implemented)
 
 ## Run
@@ -31,7 +31,7 @@ Local API: `http://localhost:8080`. Override frontend API with `NUXT_PUBLIC_API_
 3. Implement detailed eligibility, shared caps and statutory computation.
 4. Add secure user accounts, encrypted evidence and receipt ingestion.
 5. Map verified amounts to Form BE, then introduce business/Form B support.
-6. Claude connector (MCP server) for receipt assessment: planned, gated, see `docs/MCP_CONNECTOR_PLAN.md`.
+6. Claude connector (MCP server) for receipt assessment: gated, see `docs/MCP_CONNECTOR_PLAN.md`. A local read-only stdio server over the draft catalog exists (`docs/MCP_SERVER.md`).
 
 Open items and current verification status: `docs/ROADMAP.md`.
 

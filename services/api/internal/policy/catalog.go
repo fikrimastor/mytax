@@ -1,5 +1,7 @@
 package policy
 
+import "fmt"
+
 // Act53URL is the HASiL-hosted PDF of the Income Tax Act 1967 supplied by the repository
 // owner. The text used is the AGC "updated text as at 21 May 2024", NOT an authentic text.
 // See docs/sources/act53 for the provenance, hashes and excerpt.
@@ -44,4 +46,13 @@ func YA2025Draft() Package {
 			{ID: "FIRST_HOME_LOW", ExclusiveFamily: "FIRST_HOME", LimitSen: 700000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_up_to_500k", "qualifying_interest"}, Sources: firstHomeSources()},
 			{ID: "FIRST_HOME_MID", ExclusiveFamily: "FIRST_HOME", LimitSen: 500000, RequiredFacts: []string{"resident", "citizen", "first_home", "occupied_as_residence", "no_income_from_property", "qualifying_spa_date", "within_three_years_of_spa", "co_claimant_none", "price_above_500k_upto_750k", "qualifying_interest"}, Sources: firstHomeSources()},
 		}}
+}
+
+// DraftPackage returns the draft (unapproved) rule package for an assessment year.
+// Only YA 2025 has one; every other year fails closed.
+func DraftPackage(year int) (Package, error) {
+	if year != supportedYear {
+		return Package{}, fmt.Errorf("no draft rule package for assessment year %d", year)
+	}
+	return YA2025Draft(), nil
 }

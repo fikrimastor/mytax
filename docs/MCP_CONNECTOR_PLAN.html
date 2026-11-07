@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan — Plan Dashboard</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f6f8fa;
+    --text: #1f2328;
+    --text-secondary: #656d76;
+    --border: #d0d7de;
+    --accent: #0969da;
+    --accent-bg: #ddf4ff;
+    --green: #1a7f37;
+    --green-bg: #dafbe1;
+    --orange: #bd561d;
+    --orange-bg: #fff1e5;
+    --purple: #8250df;
+    --purple-bg: #f1edfd;
+    --red: #cf222e;
+    --red-bg: #ffebe9;
+    --radius: 8px;
+    --radius-sm: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --bg-alt: #161b22;
+      --text: #e6edf3;
+      --text-secondary: #8b949e;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent-bg: #0c2d6b;
+      --green: #3fb950;
+      --green-bg: #0b3426;
+      --orange: #d29922;
+      --orange-bg: #271c0a;
+      --purple: #bc8cff;
+      --purple-bg: #22162b;
+      --red: #ff7b72;
+      --red-bg: #3d1112;
+      --shadow: 0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.2);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    padding: 24px;
+  }
+  @media (min-width: 768px) {
+    body { padding: 32px 48px; }
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    margin-bottom: 32px;
+    padding: 24px 28px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .header .summary {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .header .meta {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .header .meta span {
+    display: inline-block;
+    margin-right: 16px;
+  }
+
+  /* Nav */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav a {
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    transition: background .15s;
+  }
+  .nav a:hover {
+    background: color-mix(in srgb, var(--accent-bg), var(--accent) 20%);
+  }
+
+  /* Cards */
+  .card {
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-alt);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .card-head h3 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .card-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .card-body {
+    padding: 20px;
+  }
+  .card-body > * + * {
+    margin-top: 12px;
+  }
+
+  /* Subsection details */
+  .subsection {
+    margin-top: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+  }
+  .subsection summary {
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .subsection summary:hover {
+    background: var(--bg-alt);
+  }
+  .sub-body {
+    padding: 12px 16px 16px;
+  }
+
+  /* Typography */
+  .card-body p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .card-body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  /* Lists */
+  .card-body ul, .card-body ol {
+    padding-left: 24px;
+    margin: 8px 0;
+  }
+  .card-body li {
+    margin-bottom: 6px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .card-body li strong {
+    color: var(--text);
+  }
+
+  /* Checkboxes */
+  .chk {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: default;
+  }
+  .chk input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--accent);
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 8px 0;
+  }
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--bg);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .4px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* Code */
+  code {
+    font-family: "SF Mono", "Cascadia Code", "Fira Code", "Consolas", monospace;
+    font-size: 13px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  pre {
+    margin: 8px 0;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+  }
+  pre code {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    body { padding: 16px; }
+    .header { padding: 16px 18px; }
+    .header h1 { font-size: 22px; }
+    .card-head { padding: 12px 16px; }
+    .card-body { padding: 14px 16px; }
+  }
+
+  /* Timestamp */
+  .generated {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Plan</h1>
+    
+    <div class="meta">
+      <span>Generated: <span id="ts"></span></span>
+      <span id="sec-count">0 sections</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    
+  </nav>
+
+  
+
+  <div class="generated">
+    Generated by plan-visualizer &middot; <span id="ts2"></span>
+  </div>
+
+</div>
+<script>
+  const now = new Date().toISOString().replace('T', ' ').slice(0, 19) + 'Z';
+  document.getElementById('ts').textContent = now;
+  document.getElementById('ts2').textContent = now;
+</script>
+</body>
+</html>

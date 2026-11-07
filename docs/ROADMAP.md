@@ -60,8 +60,10 @@ PR 3 (branch `claude/quirky-wozniak-o9r7ih`) is open as a **draft** and unmerged
 - [ ] Independent threat review or penetration test.
 - [ ] Preview endpoints stay disabled by default.
 
-### 5. Claude connector (MCP server) — planned
-See `docs/MCP_CONNECTOR_PLAN.md`. Plan only; phases P0 to P4 with gates. Depends on items 2, 3 and 4 above, in particular rule coverage and a canonical fact vocabulary.
+### 5. Claude connector (MCP server)
+See `docs/MCP_CONNECTOR_PLAN.md` and the audit in `docs/MCP_REPOSITORY_AUDIT.md`. Phases P0 to P4 with gates.
+- [x] Local read-only stdio server over the draft catalog: `list_tax_reliefs`, `get_tax_relief_rule` (`docs/MCP_SERVER.md`, 2026-11-07). Toolchain moved to Go 1.25 for the official SDK.
+- [ ] `verify_claim` over `policy.Evaluate`, after rule coverage (item 2). `search_tax_guidance`, after a curated source store. Remote transport, after the P2 gate.
 
 ## Suggested order
 1. Review and merge PR 3 (draft); close the security test gaps in section 1.
