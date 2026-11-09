@@ -1,6 +1,6 @@
 # Claude connector (MCP server) for receipt assessment — future plan
 
-Status: **PLAN ONLY. No MCP code exists. No real receipts or taxpayer data may be used.** Added 2026-11-02 from an idea by the repository owner.
+Status: plan, plus a **local read-only stdio prototype** (2026-11-07): `services/api/cmd/mcp` serves the draft catalog through `list_tax_reliefs` and `get_tax_relief_rule` (see `docs/MCP_SERVER.md`). No claim evaluation, no remote transport, no auth. **No real receipts or taxpayer data may be used.** Added 2026-11-02 from an idea by the repository owner. Audit and tool contracts: `docs/MCP_REPOSITORY_AUDIT.md`.
 
 ## Idea
 A user chats with Claude on the web. Claude reads the user's receipts, extracts the facts, and calls a mytax connector (an MCP server). The connector runs the deterministic mytax engines and returns, for each receipt, a candidate result with reasons. Claude explains the result in plain language.
@@ -13,14 +13,16 @@ A user chats with Claude on the web. Claude reads the user's receipts, extracts 
 
 ## Proposed shape
 - Claude web (custom connector) to a remote MCP server over HTTPS, in front of the existing Go API in `services/api`.
-- **Not verified:** which Claude plans can add custom connectors, the transport and OAuth requirements of the current MCP specification, and whether a maintained Go MCP SDK fits. These change quickly and must be read from official documentation before any design is frozen.
+- Go SDK checked 2026-11-07: official `github.com/modelcontextprotocol/go-sdk` v1.8.0 (needs Go 1.25) has stdio, streamable HTTP and a bearer-token middleware (`auth.RequireBearerToken`) whose scope check applies to the whole endpoint, not per tool. **Still not verified:** which Claude plans can add custom connectors and their OAuth requirements.
 
 ### Tools (phase 1, all read-only)
 | Tool | Input | Output |
 |---|---|---|
-| `list_supported_reliefs` | `ya` | Rule IDs the engines cover for that YA, with status and source citations |
-| `evaluate_receipts` | `ya`, `items[]` of structured facts | Per item: state, candidate sen, reasons, rule ID, citations, missing facts. Totals. Always `approved_total_sen` 0 |
-| `explain_rule` | `rule_id` | Plain-language description of the rule, its caps, sources and what is not modelled |
+| `list_tax_reliefs` (was `list_supported_reliefs`) | `assessment_year` | Rule IDs the engines cover for that YA, with status and source citations. **Implemented, stdio.** |
+| `verify_claim` / `calculate_tax_reliefs` (was `evaluate_receipts`) | `assessment_year`, structured claims | Per item: state, candidate sen, reasons, rule ID, citations, missing facts. Totals. Always `approved_total_sen` 0 |
+| `get_tax_relief_rule` (was `explain_rule`) | `assessment_year`, `rule_id` | The rule, its caps, required facts and sources. **Implemented, stdio.** |
+
+Tool names follow `TAX_RELIEF_MCP_MASTER_PROMPT.md` §6; the full contract table is in `docs/MCP_REPOSITORY_AUDIT.md` §7.
 
 Later (needs login and gates): `save_draft_claims` (write, needs explicit user confirmation), `get_my_summary`.
 
