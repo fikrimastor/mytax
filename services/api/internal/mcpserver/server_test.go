@@ -211,6 +211,52 @@ func TestGetReliefRuleWithoutSharedGroup(t *testing.T) {
 	}
 }
 
+func TestGetReliefRuleReturnsNestedGroupParent(t *testing.T) {
+	cs := newSession(t)
+	res, out := callRule(t, cs, 2025, "MEDICAL_SCREENING_EXAM")
+	if res.IsError {
+		t.Fatalf("get_tax_relief_rule errored: %s", errorText(t, res))
+	}
+	if out.Group == nil {
+		t.Fatal("group is absent, want MEDICAL_SCREENING")
+	}
+	if out.Group.ID != "MEDICAL_SCREENING" || out.Group.LimitSen != 100000 {
+		t.Fatalf("group = %+v, want MEDICAL_SCREENING at 100000 sen", out.Group)
+	}
+	if out.Group.Parent != "MEDICAL_SELF_FAMILY" {
+		t.Fatalf("group parent = %q, want MEDICAL_SELF_FAMILY", out.Group.Parent)
+	}
+}
+
+func TestListReliefsMarksFixedAmountRules(t *testing.T) {
+	cs := newSession(t)
+	res, out := callList(t, cs, 2025)
+	if res.IsError {
+		t.Fatalf("list_tax_reliefs errored: %s", errorText(t, res))
+	}
+
+	found := make(map[string]RuleSummary, len(out.Rules))
+	for _, r := range out.Rules {
+		found[r.ID] = r
+	}
+
+	fixed, ok := found["DISABLED_SELF"]
+	if !ok {
+		t.Fatal("DISABLED_SELF is missing from the rule list")
+	}
+	if !fixed.FixedAmount {
+		t.Fatalf("DISABLED_SELF = %+v, want fixed_amount true", fixed)
+	}
+
+	expense, ok := found["MEDICAL_DENTAL"]
+	if !ok {
+		t.Fatal("MEDICAL_DENTAL is missing from the rule list")
+	}
+	if expense.FixedAmount {
+		t.Fatalf("MEDICAL_DENTAL = %+v, want fixed_amount absent", expense)
+	}
+}
+
 func TestGetReliefRuleRejectsUnknownRuleAndYear(t *testing.T) {
 	cs := newSession(t)
 	res, _ := callRule(t, cs, 2025, "LIFESTYLE")
