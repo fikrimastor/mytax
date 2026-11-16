@@ -1,6 +1,6 @@
 # Medical relief batch for YA 2025 (sub-project 2)
 
-Date: 2026-11-07. Status: design, awaiting review. Developer preview; not tax advice. Every rule in this batch stays **Draft**; nothing becomes Approved.
+Date: 2026-11-07. Status: approved 2026-11-16, ready for an implementation plan. Developer preview; not tax advice. Every rule in this batch stays **Draft**; nothing becomes Approved.
 
 ## Why
 
@@ -18,7 +18,7 @@ Non-goals: the web frontend; disabled spouse and disabled child (s.45A, s.47(1)(
 |---|---|---|
 | Act 53, May 2024 text (`docs/sources/act53/act53-excerpts-2.txt`) as amended by Finance Act 2024 s.9(a)–(d) (`finance-acts-2024-2025-excerpts.txt`) | Statutory text for YA 2025 | local |
 | Act 53, 1 Jan 2026 text (`act53-2026-excerpts.txt`) | Only to show what changes in YA 2026 (Finance Act 2025 s.6). **Not** a YA 2025 source | local |
-| LHDN Public Ruling No. 7/2025, 7th edition, 5 Dec 2025 | Definitions (§3.6 disabled person), interpretation (§6.2–§6.8) and worked examples | IRBM URL `https://www.hasil.gov.my/wp-content/uploads/pr-7-2025.pdf` returned HTTP 500 on 2026-11-07. Content-identical mirror `https://moore.com.my/taxflash/Pr-No.7-2025.pdf` used; snapshot and SHA-256 committed under `docs/sources/` and labelled as a mirror |
+| LHDN Public Ruling No. 7/2025, 7th edition, 5 Dec 2025 | Definitions (§3.6 disabled person), interpretation (§6.2–§6.8) and worked examples | IRBM URL `https://www.hasil.gov.my/wp-content/uploads/pr-7-2025.pdf` returned HTTP 500 on 2026-11-07 and 2026-11-16. Mirror used: MAICSA `https://maicsa.org.my/media/10741/technical_announcement_251218_1_3.pdf` (the Moore mirror now returns 404). Per the `act53` convention the PDF is not committed; the source record with SHA-256 and the §3.6–§3.9 and §6.2–§6.8 excerpt are in `docs/sources/pr7-2025/`, labelled as a mirror |
 | Nota Penerangan Borang BE, Tahun Taksiran 2025 | Cross-check of caps and LHDN definitions | `https://ef.hasil.gov.my/eBE2026/Pdf/Nota_BE.pdf`, accessed 2026-11-07. Note: `eBE2025/Pdf/Nota_BE_e.pdf` serves the **YA 2024** notes and must not be cited for YA 2025 |
 
 The Act text in the repo is the AGC updated text, not an authentic text, and the ruling is an administrative interpretation (s.138A). Both limits are stated in `docs/RELIEF_MEDICAL_YA2025.md`.
@@ -67,7 +67,7 @@ Each is the stricter reading or one the engine already enforces. Each is listed 
 - `Group` gains `Parent string` (`json:"parent,omitempty"`).
 - A claim's allowed amount is the minimum of the rule's remaining limit, its group's remaining limit and every ancestor group's remaining limit. On allocation, the amount is subtracted from the rule, its group and all ancestors.
 - Package validation (`Evaluate` setup checks and `ValidateRelease`) rejects an unknown parent, a cycle, and a child group whose limit exceeds its parent's.
-- Allocation order stays claim-ID order (documented today). LHDN Example 19 gives the same RM10,000 total in any order; the fixture orders its claim IDs as the ruling presents them.
+- Allocation order stays claim-ID order (documented today). **Known limit:** when a group cap binds, the per-line split depends on claim-ID order, while the group total does not. LHDN does not prescribe an order (Example 19 states only the RM10,000 total). Fixtures order claim IDs as the ruling lists the expenses and assert both the lines and the total; `docs/RELIEF_MEDICAL_YA2025.md` states this limit for tax-professional review.
 
 ### 5. Facts
 
@@ -113,10 +113,10 @@ The existing test that every rule fact is canonical and every canonical fact is 
    | 11 (fertility 12,000 + son's serious disease 6,000) | RM10,000 total |
    | 13 (vaccination 500 + dental 1,400 + serious disease 5,000) | 500 + 1,000 + 5,000 = RM6,500 |
    | 14 (psychological consultation 800 + examination 800) | RM1,000 total |
-   | 16 (son's serious illness 12,500 + check-up 750 + PCR test 300) | 10,000 total; screening lines limited by what remains |
+   | 16 (son's kidney disease: serious disease 12,000 + additional vaccination 500, listed together as 12,500; check-up 750; PCR test 300) | 10,000 + 0 + 0 + 0 = RM10,000. Encoding: four claims in that order; the ruling gives "10,000 (restricted)" for the 12,500 line and no amount for the screening lines |
    | 17 (serious disease 9,000 + mammogram 200 + devices 700 + children's devices 400) | RM10,000 total |
    | 18 (child vaccination 300 + early intervention 7,000) | 300 + 6,000 = RM6,300 |
-   | 19 (own serious disease 9,800 + child vaccination 300 + early intervention 7,000) | 9,800 + 300 + 0 = RM10,000 |
+   | 19 (own serious disease 9,800 + own influenza vaccination 300 + child's early intervention 7,000) | 9,800 + 200 + 0 = RM10,000. The ruling's line column (9,800, 300, 6,000) is before the RM10,000 group cap; the engine applies the cap per line in claim-ID order |
    | 20 (Peter 7,000, Jill 3,000 for one child) | 6,000 and 3,000 |
 
    Examples 12 and 15 depend on joint assessment (s.46(3) deeming), which is out of scope; they are listed in the doc as not covered. Where an example's split between limbs is not stated, the fixture records the encoding chosen.
