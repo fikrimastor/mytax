@@ -17,6 +17,8 @@ Returns:
 
 Security: this unauthenticated endpoint is a calculation prototype; do not send identity or personal documents.
 
+Request size: every API request body is limited to 1 MB (HTTP 413 above that). A request at the 1,000-claim limit fits.
+
 ## Claim shape (changed 2026-11-03)
 
 `claims` use the same shape as `POST /v1/eligibility/preview`:
