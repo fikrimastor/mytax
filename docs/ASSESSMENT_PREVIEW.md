@@ -36,7 +36,7 @@ Further differences:
 A fixed-amount rule (currently `DISABLED_SELF`, RM7,000) takes `amount_sen` 0 or no `amount_sen`; the engine uses the rule limit. Any other amount returns HTTP 400:
 
 ```json
-{"id":"c2","rule_id":"DISABLED_SELF","expense_key":"dsw-card-no","evidence_reference":"dsw-card","facts":{"resident":true,"within_year":true,"disability_certified_by_jkm":true}}
+{"id":"c2","rule_id":"DISABLED_SELF","expense_key":"disabled-self-2025","evidence_reference":"dsw-cert","facts":{"resident":true,"within_year":true,"disability_certified_by_jkm":true}}
 ```
 
 `GET /v1/policy/catalog` marks such rules `"fixed_amount": true`; groups may carry `"parent"` (for example `MEDICAL_SCREENING` inside `MEDICAL_SELF_FAMILY`).

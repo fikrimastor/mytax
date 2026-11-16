@@ -58,6 +58,9 @@ func TestPR72025WorkedExamples(t *testing.T) {
 				if l.Reason != "" && !hasReason(d, l.Reason) {
 					t.Fatalf("line %s lacks %s: %v", l.ID, l.Reason, d.Reasons)
 				}
+				if l.Reason == "" && hasReason(d, "LIMIT_REACHED") {
+					t.Fatalf("line %s has no expected reason but was capped: %v", l.ID, d.Reasons)
+				}
 			}
 		})
 	}

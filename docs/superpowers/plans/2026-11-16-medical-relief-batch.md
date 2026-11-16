@@ -916,7 +916,7 @@ Follow the layout of `docs/RELIEF_LIFESTYLE_YA2025.md`. Required sections and co
 1. Title `# Medical reliefs, YA 2025 — draft model` and the status line: `Status: **DRAFT. Not approved, not professionally reviewed, never reduces chargeable income.**`
 2. `## Sources` — the spec's Sources table (Act 53 May 2024 text plus Finance Act 2024 s.9(a)–(d); Act 53 1 Jan 2026 text only for YA 2026 differences; PR 7/2025 with the IRBM URL, HTTP 500 on 2026-11-07 and 2026-11-16, the MAICSA mirror URL, mirror PDF SHA-256 `47e07419363bc88b0fbffc404a92fc625bf96c84a4f3878ee8f0e5da30e5d10b`, pointer to `docs/sources/pr7-2025/`; Nota Penerangan BE YA 2025 at `https://ef.hasil.gov.my/eBE2026/Pdf/Nota_BE.pdf`, accessed 2026-11-07, with the warning that `eBE2025/Pdf/Nota_BE_e.pdf` is the YA 2024 notes). State: the Act text is the AGC updated text, not an authentic text; the ruling is an administrative interpretation under s.138A.
 3. `## What is modelled` — the spec's §1 rule table, plus a column "Required facts" listing each rule's `RequiredFacts` from Task 2 Step 5. Note `MEDICAL_SCREENING` is nested in `MEDICAL_SELF_FAMILY`.
-4. `## Claim shape` — expense rules as today; `DISABLED_SELF` sends `amount_sen` 0 or omits it, with `expense_key` = DSW certificate number and `evidence_reference` = the certificate; any other amount is HTTP 400.
+4. `## Claim shape` — expense rules as today; `DISABLED_SELF` sends `amount_sen` 0 or omits it, with `expense_key` = an opaque value stable for one certificate (never the certificate number) and `evidence_reference` = a reference to the certificate document; any other amount is HTTP 400.
 5. `## Interpretations for tax-professional review` — the spec's four numbered interpretations (§2), verbatim in substance.
 6. `## Allocation order` — the spec's §4 known limit: claim-ID order decides the per-line split when a group cap binds; totals do not depend on it; LHDN prescribes no order (Example 19).
 7. `## Worked examples covered` — table of example → expected lines and total, copied from the spec's Testing table (Examples 3, 4, 8, 9, 10, 11, 13, 14, 16, 17, 18, 19, 20), with the encodings from `pr7_2025_cases.json`. Then: "Not covered: Examples 12 and 15 (joint assessment, s.46(3) deeming); Examples 5–7 (disabled individual and spouse status, later batch)."
@@ -934,7 +934,7 @@ After the claim example (line 25 block), add:
 ```markdown
 A fixed-amount rule (currently `DISABLED_SELF`, RM7,000) takes `amount_sen` 0 or no `amount_sen`; the engine uses the rule limit. Any other amount returns HTTP 400:
 
-    {"id":"c2","rule_id":"DISABLED_SELF","expense_key":"dsw-card-no","evidence_reference":"dsw-card","facts":{"resident":true,"within_year":true,"disability_certified_by_jkm":true}}
+    {"id":"c2","rule_id":"DISABLED_SELF","expense_key":"disabled-self-2025","evidence_reference":"dsw-cert","facts":{"resident":true,"within_year":true,"disability_certified_by_jkm":true}}
 
 `GET /v1/policy/catalog` marks such rules `"fixed_amount": true`; groups may carry `"parent"` (for example `MEDICAL_SCREENING` inside `MEDICAL_SELF_FAMILY`).
 ```

@@ -59,7 +59,7 @@ Each is the stricter reading or one the engine already enforces. Each is listed 
 
 - `Rule` gains `FixedAmount bool` (`json:"fixed_amount,omitempty"`).
 - A claim on a fixed-amount rule must have `amount_sen` equal to 0. The engine uses `LimitSen` as the claimed amount. Any other value makes `Evaluate` return an error (HTTP 400), the same treatment as a non-positive amount on an expense rule.
-- `expense_key` is still required (for `DISABLED_SELF`: the DSW certificate number) and `evidence_reference` is still required (the certificate). A second `DISABLED_SELF` claim with a different key gets 0 because the rule limit is spent.
+- `expense_key` is still required, but it must be an opaque value that stays the same for one certificate (for example a hash you derive), never the certificate number itself; `evidence_reference` is still required and means a reference to the certificate document (not its number). A second `DISABLED_SELF` claim with a different key gets 0 because the rule limit is spent.
 - `ValidateRelease` rejects a fixed-amount rule with a zero `LimitSen` or with a group.
 
 ### 4. Engine change B: nested groups

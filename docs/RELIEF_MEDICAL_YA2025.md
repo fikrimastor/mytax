@@ -61,10 +61,10 @@ Expense rules work as they do today: send the amount and a receipt reference.
 `DISABLED_SELF` is a fixed-amount rule. Send `amount_sen` 0 or omit it; the engine uses the RM7,000 rule limit. Any other amount returns HTTP 400.
 
 ```json
-{"id":"c2","rule_id":"DISABLED_SELF","expense_key":"dsw-card-no","evidence_reference":"dsw-card","facts":{"resident":true,"within_year":true,"disability_certified_by_jkm":true}}
+{"id":"c2","rule_id":"DISABLED_SELF","expense_key":"disabled-self-2025","evidence_reference":"dsw-cert","facts":{"resident":true,"within_year":true,"disability_certified_by_jkm":true}}
 ```
 
-`expense_key` is still required: for `DISABLED_SELF` it is the DSW certificate number. `evidence_reference` is still required: the certificate itself. A second `DISABLED_SELF` claim with a different key gets 0, because the rule limit is spent.
+`expense_key` is still required, but send an opaque value that stays the same for one certificate (for example a hash you derive). Never send the certificate number itself. `evidence_reference` is still required: a reference to the certificate document, not its number. A second `DISABLED_SELF` claim with a different key gets 0, because the rule limit is spent.
 
 `GET /v1/policy/catalog` marks such rules `"fixed_amount": true`; groups may carry `"parent"`.
 
@@ -107,7 +107,7 @@ The fixtures order claim IDs as the ruling lists the expenses, and assert both t
 | 20 | Peter | early intervention 6,000 (`LIMIT_REACHED`) | RM6,000 | — |
 | 20 | Jill | early intervention 3,000 | RM3,000 | — |
 
-Not covered: Examples 12 and 15 (joint assessment, s.46(3) deeming); Examples 5–7 (disabled individual and spouse status, later batch).
+Not covered: Examples 12 and 15 (joint assessment, s.46(3) deeming); Examples 5–7 (education fees, s.46(1)(f); outside this batch).
 
 ## Not modelled
 
