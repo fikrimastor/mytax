@@ -34,8 +34,8 @@ Both tools are read-only and idempotent. Amounts are integer sen. Every result h
 
 | Tool | Input | Output |
 |---|---|---|
-| `list_tax_reliefs` | `assessment_year` | Package version and status, shared groups with caps, the rules the engine can evaluate (`id`, `group`, `exclusive_family`, `limit_sen`), and the 31 descriptive registry entries (not evaluable) |
-| `get_tax_relief_rule` | `assessment_year`, `rule_id` | The rule (cap, required facts, sources), the shared group it counts against if any |
+| `list_tax_reliefs` | `assessment_year` | Package version and status, shared groups with caps and their `parent` when a group is nested inside another, the rules the engine can evaluate (`id`, `group`, `exclusive_family`, `limit_sen`, `fixed_amount`), and the 31 descriptive registry entries (not evaluable) |
+| `get_tax_relief_rule` | `assessment_year`, `rule_id` | The rule (cap, `fixed_amount`, required facts, sources), the shared group it counts against if any, including that group's `parent` |
 
 Errors (returned as MCP tool errors, `isError: true`):
 

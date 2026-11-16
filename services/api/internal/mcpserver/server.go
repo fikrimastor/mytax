@@ -32,6 +32,7 @@ type RuleSummary struct {
 	Group           string `json:"group,omitempty"`
 	ExclusiveFamily string `json:"exclusive_family,omitempty"`
 	LimitSen        int64  `json:"limit_sen"`
+	FixedAmount     bool   `json:"fixed_amount,omitempty"`
 }
 
 // ListOutput is the list_tax_reliefs response.
@@ -103,7 +104,7 @@ func listReliefs(_ context.Context, _ *mcp.CallToolRequest, in listInput) (*mcp.
 
 	rules := make([]RuleSummary, 0, len(pkg.Rules))
 	for _, r := range pkg.Rules {
-		rules = append(rules, RuleSummary{ID: r.ID, Group: r.Group, ExclusiveFamily: r.ExclusiveFamily, LimitSen: r.LimitSen})
+		rules = append(rules, RuleSummary{ID: r.ID, Group: r.Group, ExclusiveFamily: r.ExclusiveFamily, LimitSen: r.LimitSen, FixedAmount: r.FixedAmount})
 	}
 
 	return nil, ListOutput{
@@ -171,7 +172,8 @@ func findGroup(pkg policy.Package, id string) *policy.Group {
 	}
 	for _, g := range pkg.Groups {
 		if g.ID == id {
-			return &policy.Group{ID: g.ID, LimitSen: g.LimitSen}
+			g := g // copy the loop value so a response never aliases catalog state
+			return &g
 		}
 	}
 	return nil

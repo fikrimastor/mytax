@@ -27,16 +27,20 @@ type Source struct {
 }
 
 type Rule struct {
-	ID              string   `json:"id"`
-	Group           string   `json:"group"`
-	ExclusiveFamily string   `json:"exclusive_family,omitempty"`
-	LimitSen        int64    `json:"limit_sen"`
-	RequiredFacts   []string `json:"required_facts"`
-	Sources         []Source `json:"sources"`
+	ID              string `json:"id"`
+	Group           string `json:"group"`
+	ExclusiveFamily string `json:"exclusive_family,omitempty"`
+	// FixedAmount rules grant LimitSen in full; claims must send amount_sen 0.
+	FixedAmount   bool     `json:"fixed_amount,omitempty"`
+	LimitSen      int64    `json:"limit_sen"`
+	RequiredFacts []string `json:"required_facts"`
+	Sources       []Source `json:"sources"`
 }
 
 type Group struct {
-	ID       string `json:"id"`
+	ID string `json:"id"`
+	// Parent names an enclosing group whose limit also applies to this group's claims.
+	Parent   string `json:"parent,omitempty"`
 	LimitSen int64  `json:"limit_sen"`
 }
 
@@ -85,6 +89,12 @@ type Result struct {
 // Allocation order: because claims are allocated in claim-ID order, when two claims
 // compete for a cap or for the same exclusive family, the lower claim ID wins.
 //
+// Nested groups: a claim is limited by its rule, its group and every ancestor group, and its
+// allowed amount is charged to all of them. When a group cap binds, the per-line split
+// depends on claim-ID order; the group total does not.
+//
+// Fixed amounts: a claim on a FixedAmount rule sends amount_sen 0 and is granted LimitSen.
+//
 // Expense keys: an ExpenseKey is registered even when its claim is blocked for another
 // reason, so a later claim reusing that key is flagged as a duplicate (fails closed).
 //
@@ -103,30 +113,9 @@ func Evaluate(p Package, claims []Claim) (Result, error) {
 	if len(claims) > maxClaims {
 		return Result{}, errors.New("too many claims")
 	}
-	rules := map[string]Rule{}
-	groups := map[string]Group{}
-	for _, g := range p.Groups {
-		if g.ID == "" || g.LimitSen < 0 {
-			return Result{}, errors.New("invalid group")
-		}
-		if _, ok := groups[g.ID]; ok {
-			return Result{}, errors.New("duplicate group")
-		}
-		groups[g.ID] = g
-	}
-	for _, rule := range p.Rules {
-		if rule.ID == "" || rule.LimitSen < 0 {
-			return Result{}, errors.New("invalid rule")
-		}
-		if _, ok := rules[rule.ID]; ok {
-			return Result{}, errors.New("duplicate rule")
-		}
-		if rule.Group != "" {
-			if _, ok := groups[rule.Group]; !ok {
-				return Result{}, errors.New("unknown group")
-			}
-		}
-		rules[rule.ID] = rule
+	rules, groups, err := validateStructure(p)
+	if err != nil {
+		return Result{}, err
 	}
 
 	ordered := append([]Claim(nil), claims...)
@@ -144,7 +133,15 @@ func Evaluate(p Package, claims []Claim) (Result, error) {
 		Notice:         "Draft rules are not legally approved and never authorize a tax claim.",
 	}
 	for _, c := range ordered {
-		if c.ID == "" || c.AmountSen <= 0 {
+		rule, ok := rules[c.RuleID]
+		claimed := c.AmountSen
+		if ok && rule.FixedAmount {
+			if c.AmountSen != 0 {
+				return Result{}, errors.New("fixed-amount relief takes amount_sen 0")
+			}
+			claimed = rule.LimitSen
+		}
+		if c.ID == "" || claimed <= 0 {
 			return Result{}, errors.New("claim ID and positive amount required")
 		}
 		if seenID[c.ID] {
@@ -152,7 +149,6 @@ func Evaluate(p Package, claims []Claim) (Result, error) {
 		}
 		seenID[c.ID] = true
 		d := Decision{ClaimID: c.ID, Status: "REVIEW_REQUIRED", Reasons: []string{}}
-		rule, ok := rules[c.RuleID]
 		if !ok {
 			d.Reasons = append(d.Reasons, "UNKNOWN_RELIEF_RULE")
 		}
@@ -179,15 +175,16 @@ func Evaluate(p Package, claims []Claim) (Result, error) {
 		}
 		if len(d.Reasons) == 0 {
 			available := rule.LimitSen - usedRules[rule.ID]
-			if rule.Group != "" {
-				if g := groups[rule.Group].LimitSen - usedGroups[rule.Group]; g < available {
+			chain := groupChain(groups, rule.Group)
+			for _, gid := range chain {
+				if g := groups[gid].LimitSen - usedGroups[gid]; g < available {
 					available = g
 				}
 			}
 			if available < 0 {
 				available = 0
 			}
-			allowed := c.AmountSen
+			allowed := claimed
 			if allowed > available {
 				allowed = available
 			}
@@ -197,8 +194,8 @@ func Evaluate(p Package, claims []Claim) (Result, error) {
 			d.ProvisionalAmountSen = allowed
 			res.ProvisionalTotalSen += allowed
 			usedRules[rule.ID] += allowed
-			if rule.Group != "" {
-				usedGroups[rule.Group] += allowed
+			for _, gid := range chain {
+				usedGroups[gid] += allowed
 			}
 			if allowed > 0 && rule.ExclusiveFamily != "" {
 				families[rule.ExclusiveFamily] = true
@@ -210,7 +207,7 @@ func Evaluate(p Package, claims []Claim) (Result, error) {
 			} else {
 				d.Reasons = append(d.Reasons, "DRAFT_POLICY_NOT_APPROVED")
 			}
-			if allowed < c.AmountSen {
+			if allowed < claimed {
 				d.Reasons = append(d.Reasons, "LIMIT_REACHED")
 			}
 		}

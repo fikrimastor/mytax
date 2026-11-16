@@ -20,6 +20,7 @@ PR 3 (branch `claude/quirky-wozniak-o9r7ih`) is open as a **draft** and unmerged
 - Source records with hashes: pasted LHDN tables, Act 53 as at 21 May 2024 and 1 January 2026, Finance Act 2024 (Act 862), Akta Kewangan 2025 (Akta 874). See `docs/sources/`.
 - All 31 YA 2025 registry amounts agree with the law texts; YA 2026-only items are listed so they are not applied to YA 2025 (`docs/ACT53_RECONCILIATION_YA2025.md`).
 - Lifestyle relief modelled with Act citations and boundary tests (`docs/RELIEF_LIFESTYLE_YA2025.md`).
+- Medical reliefs (s.46(1)(c), (d), (e), (g), (h), (ha)) modelled as Draft rules with PR 7/2025 golden fixtures (`docs/RELIEF_MEDICAL_YA2025.md`).
 - First-home interest rule now has the s.46B conditions (citizen, occupied as residence, no income from the property).
 - Candidate spouse and child deductions, provisional s.6A rebates, review-only dividend check (`docs/FAMILY_REBATE_DIVIDEND_YA2025.md`). Not wired into any endpoint.
 
@@ -38,7 +39,7 @@ PR 3 (branch `claude/quirky-wozniak-o9r7ih`) is open as a **draft** and unmerged
 - [ ] **Professional review.** Nothing is approved. No release record, no `Approved` package, `ActivePackage` still returns an error by design.
 - [ ] Official golden fixtures: LHDN worked examples to reconcile the whole calculation.
 - [ ] LHDN Public Rulings for YA 2025 and the YA 2025 Form BE explanatory notes: not read. The Act text and Finance Acts were read for s.6, s.6A, s.46 to s.51 and Schedule 1 Part I only.
-- [ ] **Rule coverage.** Rules exist only for lifestyle, education, vaccination and dental, first-home interest, and (in `internal/family`) spouse and child. No rule yet for: parents' medical, disability equipment, disabled individual, serious disease and fertility, medical screening, learning disability, sports, EV and compost, childcare, breastfeeding, SSPN, life insurance and EPF, education and medical insurance, PRS, SOCSO, self education fees.
+- [ ] **Rule coverage.** Rules exist only for lifestyle, education, the medical batch (parents, disability equipment, disabled individual, serious disease, fertility, vaccination, dental, screening, learning disability), first-home interest, and (in `internal/family`) spouse and child. No rule yet for: sports, EV and compost, childcare, breastfeeding, SSPN, life insurance and EPF, education and medical insurance, PRS, SOCSO, self education fees.
 - [ ] Conditions not yet modelled: s.46(3) and s.50(2) spouse deeming (needs the s.45(2) election context); s.49 insurance conditions and obligatory-contribution rule; s.51 deduction must be claimed; compost machine once across YA 2025 to 2027; breastfeeding equipment once per two years; spouse and child allocation across a whole household.
 - [ ] Dividend above RM100,000 (2%): needs a decision on excess-only or whole dividend, per-company or total, and the Minister's prescription. Currently review only.
 - [ ] Umrah departure-levy rebate (needs history across years). PCB and credits (s.132, s.133).
