@@ -7,7 +7,6 @@ import (
  "os"
  "strconv"
  "github.com/labstack/echo/v4"
- "github.com/labstack/echo/v4/middleware"
  "github.com/jackc/pgx/v5/pgxpool"
  "github.com/fikrimastor/mytax/services/api/internal/tax"
  "github.com/fikrimastor/mytax/services/api/internal/policy"
@@ -23,7 +22,7 @@ import (
 func main(){
  e:=echo.New()
  e.HideBanner=true
- e.Use(middleware.Recover(),middleware.CORSWithConfig(middleware.CORSConfig{AllowOrigins:corsOrigins(os.Getenv("MYTAX_CORS_ORIGINS"))}))
+ useMiddleware(e,os.Getenv("MYTAX_CORS_ORIGINS"))
  if os.Getenv("MYTAX_ENABLE_AUTH_PREVIEW")=="true" {
   issuer:=os.Getenv("MYTAX_OIDC_ISSUER")
   audience:=os.Getenv("MYTAX_OIDC_AUDIENCE")
