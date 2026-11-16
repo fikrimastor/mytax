@@ -81,7 +81,11 @@ func TestRunningTotalOverflowIsRejected(t *testing.T) {
 func TestDraftCatalogNeverProducesApprovedAmounts(t *testing.T) {
 	p := YA2025Draft()
 	for i, rule := range p.Rules {
-		c := claimFor(t, p, "a", rule.ID, 1)
+		amt := int64(1)
+		if rule.FixedAmount {
+			amt = 0
+		}
+		c := claimFor(t, p, "a", rule.ID, amt)
 		c.ExpenseKey = fmt.Sprintf("k%d", i)
 		r, err := Evaluate(p, []Claim{c})
 		if err != nil {

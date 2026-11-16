@@ -1,0 +1,245 @@
+[
+  {
+    "example": 3,
+    "taxpayer": "Zubir",
+    "encoding": "Grandparents' medical and parents' dental are separate PARENTS_MEDICAL expenses; vaccination is PARENTS_CHECKUP (complete examination includes vaccination, FA 2024 s.9(a)).",
+    "claims": [
+      {"id": "a", "rule_id": "PARENTS_MEDICAL", "amount_sen": 450000, "expense_key": "ex3-grandparents-medical", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "PARENTS_MEDICAL", "amount_sen": 100000, "expense_key": "ex3-parents-dental", "evidence_reference": "receipt"},
+      {"id": "c", "rule_id": "PARENTS_CHECKUP", "amount_sen": 280000, "expense_key": "ex3-vaccination", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 450000},
+        {"id": "b", "amount_sen": 100000},
+        {"id": "c", "amount_sen": 100000, "reason": "LIMIT_REACHED"}
+      ],
+      "total_sen": 650000
+    }
+  },
+  {
+    "example": 4,
+    "taxpayer": "Megat",
+    "encoding": "The ruling gives no price; 300000 sen is chosen.",
+    "claims": [
+      {"id": "a", "rule_id": "DISABILITY_EQUIPMENT", "amount_sen": 300000, "expense_key": "ex4-wheelchair", "evidence_reference": "receipt", "false_facts": ["disability_certified_by_jkm"]}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 0, "reason": "UNVERIFIED_FACT:disability_certified_by_jkm"}
+      ],
+      "total_sen": 0
+    }
+  },
+  {
+    "example": 8,
+    "taxpayer": "Jasmine",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_SERIOUS_DISEASE", "amount_sen": 1000000, "expense_key": "ex8-jasmine", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 1000000}],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 8,
+    "taxpayer": "Isaac",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_SERIOUS_DISEASE", "amount_sen": 400000, "expense_key": "ex8-isaac", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 400000}],
+      "total_sen": 400000
+    }
+  },
+  {
+    "example": 9,
+    "taxpayer": "Fahim",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_FERTILITY", "amount_sen": 1000000, "expense_key": "ex9-ivf-fahim", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 1000000}],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 9,
+    "taxpayer": "Anita",
+    "encoding": "The receipt is in Fahim's name, so paid_by_claimant is false for Anita.",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_FERTILITY", "amount_sen": 1000000, "expense_key": "ex9-ivf-anita", "evidence_reference": "receipt", "false_facts": ["paid_by_claimant"]}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 0, "reason": "UNVERIFIED_FACT:paid_by_claimant"}],
+      "total_sen": 0
+    }
+  },
+  {
+    "example": 10,
+    "taxpayer": "Fahim",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_FERTILITY", "amount_sen": 1000000, "expense_key": "ex10-fahim", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 1000000}],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 10,
+    "taxpayer": "Anita",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_FERTILITY", "amount_sen": 1000000, "expense_key": "ex10-anita", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 1000000}],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 11,
+    "taxpayer": "Azli",
+    "encoding": "Claim IDs follow the ruling's table order (serious disease, then fertility); the ruling states only the RM10,000 total.",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_SERIOUS_DISEASE", "amount_sen": 600000, "expense_key": "ex11-son-serious", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "MEDICAL_FERTILITY", "amount_sen": 1200000, "expense_key": "ex11-fertility", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 600000},
+        {"id": "b", "amount_sen": 400000, "reason": "LIMIT_REACHED"}
+      ],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 13,
+    "taxpayer": "Khadijah",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_VACCINATION", "amount_sen": 50000, "expense_key": "ex13-influenza", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "MEDICAL_DENTAL", "amount_sen": 140000, "expense_key": "ex13-dental", "evidence_reference": "receipt"},
+      {"id": "c", "rule_id": "MEDICAL_SERIOUS_DISEASE", "amount_sen": 500000, "expense_key": "ex13-serious", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 50000},
+        {"id": "b", "amount_sen": 100000, "reason": "LIMIT_REACHED"},
+        {"id": "c", "amount_sen": 500000}
+      ],
+      "total_sen": 650000
+    }
+  },
+  {
+    "example": 14,
+    "taxpayer": "John",
+    "encoding": "Ruling states only the RM1,000 total; claim IDs follow the text order.",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_SCREENING_MENTAL_HEALTH", "amount_sen": 80000, "expense_key": "ex14-psychology", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "MEDICAL_SCREENING_EXAM", "amount_sen": 80000, "expense_key": "ex14-exam", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 80000},
+        {"id": "b", "amount_sen": 20000, "reason": "LIMIT_REACHED"}
+      ],
+      "total_sen": 100000
+    }
+  },
+  {
+    "example": 16,
+    "taxpayer": "Diana",
+    "encoding": "The ruling lists 12,500 (serious disease 12,000 plus additional vaccination 500) as one line restricted to 10,000 and gives no amount for the screening lines; encoded as four claims in that order.",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_SERIOUS_DISEASE", "amount_sen": 1200000, "expense_key": "ex16-kidney", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "MEDICAL_VACCINATION", "amount_sen": 50000, "expense_key": "ex16-vaccination", "evidence_reference": "receipt"},
+      {"id": "c", "rule_id": "MEDICAL_SCREENING_EXAM", "amount_sen": 75000, "expense_key": "ex16-checkup", "evidence_reference": "receipt"},
+      {"id": "d", "rule_id": "MEDICAL_SCREENING_DETECTION_TEST", "amount_sen": 30000, "expense_key": "ex16-pcr", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 1000000, "reason": "LIMIT_REACHED"},
+        {"id": "b", "amount_sen": 0, "reason": "LIMIT_REACHED"},
+        {"id": "c", "amount_sen": 0, "reason": "LIMIT_REACHED"},
+        {"id": "d", "amount_sen": 0, "reason": "LIMIT_REACHED"}
+      ],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 17,
+    "taxpayer": "Jasmin",
+    "encoding": "Ruling states the RM10,000 total; per-line split follows claim-ID order.",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_SERIOUS_DISEASE", "amount_sen": 900000, "expense_key": "ex17-serious", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "MEDICAL_SCREENING_DETECTION_TEST", "amount_sen": 20000, "expense_key": "ex17-mammogram", "evidence_reference": "receipt"},
+      {"id": "c", "rule_id": "MEDICAL_SCREENING_SELF_TEST_DEVICE", "amount_sen": 70000, "expense_key": "ex17-oximeter-bp", "evidence_reference": "receipt"},
+      {"id": "d", "rule_id": "MEDICAL_SCREENING_SELF_TEST_DEVICE", "amount_sen": 40000, "expense_key": "ex17-children-kits", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 900000},
+        {"id": "b", "amount_sen": 20000},
+        {"id": "c", "amount_sen": 70000},
+        {"id": "d", "amount_sen": 10000, "reason": "LIMIT_REACHED"}
+      ],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 18,
+    "taxpayer": "Anis",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_VACCINATION", "amount_sen": 30000, "expense_key": "ex18-influenza", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "MEDICAL_LEARNING_DISABILITY", "amount_sen": 700000, "expense_key": "ex18-intervention", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 30000},
+        {"id": "b", "amount_sen": 600000, "reason": "LIMIT_REACHED"}
+      ],
+      "total_sen": 630000
+    }
+  },
+  {
+    "example": 19,
+    "taxpayer": "Anis",
+    "encoding": "The ruling's line column (9,800, 300, 6,000) is before the RM10,000 group cap; the engine applies the cap per line in claim-ID order.",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_SERIOUS_DISEASE", "amount_sen": 980000, "expense_key": "ex19-serious", "evidence_reference": "receipt"},
+      {"id": "b", "rule_id": "MEDICAL_VACCINATION", "amount_sen": 30000, "expense_key": "ex19-influenza", "evidence_reference": "receipt"},
+      {"id": "c", "rule_id": "MEDICAL_LEARNING_DISABILITY", "amount_sen": 700000, "expense_key": "ex19-intervention", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [
+        {"id": "a", "amount_sen": 980000},
+        {"id": "b", "amount_sen": 20000, "reason": "LIMIT_REACHED"},
+        {"id": "c", "amount_sen": 0, "reason": "LIMIT_REACHED"}
+      ],
+      "total_sen": 1000000
+    }
+  },
+  {
+    "example": 20,
+    "taxpayer": "Peter",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_LEARNING_DISABILITY", "amount_sen": 700000, "expense_key": "ex20-peter", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 600000, "reason": "LIMIT_REACHED"}],
+      "total_sen": 600000
+    }
+  },
+  {
+    "example": 20,
+    "taxpayer": "Jill",
+    "claims": [
+      {"id": "a", "rule_id": "MEDICAL_LEARNING_DISABILITY", "amount_sen": 300000, "expense_key": "ex20-jill", "evidence_reference": "receipt"}
+    ],
+    "expect": {
+      "lines": [{"id": "a", "amount_sen": 300000}],
+      "total_sen": 300000
+    }
+  }
+]
